@@ -1,0 +1,202 @@
+.products {
+  display: grid;
+  grid-template-columns: 1fr 30rem;
+  grid-template-rows: repeat(3, max-content) 1fr;
+  grid-gap: 2rem;
+  grid-template-areas: 
+    "header header"
+    "categories reviews"
+    "subcategories reviews"
+    "products reviews"
+  ;
+
+  & > div {
+    padding: 1rem;
+
+    h1 {
+      color: $color-dark;
+      margin-bottom: 2rem;
+    }
+  } 
+
+  &__header {
+    grid-area: header;
+  }
+
+  &__categories {
+    grid-area: categories;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, auto));
+    grid-gap: 1rem;
+
+    .category-item {
+      @include Outline;
+
+      display: flex;
+      align-items: center;
+
+      &--active {
+        border: none;
+        background: $color-white;
+        box-shadow: 0 0 3rem rgba($color-dark, .3);
+      }
+
+      &__icon {
+        width: 30%;
+      }
+
+      &__name {
+        height: 5rem;
+        width: 70%;
+        font-size: 2rem;
+        color: $color-dark;
+
+        @include GridCenter;
+        justify-self: start;
+      }
+    }
+  }
+
+  &__sub-categories {
+    grid-area: subcategories;
+
+    .sub-categories-products {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 2rem;
+    }
+
+    .sub-categories-item {
+      @include Outline;
+      padding: 1rem 2rem;
+
+      &__img {
+        display: block;
+        margin: 0 auto;
+        height: 20rem;
+        width: auto;
+      }
+
+      &__name {
+        color: $color-dark;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      &__summary {
+        padding: 1rem 0;
+      }
+
+      &__footer {
+        display: flex;
+      }
+
+      &__price {
+        color: $color-dark;
+        font-weight: bold;
+        margin-right: auto;
+        font-size: 1.5rem;
+      } 
+
+      &__cart {
+        color: $color-primary;
+        font-weight: bold;
+      }
+    } 
+  }
+
+  &__products {
+    grid-area: products;
+
+    .all {
+      padding-bottom: 7rem;
+    }
+
+    
+    .product-item {
+      @include Outline;
+      padding: 1rem;
+
+      display: flex;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+
+      &__img {
+        width: 5rem;
+        margin-right: 1rem;
+      }
+
+      &__name {
+        font-weight: bold;
+        color: $color-dark;
+        font-size: 1.5rem;
+        margin-right: auto;
+      }
+
+      &__price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: $color-dark;
+      }
+
+      &__cart {
+        margin-left: 4rem;
+        color: $color-primary;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__reviews {
+    grid-area: reviews;
+    border-radius: 1rem;
+    border: 1px solid $color-grey;
+
+    align-self: start;
+
+    &__header {
+      margin-bottom: 2rem;
+    }
+
+    .review-item {
+      background: rgba($color-primary, .04);
+      padding: 1rem;
+      border-radius: .5rem;
+      margin: .5rem;
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
+      display: grid;
+      grid-template-columns: 4rem 1fr max-content;
+      grid-template-rows: 4rem 1fr;
+      grid-gap: .2rem;
+
+      &__img {
+        grid-area: 1/1/2/2;
+      }
+
+      &__name {
+        grid-area: 1/2/2/3;
+        align-self: center;
+        color: $color-dark;
+        font-weight: bold;
+      }
+
+      &__rating {
+        grid-area: 1/3/2/4;
+        align-self: center;
+      }
+
+      &__summary {
+        grid-area: 2/1/3/4;
+        color: lighten($color: $color-dark, $amount: 20);
+      }
+    }
+  }
+}

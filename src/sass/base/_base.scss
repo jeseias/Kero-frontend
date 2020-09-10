@@ -18,42 +18,43 @@ html, body {
 
 body {
   box-sizing: border-box;
-  background: $color-white;
+  background: lighten($color: $color-grey-light, $amount: 5);
   padding: 2rem;
+  padding-bottom: 8rem;
+  overflow-x: hidden;
   
-  .pageWrapper {
-    display: block;
-    width: 90%;
-    height: 90%;
-    
-    @include AbosoluteCenter;
+  display: block; 
+  position: relative;
 
-    border-radius: 10px;
-    overflow: hidden;
-
-    display: grid;
-    grid-template-columns: 25rem 1fr;
-    grid-template-rows: 1fr;
+  .pages {
+    position: absolute;
+    right: 4rem;
+    top: 4rem;
+    width: calc(100vw - 38rem);
+    min-height: calc(100vh - 4rem);
   }
-  
-  .aside, .pages {
-    grid-row: 1/2;
-  }
-
   
   .aside {
     grid-column: 1/2;
-    background: rgba($color-primary, .03);
+    background: rgba($color-primary, .04);
+    width: 25rem;
+    height: calc(100vh - 8rem);
+
+    position: fixed;
+    top: 4rem;
+    left: 4rem;
+
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
   }
 
   .page {
     display: none;
     min-width: 100%; 
-    min-height: 100%; 
-    grid-column: 2/3;
+    min-height: calc(100vh - 4rem); 
 
     &.visible {
-      display: block;
+      display: grid;
     }
   }
 }
