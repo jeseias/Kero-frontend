@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.6%; // 1rem = 10px;
+}
+
+html, body {
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
+}
+
+body {
+  box-sizing: border-box;
+  background: $color-white;
+  padding: 2rem;
+
+  
+  .pageWrapper {
+    border-radius: 10px;
+
+    display: grid;
+    grid-template: 20rem 1fr;
+    grid-template-rows: 1fr;
+    overflow: hidden;
+  }
+  
+  .aside, .pages {
+    grid-row: 1/2;
+  }
+
+  
+  .aside {
+    grid-column: 1/2;
+    background: $color-grey-light;
+  }
+
+  .page {
+    display: none;
+    min-width: 100%; 
+    min-height: 100%; 
+    grid-column: 2/3;
+
+    &.visible {
+      display: block;
+    }
+  }
+}

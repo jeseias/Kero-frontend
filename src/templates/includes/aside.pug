@@ -1,0 +1,11 @@
+aside.aside 
+  .logo 
+    h1 Kero
+  nav.nav 
+    ul.nav__list
+      each link in ['Início', 'Produtos', 'Sobre', 'Contacto']
+        li.nav__item
+          a(href='#home')
+            svg 
+              use(xlink:href='') 
+            span= link
