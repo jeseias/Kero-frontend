@@ -17,8 +17,8 @@ export default {
     self: $('header.header') as HTMLDivElement,
     nav: {
       self: $('header.header nav.nav') as HTMLDivElement,
-      items: Array.from($$('header.header nav.nav .nav__item')) as HTMLLIElement[],
-      links: Array.from($$('header.header nav.nav .nav__link')) as HTMLAnchorElement[]
+      items: Array.from($$('aside.aside nav.nav .nav__item')) as HTMLLIElement[],
+      links: Array.from($$('aside.aside nav.nav .nav__link')) as HTMLAnchorElement[]
     }
   }
 }

@@ -1,11 +1,10 @@
 aside.aside 
-  .logo 
-    h1 Kero
+  .logo Kero
   nav.nav 
     ul.nav__list
-      each link in ['Início', 'Produtos', 'Sobre', 'Contacto']
+      each item in [{name:'Início',link:'home'},{name:'Produtos',link:'products'},{name:'Contacto',link:'contact'},{name:'Sobre',link:'about'}]
         li.nav__item
-          a(href='#home')
-            svg 
+          a(href=`#${item.link}`).nav__link
+            svg.nav__icon 
               use(xlink:href='') 
-            span= link
+            span= item.name

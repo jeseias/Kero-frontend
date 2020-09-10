@@ -1,0 +1,38 @@
+.logo {
+  font-size: 4rem;
+  color: $color-dark;
+  padding: 3rem;
+}
+
+.nav {
+
+  &__list {
+    list-style: none;
+  }  
+
+  &__link {
+    padding: 1rem;
+    border-left: 2px solid transparent;
+    display: block;
+    color: $color-dark;
+    text-decoration: none;
+    font-size: 1.5rem;
+
+    @include Transition;
+
+    &--active {
+      border-left: 2px solid $color-primary;
+      color: $color-primary;
+      background: rgba($color-primary, .04);
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

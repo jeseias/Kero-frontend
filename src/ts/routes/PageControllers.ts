@@ -5,12 +5,12 @@ const setHash: (hash: string) => void =
 
 const setNavItemActive: (hash: string) => void = (hash) => {
   const { items, links } = DOM.header.nav
-  const activeClass = 'nav__item--active'
+  const activeClass = 'nav__link--active'
 
   links.forEach(link => {
     link.hash.replace('#', '') !== hash
-      ? link.parentElement!.classList.remove(activeClass) 
-      : link.parentElement!.classList.add(activeClass)
+      ? link.classList.remove(activeClass) 
+      : link.classList.add(activeClass)
   })
 }
 

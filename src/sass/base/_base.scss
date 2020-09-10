@@ -20,15 +20,20 @@ body {
   box-sizing: border-box;
   background: $color-white;
   padding: 2rem;
-
   
   .pageWrapper {
+    display: block;
+    width: 90%;
+    height: 90%;
+    
+    @include AbosoluteCenter;
+
     border-radius: 10px;
+    overflow: hidden;
 
     display: grid;
-    grid-template: 20rem 1fr;
+    grid-template-columns: 25rem 1fr;
     grid-template-rows: 1fr;
-    overflow: hidden;
   }
   
   .aside, .pages {
@@ -38,7 +43,7 @@ body {
   
   .aside {
     grid-column: 1/2;
-    background: $color-grey-light;
+    background: rgba($color-primary, .03);
   }
 
   .page {
