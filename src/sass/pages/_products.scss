@@ -1,6 +1,6 @@
 .products {
   display: grid;
-  grid-template-columns: 1fr 30rem;
+  grid-template-columns: 1fr 30%;
   grid-template-rows: repeat(3, max-content) 1fr;
   grid-gap: 2rem;
   grid-template-areas: 
@@ -27,14 +27,11 @@
     grid-area: categories;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, auto));
+    grid-template-columns: repeat(auto-fit, minmax(max-content, 23%));
     grid-gap: 1rem;
 
     .category-item {
       @include Outline;
-
-      display: flex;
-      align-items: center;
 
       &--active {
         border: none;
@@ -43,13 +40,11 @@
       }
 
       &__icon {
-        width: 30%;
       }
 
       &__name {
         height: 5rem;
-        width: 70%;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: $color-dark;
 
         @include GridCenter;
@@ -62,14 +57,16 @@
     grid-area: subcategories;
 
     .sub-categories-products {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
     }
 
     .sub-categories-item {
       @include Outline;
       padding: 1rem 2rem;
+      background: lighten($color: $color-grey-light, $amount: 5);
+      width: 32%;
 
       &__img {
         display: block;
@@ -112,7 +109,6 @@
     .all {
       padding-bottom: 7rem;
     }
-
     
     .product-item {
       @include Outline;
@@ -156,6 +152,8 @@
     border-radius: 1rem;
     border: 1px solid $color-grey;
 
+    margin-bottom: 7rem;
+
     align-self: start;
 
     &__header {
@@ -163,14 +161,14 @@
     }
 
     .review-item {
-      background: rgba($color-primary, .04);
+      background: $color-white;
       padding: 1rem;
       border-radius: .5rem;
       margin: .5rem;
 
       &:not(:last-child) {
         margin-bottom: 1rem;
-      }
+      } 
 
       display: grid;
       grid-template-columns: 4rem 1fr max-content;

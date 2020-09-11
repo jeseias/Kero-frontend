@@ -18,7 +18,7 @@ html, body {
 
 body {
   box-sizing: border-box;
-  background: lighten($color: $color-grey-light, $amount: 5);
+  background: lighten($color: $color-grey-light, $amount: 3);
   padding: 2rem;
   padding-bottom: 8rem;
   overflow-x: hidden;
@@ -44,6 +44,11 @@ body {
     top: 4rem;
     left: 4rem;
 
+    @include respond($bp-largest) {
+      left: 2rem;
+      top: 2rem;
+    }
+
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
   }
@@ -52,6 +57,11 @@ body {
     display: none;
     min-width: 100%; 
     min-height: calc(100vh - 4rem); 
+
+    @include respond($bp-largest) {
+      right: 2rem;
+      top: 2rem;
+    }
 
     &.visible {
       display: grid;
