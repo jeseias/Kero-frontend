@@ -1,0 +1,20 @@
+.home {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 45rem 1fr;
+
+  .banner {
+    grid-area: 1/1/2/2;
+  }
+
+  .info, .cta {
+    grid-row: 2/3;
+  }
+
+  .info {
+    grid-column: 1/2;
+  }
+
+  .cta {
+    grid-column: 2/3;;
+  }
+}
