@@ -97,10 +97,6 @@
 
   &__products {
     grid-area: products;
-
-    .all {
-      padding-bottom: 7rem;
-    }
     
     .product-item {
       @include Outline;
