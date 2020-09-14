@@ -1,0 +1,13 @@
+.carinho {
+  grid-template-columns: 1fr;
+  grid-template-rows: 8rem 1fr;
+  grid-gap: 2rem;
+
+  .header, .product-card {
+    @include Outline;
+  }
+
+  .allproducts {
+    @include ProductContainer;
+  } 
+}

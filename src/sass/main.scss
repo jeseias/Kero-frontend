@@ -4,10 +4,13 @@
 @import "base/base";
 @import "base/typografy";
 
+@import "components/product-card";
+
 @import "layouts/aside";
 @import "layouts/banner";
 
 @import "pages/home";
 @import "pages/error";
 @import "pages/products";
+@import "pages/carinho";
 @import "pages/about";

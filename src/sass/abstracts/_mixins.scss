@@ -21,6 +21,13 @@
   box-shadow: $top $left $spread $blur rgba($color-black, $opac);
 }
 
+@mixin ProductContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 22rem));
+  grid-template-rows: repeat(auto-fit, minmax(5rem, 31rem));  
+  grid-gap: 1rem;
+}
+
 @mixin GridCenter {
   display: grid;
   justify-content: center;
@@ -36,6 +43,7 @@
 @mixin Outline {
   border-radius: 1rem;
   border: 1px solid $color-grey;
+  padding: 1rem;
 }
 
 @mixin Link {

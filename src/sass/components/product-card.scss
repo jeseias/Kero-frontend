@@ -1,0 +1,38 @@
+.product-card {
+  @include Outline;
+  padding: 1rem 2rem;
+  background: lighten($color: $color-grey-light, $amount: 5);
+
+  &__img {
+    display: block;
+    margin: 0 auto;
+    height: 20rem;
+    width: auto;
+  }
+
+  &__name {
+    color: $color-dark;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  &__summary {
+    padding: 1rem 0;
+  }
+
+  &__footer {
+    display: flex;
+  }
+
+  &__price {
+    color: $color-dark;
+    font-weight: bold;
+    margin-right: auto;
+    font-size: 1.5rem;
+  } 
+
+  &__cart {
+    color: $color-primary;
+    font-weight: bold;
+  }
+}
