@@ -19,12 +19,12 @@ html, body {
 body {
   box-sizing: border-box;
   background: lighten($color: $color-grey-light, $amount: 3);
-  padding: 2rem;
   padding-bottom: 8rem;
   overflow-x: hidden;
+  padding: 2rem;
   
   display: block; 
-  position: relative;
+  position: relative; 
 
   .pages {
     position: absolute;
@@ -32,8 +32,8 @@ body {
     top: 4rem;
     width: calc(100vw - 38rem);
     min-height: calc(100vh - 4rem);
-  }
-  
+  } 
+
   .aside {
     grid-column: 1/2;
     background: rgba($color-primary, .04);

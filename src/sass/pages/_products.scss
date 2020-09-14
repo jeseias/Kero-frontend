@@ -4,7 +4,6 @@
   grid-template-rows: repeat(3, max-content) 1fr;
   grid-gap: 2rem;
   grid-template-areas: 
-    "header header"
     "categories reviews"
     "subcategories reviews"
     "products reviews"
@@ -17,11 +16,7 @@
       color: $color-dark;
       margin-bottom: 2rem;
     }
-  } 
-
-  &__header {
-    grid-area: header;
-  }
+  }  
 
   &__categories {
     grid-area: categories;
@@ -36,11 +31,8 @@
       &--active {
         border: none;
         background: $color-white;
-        box-shadow: 0 0 3rem rgba($color-dark, .3);
-      }
-
-      &__icon {
-      }
+        box-shadow: 0 0 2rem rgba($color-dark, .1);
+      } 
 
       &__name {
         height: 5rem;

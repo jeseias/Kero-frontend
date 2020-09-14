@@ -42,10 +42,10 @@ const aboutpage: () => void = () => {
 
 const productspage: () => void = () => {
   toPage('products')
-}
+} 
 
-const contactpage: () => void = () => {
-  toPage('contact')
+const carinhopage: () => void = () => {
+  toPage('carinho')
 }
 
 const errorpage: () => void = () => {
@@ -56,7 +56,7 @@ export {
   homepage,
   aboutpage,
   productspage,
-  contactpage,
+  carinhopage,
   errorpage,
   toPage
 }
