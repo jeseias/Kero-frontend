@@ -29,11 +29,19 @@ body {
   .pages {
     position: absolute;
     right: 4rem;
-    top: 4rem;
+    top: 10rem;
     width: calc(100vw - 38rem);
-    min-height: calc(100vh - 8rem);
-    padding-bottom: 4rem;
+    min-height: calc(100vh - 13rem);
+    padding-bottom: 2rem;
   } 
+
+  .header {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    width: calc(100vw - 38rem);
+    height: 5rem;
+  }
 
   .aside {
     grid-column: 1/2;
