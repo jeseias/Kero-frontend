@@ -26,22 +26,24 @@ body {
   display: block; 
   position: relative; 
 
-  .pages {
-    position: absolute;
-    right: 4rem;
-    top: 10rem;
-    width: calc(100vw - 38rem);
-    min-height: calc(100vh - 13rem);
-    padding-bottom: 2rem;
-  } 
-
   .header {
     position: absolute;
     top: 4rem;
     right: 4rem;
     width: calc(100vw - 38rem);
-    height: 5rem;
+    height: 6rem;
+    background: rgba($color-primary, .04);
+    border-top-right-radius: 1rem;
   }
+
+  .pages {
+    position: absolute;
+    right: 4rem;
+    top: 12rem;
+    width: calc(100vw - 38rem);
+    min-height: calc(100vh - 15rem);
+    padding-bottom: 2rem;
+  } 
 
   .aside {
     grid-column: 1/2;
