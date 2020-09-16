@@ -5,9 +5,11 @@
 
   &__img {
     display: block;
-    margin: 0 auto;
-    height: 20rem;
-    width: auto;
+    margin: 0 auto 1rem auto;
+    height: 19rem;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
   }
 
   &__name {

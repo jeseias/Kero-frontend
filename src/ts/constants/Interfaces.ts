@@ -8,6 +8,7 @@ export interface IUser {
   img__url: string 
   role: string
   email: string
+  photo: string
 }
 
 export interface ILoggedUser extends IUser {
@@ -32,6 +33,7 @@ export interface IReview {
   review: string 
   rating: number 
   user: IUser
+
 }
 
 // Data That will be sent by users

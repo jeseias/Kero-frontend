@@ -10,7 +10,10 @@ export default {
     about: $('.page.about#about') as HTMLDivElement,
     products: {
       self: $('.page.products#products') as HTMLDivElement,
-      allProducts: $(`.page.products#products .products__products .all`) as HTMLDivElement
+      allProducts: $(`.page.products#products .products__products .all`) as HTMLDivElement,
+      topProducts: $(`.page.products#products .sub-categories-products`) as HTMLDivElement,
+      allReviews: $(`.page.products#products .products__reviews .all`) as HTMLDivElement,
+      categoryItems: Array.from($$(`.page.products#products .products__categories .category-item`)) as HTMLDivElement[],
     },
     contact: $('.page.contact#contact') as HTMLDivElement,
     error: $('.page.error#error') as HTMLDivElement

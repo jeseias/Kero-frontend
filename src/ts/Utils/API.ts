@@ -125,8 +125,8 @@ export class APICommunicator {
   /**
    * Get All the data from a specific resourse
    */
-  public async index(): Promise<TAppObjectData> {
-    const data: TAppObjectData = await fecthData(this.route)
+  public async index(): Promise<any> {
+    const data = await fecthData(this.route)
     return data
   }
 

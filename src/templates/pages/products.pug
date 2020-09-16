@@ -1,17 +1,17 @@
 section.page.products#products  
   .products__categories
-    .category-item.category-item--active 
+    .category-item.category-item--active(data-category='eletronicos') 
       .category-item__icon
-      .category-item__name Alimentaios
-    .category-item 
+      .category-item__name Eletronicos 
+    .category-item(data-category='alimentação') 
       .category-item__icon
-      .category-item__name Vestuarios
-    .category-item 
+      .category-item__name Alimentação
+    .category-item(data-category='materias') 
       .category-item__icon
       .category-item__name Materias
-    .category-item 
+    .category-item(data-category='vestuários') 
       .category-item__icon
-      .category-item__name Imobolarias
+      .category-item__name Vestuários
   .products__sub-categories
     h1 Mais populario
     .sub-categories-products  
@@ -39,37 +39,8 @@ section.page.products#products
   .products__products
     .products__products__header
       h1 Produtos
-    .all        
+    .all       
   .products__reviews
     .products__reviews__header 
       h1 Testemunhos
-    .review-item
-      img.review-item__img
-      span.review-item__name James
-      .review-item__rating
-      p.review-item__summary Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum modi dolor 
-        | quaerat, eaque dolorem magnam laborum. Amet, magni eveniet.
-    .review-item
-      img.review-item__img
-      span.review-item__name James
-      .review-item__rating
-      p.review-item__summary Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum modi dolor 
-        | quaerat, eaque dolorem magnam laborum. Amet, magni eveniet. 
-    .review-item
-      img.review-item__img
-      span.review-item__name James
-      .review-item__rating
-      p.review-item__summary Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum modi dolor 
-        | quaerat, eaque dolorem magnam laborum. Amet, magni eveniet.
-    .review-item
-      img.review-item__img
-      span.review-item__name James
-      .review-item__rating
-      p.review-item__summary Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum modi dolor 
-        | quaerat, eaque dolorem magnam laborum. Amet, magni eveniet.
-    .review-item
-      img.review-item__img
-      span.review-item__name James
-      .review-item__rating
-      p.review-item__summary Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates harum modi dolor 
-        | quaerat, eaque dolorem magnam laborum. Amet, magni eveniet.
+    .all 
