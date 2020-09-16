@@ -1,3 +1,7 @@
+export interface IApp {
+  loggedUser: ILoggedUser | undefined 
+}
+
 export interface IUser {
   id: string 
   name: string 
@@ -8,6 +12,7 @@ export interface IUser {
 
 export interface ILoggedUser extends IUser {
   token: string
+  current: boolean
 }
 
 export interface IProduct {

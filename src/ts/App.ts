@@ -1,13 +1,20 @@
 import { PageSwitcher } from './routes/index'
 import HeaderView from './views/Header'
 
-// import { ILoggedUser, IApp, ISideBarIndexes } from './constants/interfaces'
-// import { TAppDataGetSet, TAppObjectData, allInnerPages, TInnerPageTitles } from './constants/types'
+import { ILoggedUser, IApp } from './constants/Interfaces'
 
 class App {
-  constructor() {
 
-  } 
+  public AppData: IApp
+
+  constructor() {
+    const allLoggedUsers: ILoggedUser[] | null = JSON.parse(localStorage.getItem('kero-client')!)
+    const loggedUser = allLoggedUsers?.find(user => user.current === true); 
+
+    this.AppData = {
+      loggedUser  
+    }
+  }
 
   public PageSetup() {
     const headerSetup = (type: boolean) => {
@@ -17,26 +24,7 @@ class App {
     return {
       headerSetup
     }
-  }
-
-  // public async functionCaller(which: TAppDataGetSet, id?: string ): Promise<any> { 
-  //   await this.getAppData(which, id)
-  //   return which.endsWith('s') ? this.AppData.all[which] : this.AppData.one[which] 
-  // } 
-
-  // public async getAppData(type: TAppDataGetSet,id?: string) {
-  //   const ModelAPI = new APICommunicator(!type.endsWith('s') ? `${type}s` : type)
-
-  //   if (!id) { 
-  //     await ModelAPI.index(type)
-  //   } else {
-  //     await ModelAPI.show(id, type)
-  //   } 
-  // }
-
-  // public setAppData(type: TAppDataGetSet, data: TAppObjectData) {   
-  //   type.endsWith('s') ? this.AppData.all[type] = data : this.AppData.one[type] = data
-  // }
+  } 
 
   public init() {
     PageSwitcher()

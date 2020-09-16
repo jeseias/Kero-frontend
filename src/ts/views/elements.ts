@@ -8,7 +8,10 @@ export default {
     self: Array.from($$('.page')) as HTMLDivElement[],
     home: $('.page.home#home') as HTMLDivElement,
     about: $('.page.about#about') as HTMLDivElement,
-    products: $('.page.products#products') as HTMLDivElement,
+    products: {
+      self: $('.page.products#products') as HTMLDivElement,
+      allProducts: $(`.page.products#products .products__products .all`) as HTMLDivElement
+    },
     contact: $('.page.contact#contact') as HTMLDivElement,
     error: $('.page.error#error') as HTMLDivElement
   },

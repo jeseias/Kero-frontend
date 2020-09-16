@@ -4,7 +4,7 @@ export const goToPage: (page: string) => void = (page) => {
   if (page === '' || page === 'home') {
     PageCTRL.homepage()
   } else if (page === 'products') {
-    PageCTRL.productspage()
+    PageCTRL.productsPageCtrl()
   } else if (page === 'about') {
     PageCTRL.aboutpage()
   } else if (page === 'carinho') {

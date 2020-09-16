@@ -1,5 +1,7 @@
 import DOM, { $, GEBI } from '../views/elements'
 
+import { productsPageCtrl } from '../controllers/productsController'
+
 const setHash: (hash: string) => void = 
   (hash) => window.location.hash = hash;
 
@@ -38,10 +40,6 @@ const homepage: () => void = () => {
 
 const aboutpage: () => void = () => {
   toPage('about')
-}
-
-const productspage: () => void = () => {
-  toPage('products')
 } 
 
 const carinhopage: () => void = () => {
@@ -55,7 +53,7 @@ const errorpage: () => void = () => {
 export {
   homepage,
   aboutpage,
-  productspage,
+  productsPageCtrl,
   carinhopage,
   errorpage,
   toPage

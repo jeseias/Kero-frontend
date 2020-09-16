@@ -4,21 +4,32 @@ import { getUserToken } from '../models/Auth'
 import App from '../App'
 import { TAppDataGetSet, TDataObjects, TAppObjectData } from '../constants/types'
 
-const fecthData: (route: string) => Promise<TAppObjectData> =
-  async (route) => {
+import { AxiosResponse } from 'axios'
+ 
+const fecthData: (route: string, token?: boolean) => Promise<TAppObjectData> =
+  async (route, token) => {
     try {
 
-      const userToken = getUserToken()
-      const res = await api.get(route, {
-        headers: {
-          authorization: `Bearer ${userToken}`
+      let res: AxiosResponse
+
+      if (token) {
+        res = await api.get(route, {
+          headers: {
+            authorization: getUserToken()
+          }
+        })
+
+        const { status, data: {  docs, doc } } = res.data
+
+        if (status === 'success') { 
+          return docs || doc
         }
-      })
-
-      const { status, data: { docs, doc } } = res.data
-
-      if (status === 'success') { 
-        return docs || doc
+      } else {
+        res = await api.get(route)
+        const { status, data: {  docs, doc  } } = res.data
+        if (status === 'success') { 
+          return docs || doc
+        }
       } 
     } catch (err) {
       if (err.response) {
@@ -111,18 +122,23 @@ export class APICommunicator {
     this.route = route
   }
 
-  public async index(storeDataHere: TAppDataGetSet) {
+  /**
+   * Get All the data from a specific resourse
+   */
+  public async index(): Promise<TAppObjectData> {
     const data: TAppObjectData = await fecthData(this.route)
-    App.setAppData(storeDataHere, data)
+    return data
   }
 
+  /** 
+   * Send data to resource
+  */
   public async store(data: TDataObjects, msg: string) {
     await sendData(this.route, data, msg)
   }
 
-  public async show(id: string, storeDataHere: TAppDataGetSet) {
+  public async show(id: string) {
     const data = await fecthData(`${this.route}/${id}`)
-    App.setAppData(storeDataHere, data)
   }
 
   public async update<T>(id: string, data: T, msg: string, route?: string) {
