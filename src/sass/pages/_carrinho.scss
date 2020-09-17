@@ -1,0 +1,31 @@
+.carrinho {
+  grid-template-columns: 1fr;
+  grid-template-rows: 8rem 1fr;
+  grid-gap: 2rem;
+
+  .top, .product-card {
+    @include Outline;
+  }
+
+  .allproducts {
+    @include ProductContainer;
+  } 
+
+  .empty {
+    @include GridCenter;
+    color: $color-dark;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    a {
+      @include Link;
+      display: inline-block;
+      padding: .5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center; 
+    }
+  }
+}

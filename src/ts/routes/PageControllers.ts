@@ -3,6 +3,7 @@ import DOM, { $, GEBI } from '../views/elements'
 import { productsPageCtrl } from '../controllers/productsController'
 import { aboutPageCtrl } from '../controllers/aboutController'
 import { homePageCtrl } from '../controllers/homeController'
+import { carrinhoController } from '../controllers/carrinhoController'
 
 const setHash: (hash: string) => void = 
   (hash) => window.location.hash = hash;
@@ -34,11 +35,7 @@ const toPage: (to: string) => void = (to) => {
   } else {
     setPage();
   }
-}  
-
-const carinhopage: () => void = () => {
-  toPage('carinho')
-}
+}   
 
 const errorpage: () => void = () => {
   toPage('error')
@@ -48,7 +45,7 @@ export {
   homePageCtrl,
   aboutPageCtrl,
   productsPageCtrl,
-  carinhopage,
+  carrinhoController,
   errorpage,
   toPage
 }

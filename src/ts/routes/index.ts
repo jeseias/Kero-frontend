@@ -1,16 +1,16 @@
 import * as PageCTRL from './PageControllers'
 import { sliderFunction } from '../controllers/homeController'
 
-export const goToPage: (page: string) => void = (page) => {
+export const goToPage: (page: string) => void = async (page) => {
   if (page === '' || page === 'home') {
     sliderFunction()
-    PageCTRL.homePageCtrl()
+    await PageCTRL.homePageCtrl()
   } else if (page === 'products') {
-    PageCTRL.productsPageCtrl()
+    await PageCTRL.productsPageCtrl()
   } else if (page === 'about') {
-    PageCTRL.aboutPageCtrl()
-  } else if (page === 'carinho') {
-    PageCTRL.carinhopage() 
+    await PageCTRL.aboutPageCtrl()
+  } else if (page === 'carrinho') {
+    await PageCTRL.carrinhoController() 
   } else {
     PageCTRL.errorpage() 
   }
