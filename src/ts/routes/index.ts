@@ -6,7 +6,7 @@ export const goToPage: (page: string) => void = (page) => {
   } else if (page === 'products') {
     PageCTRL.productsPageCtrl()
   } else if (page === 'about') {
-    PageCTRL.aboutpage()
+    PageCTRL.aboutPageCtrl()
   } else if (page === 'carinho') {
     PageCTRL.carinhopage() 
   } else {

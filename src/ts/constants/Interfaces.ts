@@ -51,7 +51,7 @@ export interface ILogin {
 export interface ISignup {
   name: string 
   email: string 
-  number: number 
+  phone: number 
   password: string
   passwordConfirm: string
 }

@@ -42,3 +42,25 @@ export const textShorter: (no: number, text: string) => string =
 
     return finalText
   }
+
+/**
+ * Cleans up all form fields
+ * @param inputs All the inputs that the property value to be clean up
+ * @param files All inputs that take in files to be nullified
+ * @param imgBox If the is an image box to clean
+ */
+export const formFieldsCleaner: (
+  inputs: (HTMLInputElement | HTMLTextAreaElement)[], 
+  files: HTMLInputElement[] | null, 
+  imgBox?: HTMLDivElement
+) => void =
+  (inputs, files, imgBox) => {
+    inputs.forEach(input => input.value = '')
+    if (files) files.forEach(input => input.files = null) 
+
+    if (imgBox) {
+      imgBox.removeChild(imgBox.firstElementChild!)
+      imgBox.classList.remove('hasimg')
+      imgBox.classList.add('empty')
+    }
+  }

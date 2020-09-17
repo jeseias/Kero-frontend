@@ -7,7 +7,25 @@ export default {
   pages: {
     self: Array.from($$('.page')) as HTMLDivElement[],
     home: $('.page.home#home') as HTMLDivElement,
-    about: $('.page.about#about') as HTMLDivElement,
+    about: {
+      self: $('.page.about#about') as HTMLDivElement,
+      messageForm: {
+        form: $('.page.about#about form.contact-box') as HTMLFormElement,
+        name: $('.page.about#about form.contact-box #messagename') as HTMLInputElement,
+        number: $('.page.about#about form.contact-box #messagenumber') as HTMLInputElement,
+        message: $('.page.about#about form.contact-box #messagetext') as HTMLTextAreaElement,
+        btn: $('.page.about#about form.contact-box #btn') as HTMLButtonElement
+      },
+      signupForm: {
+        form: $('.page.about#about form.signup-box') as HTMLFormElement,
+        name: $('.page.about#about form.signup-box #signupname') as HTMLInputElement,
+        email: $('.page.about#about form.signup-box #signupemail') as HTMLInputElement,
+        number: $('.page.about#about form.signup-box #signupnumber') as HTMLInputElement,
+        password: $('.page.about#about form.signup-box #signuppassword') as HTMLInputElement,
+        passwordConfirm: $('.page.about#about form.signup-box #signuppasswordconfirm') as HTMLInputElement,
+        btn: $('.page.about#about form.signup-box #signupbtn') as HTMLButtonElement 
+      }
+    },
     products: {
       self: $('.page.products#products') as HTMLDivElement,
       allProducts: $(`.page.products#products .products__products .all`) as HTMLDivElement,
