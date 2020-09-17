@@ -6,7 +6,12 @@ export const GEBC = document.getElementsByClassName.bind(document)
 export default {
   pages: {
     self: Array.from($$('.page')) as HTMLDivElement[],
-    home: $('.page.home#home') as HTMLDivElement,
+    home: {
+      self: $('.page.home#home') as HTMLDivElement,
+      banner: $('.page.home#home .banner') as HTMLDivElement,
+      bannerSlider: $('.page.home#home .banner .banner__slider') as HTMLDivElement,
+      bannerItems: Array.from($$('.page.home#home .banner .banner__item')) as HTMLDivElement[],
+    },
     about: {
       self: $('.page.about#about') as HTMLDivElement,
       messageForm: {

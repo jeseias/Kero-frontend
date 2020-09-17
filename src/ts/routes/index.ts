@@ -1,8 +1,10 @@
 import * as PageCTRL from './PageControllers'
+import { sliderFunction } from '../controllers/homeController'
 
 export const goToPage: (page: string) => void = (page) => {
   if (page === '' || page === 'home') {
-    PageCTRL.homepage()
+    sliderFunction()
+    PageCTRL.homePageCtrl()
   } else if (page === 'products') {
     PageCTRL.productsPageCtrl()
   } else if (page === 'about') {
