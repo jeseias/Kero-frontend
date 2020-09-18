@@ -27,7 +27,7 @@ const contactForm: () => void = () => {
 
       btn.disabled = true
       btn.value = 'Enviando mensagen ...'
-      await ContactAPI.store<IMessage>(data, 'Mensagem enviada com successo')
+      await ContactAPI.store<IMessage, {}>(data, 'Mensagem enviada com successo')
       formFieldsCleaner([name, number, message], null)
       btn.value = 'Enviar'
       btn.disabled = false
@@ -56,7 +56,7 @@ const signupForm: () => void = () => {
       }
       
       btn.disabled = true
-      await UsersAPI.store<ISignup>(data, 'A sua conta foi criada com successo', 'users/signup')
+      await UsersAPI.store<ISignup, {}>(data, 'A sua conta foi criada com successo', 'users/signup')
       formFieldsCleaner([name, email, number, password, passwordConfirm], null)
       btn.disabled = false
     })

@@ -1,0 +1,88 @@
+.modal {
+  @include Transition;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+
+  &.visible {  
+    backdrop-filter: blur(10px); 
+    z-index: 100;
+    opacity: 1;
+  }
+
+
+  & > * {
+    position: relative;
+  }
+
+  .close {
+    @include PositionAbsolute(1rem, calc(100% - 3.5rem));
+    @include GridCenter;
+    @include Transition;
+
+    font-size: 2rem;
+    background: rgb(247, 78, 78);
+    color: $color-white;
+    font-weight: bold;
+    border-radius: 100%;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    
+    &:hover {
+      background: rgb(233, 71, 71);
+      cursor: pointer;
+    }
+  }
+
+  #loginform {
+    margin: 8rem auto;
+    background: $color-white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem rgba($color-dark, .35);
+    max-width: 50rem;
+
+    h1 {
+      text-align: center;
+      color: $color-dark;
+      margin-bottom: 2rem;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: .5rem 1rem;
+      color: $color-dark;
+      margin-bottom: .5rem;
+      font-size: 1.6rem;
+      border: none;
+      background: $color-grey-light-3;
+      border-bottom: 2px solid transparent;
+
+      @include Transition;
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary; 
+      }
+
+      &[type="submit"] {
+        background: $color-primary;
+        color: $color-white;
+      
+        @include GridCenter;
+        @include Transition;
+
+        &:hover {
+          cursor: pointer;
+          background: lighten($color: $color-primary, $amount: 10);
+        }
+      }
+    }
+  }
+}

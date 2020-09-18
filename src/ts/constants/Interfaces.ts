@@ -2,18 +2,28 @@ export interface IApp {
   loggedUser: ILoggedUser | undefined 
 }
 
-export interface IUser {
-  id: string 
+export interface IBasicUser {
+  _id: string 
   name: string 
-  img__url: string 
   role: string
   email: string
   photo: string
 }
 
+export interface IUser extends IBasicUser {
+  img__url: string 
+}
+
 export interface ILoggedUser extends IUser {
   token: string
-  current: boolean
+}
+
+export interface IAuthRes<T> {
+  status: string,
+  token: string,
+  data: {
+    user: T
+  }
 }
 
 export interface IProduct {

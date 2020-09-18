@@ -6,3 +6,5 @@ export type TAppDataGetSet = 'product' | 'products' | 'reviews' | 'review' | 'bo
 export type TDataObjects = FormData | IBooking | IMessage | ILogin | ISignup
 
 export type TProductCategory = 'eletronicos' | 'alimentação' | 'materias' | 'vestuários'
+
+export type TAppData = 'loggedUser'

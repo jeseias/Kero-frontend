@@ -3,6 +3,19 @@ export const $$ = document.querySelectorAll.bind(document)
 export const GEBI = document.getElementById.bind(document)
 export const GEBC = document.getElementsByClassName.bind(document)
 
+export const afterDOM = {
+  header: {
+    loginBtn: () => <HTMLButtonElement>GEBI(`loginbtn`),
+    signupBtn: () => <HTMLButtonElement>GEBI(`signupbtn`)
+  },
+  loginForm: {
+    self: () => $(`.modal #loginform`) as HTMLFormElement,
+    emailInput: () => $(`.modal #loginform input#loginemail`) as HTMLInputElement,
+    passwordInput: () => $(`.modal #loginform input#loginpassword`) as HTMLInputElement,
+    submitloginBtn: () => $(`.modal #loginform input[type="submit"]`) as HTMLInputElement
+  }
+}
+
 export default {
   pages: {
     self: Array.from($$('.page')) as HTMLDivElement[],
@@ -42,12 +55,15 @@ export default {
     error: $('.page.error#error') as HTMLDivElement
   },
 
-  header: {
-    self: $('header.header') as HTMLDivElement,
+  aside: {
     nav: {
       self: $('header.header nav.nav') as HTMLDivElement,
       items: Array.from($$('aside.aside nav.nav .nav__item')) as HTMLLIElement[],
       links: Array.from($$('aside.aside nav.nav .nav__link')) as HTMLAnchorElement[]
     }
+  },
+
+  header: {
+    self: $('header.header') as HTMLDivElement
   }
 }

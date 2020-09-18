@@ -1,7 +1,15 @@
+import App from '../App'
+
 import * as PageCTRL from './PageControllers'
 import { sliderFunction } from '../controllers/homeController'
+import { loginHanlder } from '../controllers/authController'
 
 export const goToPage: (page: string) => void = async (page) => {
+
+  if (!App.AppData.loggedUser) {
+    await loginHanlder()
+  }
+
   if (page === '' || page === 'home') {
     sliderFunction()
     await PageCTRL.homePageCtrl()

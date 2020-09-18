@@ -7,6 +7,12 @@
     color: $color-dark;
   }
 
+  .main {
+    @include GridCenter;
+    
+    justify-self: start;
+  }
+
   .user, .normal {
     justify-self: end;
     position: relative;
@@ -20,7 +26,6 @@
       width: 5rem;
       height: 5rem;
       margin: .5rem;
-      border: 2px solid green;
       border-radius: 100%;
     }
 

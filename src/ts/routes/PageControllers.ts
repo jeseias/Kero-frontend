@@ -1,15 +1,15 @@
-import DOM, { $, GEBI } from '../views/elements'
-
 import { productsPageCtrl } from '../controllers/productsController'
 import { aboutPageCtrl } from '../controllers/aboutController'
 import { homePageCtrl } from '../controllers/homeController'
 import { carrinhoController } from '../controllers/carrinhoController'
 
+import DOM, { $, GEBI } from '../views/elements'
+
 const setHash: (hash: string) => void = 
   (hash) => window.location.hash = hash;
 
 const setNavItemActive: (hash: string) => void = (hash) => {
-  const { items, links } = DOM.header.nav
+  const { links } = DOM.aside.nav
   const activeClass = 'nav__link--active'
 
   links.forEach(link => {

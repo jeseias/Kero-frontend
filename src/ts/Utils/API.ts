@@ -1,12 +1,13 @@
+import App from '../App'
 import api from '../services/api'
 import { alertUser } from '../models/Alert'
 import { getUserToken } from '../models/Auth'
-import App from '../App'
-import { TAppDataGetSet, TDataObjects, TAppObjectData } from '../constants/types'
 
+import { TAppObjectData, TAppData } from '../constants/types'
+import { } from '../constants/Interfaces'
 import { AxiosResponse } from 'axios'
  
-const fecthData: (route: string, token?: boolean) => Promise<TAppObjectData> =
+const fecthData: (route: string, token?: string) => Promise<TAppObjectData> =
   async (route, token) => {
     try {
 
@@ -15,7 +16,7 @@ const fecthData: (route: string, token?: boolean) => Promise<TAppObjectData> =
       if (token) {
         res = await api.get(route, {
           headers: {
-            authorization: getUserToken()
+            authorization: `Bearer ${token}`
           }
         })
 
@@ -65,7 +66,7 @@ const deleteData: (route: string, msg: string) => Promise<void> =
     }
   }
 
-const sendData: (route: string, data: any, msg: string, token?: boolean) => Promise<void> = 
+const sendData: (route: string, data: any, msg: string, token?: boolean) => Promise<any> = 
   async (route, data, msg, token) => {
     try { 
 
@@ -79,18 +80,20 @@ const sendData: (route: string, data: any, msg: string, token?: boolean) => Prom
           }
         })
   
-        const { status } = res.data
+        const { status, data: resData } = res.data
   
         if (status === 'success') { 
           alertUser(true, msg)
+          return res.data
         }  
       } else {
         res = await api.post(route, data)
   
-        const { status } = res.data
+        const { status, data: resData } = res.data
   
         if (status === 'success') { 
           alertUser(true, msg)
+          return res
         } 
       }
     } catch (err) {
@@ -138,16 +141,17 @@ export class APICommunicator {
   /**
    * Get All the data from a specific resourse
    */
-  public async index(): Promise<any> {
-    const data = await fecthData(this.route)
+  public async index(token?: string): Promise<any> {
+    const data = await fecthData(this.route, token)
     return data
   }
 
   /** 
    * Send data to resource
   */
-  public async store<T>(data: T, msg: string, route?: string) {
-    await sendData(route || this.route, data, msg)
+  public async store<T, R>(data: T, msg: string, route?: string): Promise<R> {
+    const res = await sendData(route || this.route, data, msg)
+    return res
   }
 
   public async show(id: string) {

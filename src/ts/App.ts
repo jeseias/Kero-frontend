@@ -1,5 +1,5 @@
 import { PageSwitcher } from './routes/index'
-import HeaderView from './views/Header'
+import HeaderView from './views/HeaderView'
 
 import { ILoggedUser, IApp } from './constants/Interfaces'
 
@@ -8,17 +8,16 @@ class App {
   public AppData: IApp
 
   constructor() {
-    const allLoggedUsers: ILoggedUser[] | null = JSON.parse(localStorage.getItem('kero-client')!)
-    const loggedUser = allLoggedUsers?.find(user => user.current === true); 
+    const loggedUser: ILoggedUser = JSON.parse(localStorage.getItem('kero-client')!)
 
     this.AppData = {
       loggedUser  
     }
   }
 
-  public PageSetup() {
-    const headerSetup = (type: boolean) => {
-      type ? HeaderView.userLoggedHeader() : HeaderView.normalHeader() 
+  public AppSetup() {
+    const headerSetup = (user?: ILoggedUser) => {
+      user ? HeaderView.userLoggedHeader(user) : HeaderView.normalHeader() 
     }
 
     return {
@@ -27,9 +26,9 @@ class App {
   } 
 
   public init() {
-    PageSwitcher()
+    this.AppSetup().headerSetup(this.AppData.loggedUser)
 
-    this.PageSetup().headerSetup(false)
+    PageSwitcher()
   }
 }
 
