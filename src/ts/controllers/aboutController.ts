@@ -1,13 +1,15 @@
+import App from '../App'
 import { ContactAPI } from '../models/About'
 import { UsersAPI } from '../models/Users'
 import { alertUser } from '../models/Alert'
+import { saveUser } from '../models/Auth'
 
 import { toPage } from '../routes/PageControllers'
 
 import DOM from '../views/elements'
 import { formFieldsCleaner } from '../views/View'
 
-import { ISignup, IMessage } from '../constants/Interfaces'
+import { ISignup, IMessage, ILoggedUser, IAuthRes } from '../constants/Interfaces'
 
 const contactForm: () => void = () => {
   const { form, name, number, message, btn } = DOM.pages.about.messageForm
@@ -47,7 +49,7 @@ const signupForm: () => void = () => {
       if (!passwordConfirm.value) return alertUser(false, 'Confima a sua senha!')
       if (password.value !== passwordConfirm.value) return alertUser(false, 'Senhas não são iguais!')
 
-      const data: ISignup = {
+      const signupData: ISignup = {
         name: name.value,
         email: email.value,
         phone: parseInt(number.value),
@@ -56,9 +58,14 @@ const signupForm: () => void = () => {
       }
       
       btn.disabled = true
-      await UsersAPI.store<ISignup, {}>(data, 'A sua conta foi criada com successo', 'users/signup')
+      const { data: { token, data: { user } } } = await UsersAPI.store<ISignup, IAuthRes<ILoggedUser>>(signupData, 'A sua conta foi criada com successo', 'users/signup')
+      
       formFieldsCleaner([name, email, number, password, passwordConfirm], null)
-      btn.disabled = false
+      btn.disabled = false 
+      
+      const loggedUser: ILoggedUser = { ...user, token }
+      saveUser(loggedUser)
+      App.toPage('products')
     })
 }
 

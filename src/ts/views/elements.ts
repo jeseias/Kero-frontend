@@ -5,8 +5,16 @@ export const GEBC = document.getElementsByClassName.bind(document)
 
 export const afterDOM = {
   header: {
-    loginBtn: () => <HTMLButtonElement>GEBI(`loginbtn`),
-    signupBtn: () => <HTMLButtonElement>GEBI(`signupbtn`)
+    normal: {
+      loginBtn: () => <HTMLButtonElement>GEBI(`loginbtn`),
+      signupBtn: () => <HTMLButtonElement>GEBI(`signupbtn`)
+    },
+    user: {
+      self: () => <HTMLDivElement>$(`header.header .user`),
+      menuBtn: () => <HTMLDivElement>$(`header.header .user .user__icon`),
+      menuBox: () => <HTMLDivElement>$(`header.header .user .user__menu`),
+      logoutbtn: () => <HTMLDivElement>$(`header.header .user .user__menu #logoutbtn`),
+    }
   },
   loginForm: {
     self: () => $(`.modal #loginform`) as HTMLFormElement,

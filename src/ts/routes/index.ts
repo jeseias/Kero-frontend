@@ -19,6 +19,8 @@ export const goToPage: (page: string) => void = async (page) => {
     await PageCTRL.aboutPageCtrl()
   } else if (page === 'carrinho') {
     await PageCTRL.carrinhoController() 
+  } else if (page === 'dashboard') {
+    await PageCTRL.dashboardPageCtrl() 
   } else {
     PageCTRL.errorpage() 
   }

@@ -149,7 +149,7 @@ export class APICommunicator {
   /** 
    * Send data to resource
   */
-  public async store<T, R>(data: T, msg: string, route?: string): Promise<R> {
+  public async store<T, R>(data: T, msg: string, route?: string): Promise<AxiosResponse<R>> {
     const res = await sendData(route || this.route, data, msg)
     return res
   }

@@ -44,6 +44,12 @@
       margin-right: 1rem;
 
       @include GridCenter;
+      @include Transition;
+
+      &:hover {
+        cursor: pointer;
+        background: lighten($color: $color-primary, $amount: 10);
+      }
     }
 
     &__menu {
@@ -52,22 +58,39 @@
       position: absolute;
       width: 10rem;
       background: red;
-      right: 4rem;
-      bottom: -3rem;
-      z-index: 1;
+      right: 0rem;
+      bottom: -6rem;
+      z-index: -1;
       opacity: 0;
 
-      padding: .5rem;
       border-radius: .2rem;
       box-shadow: 0 0 1rem rgba($color-dark, .35);
       background: $color-white;
       color: $color-dark;
 
+      @include Transition;
+
       &.visible {
         display: block;
         z-index: 10;
         opacity: 1;
-        bottom: -1.5rem;
+        bottom: -4.5rem;
+      }
+
+      &__item {
+        padding: .5rem;
+        font-weight: bold;
+        display: block;
+        
+        @include Transition;
+
+        @include Link; 
+        &:hover {
+          background: $color-dark;
+          color: $color-white;
+          cursor: pointer;
+        }
+
       }
     }
   }

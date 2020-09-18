@@ -37,8 +37,9 @@ const userLoggedHeader: (user: ILoggedUser) => void = (user) => {
       <img class="user__img" src='${user.img__url}' /> 
       <div class="user__icon"></div>
       <ul class="user__menu">
-        <li class="user__item">Minha Conta</li>
-        <li class="user__item">Sair</li>
+        <a class="user__menu__item" href="#dashboard">Minha Conta</a>
+        <a class="user__menu__item" href="#carrinho">Carrinho</a> 
+        <li class="user__menu__item" id="logoutbtn">Sair</li>
       </ul>
     </div>
   `

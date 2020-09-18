@@ -1,4 +1,5 @@
 import App from '../App'
+import { alertUser } from '../models/Alert'
 import { APICommunicator } from '../Utils/API'
 
 import { ILogin, ILoggedUser, IAuthRes, IUser } from '../constants/Interfaces'
@@ -9,11 +10,23 @@ const AuthAPI: (route: string) => APICommunicator = (route) => new APICommunicat
 export const getUserToken: () => string = 
   () => App.AppData.loggedUser!.token
 
+export const saveUser: (user: ILoggedUser) => void =  (user) => {
+  localStorage.setItem('kero-client', JSON.stringify(user))
+  App.AppData = { loggedUser: user }
+  App.init()
+}
+
 export const login: (data: ILogin) => Promise<void> = async (loginData) => {
   const { data: { token, data: { user }  },  } = await AuthAPI('/users/login')
-    .store<ILogin, AxiosResponse<IAuthRes<IUser>>>(loginData, 'login Feito com successo')
+    .store<ILogin, IAuthRes<IUser>>(loginData, 'login Feito com successo')
 
   const loggedUser: ILoggedUser = { ...user, token }
-  localStorage.setItem('kero-client', JSON.stringify(loggedUser))
-  App.AppData.loggedUser = loggedUser
+  saveUser(loggedUser)
+}
+
+export const logout: () => Promise<void> = async () => {
+  localStorage.removeItem('kero-client');
+  App.AppData.loggedUser = undefined
+  alertUser(true, 'Logout Feito com successo')
+  await App.AppSetup().headerSetup()
 }

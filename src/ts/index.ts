@@ -1,3 +1,5 @@
 import App from './App'
 
-App.init()
+(async () => {
+  await App.init()
+})()
