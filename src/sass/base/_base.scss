@@ -34,6 +34,7 @@ body {
     height: 6rem;
     background: rgba($color-primary, .04);
     border-top-right-radius: 1rem;
+    @include Outline;
   }
 
   .pages {
@@ -41,7 +42,6 @@ body {
     right: 4rem;
     top: 12rem;
     width: calc(100vw - 38rem);
-    min-height: calc(100vh - 15rem);
     padding-bottom: 2rem;
   } 
 
@@ -50,6 +50,8 @@ body {
     background: rgba($color-primary, .04);
     width: 25rem;
     height: calc(100vh - 8rem);
+    @include Outline;
+    padding: 0;
 
     position: fixed;
     top: 4rem;

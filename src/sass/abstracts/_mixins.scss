@@ -41,9 +41,10 @@
 }
 
 @mixin Outline {
-  border-radius: 1rem;
-  border: 1px solid $color-grey;
+  // border-radius: 1rem;
+  // border: 1px solid $color-grey;
   padding: 1rem;
+  box-shadow: 0 0 1rem rgba($color-dark, .15);
 }
 
 @mixin Link {

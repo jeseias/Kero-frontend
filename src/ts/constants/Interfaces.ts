@@ -43,7 +43,6 @@ export interface IReview {
   review: string 
   rating: number 
   user: IUser
-
 }
 
 // Data That will be sent by users
@@ -70,4 +69,10 @@ export interface IBooking {
   product: string
   user: string
   price: number
+}
+
+export interface IReviewSend {
+  user: string
+  review: string
+  rating: number
 }

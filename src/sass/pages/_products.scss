@@ -1,3 +1,10 @@
+%item-line {
+  
+  &:not(:last-child) {
+    border-bottom: 2px solid $color-dark;
+  }
+}
+
 .products {
   display: grid;
   grid-template-columns: 1fr 30%;
@@ -57,21 +64,18 @@
 
   &__products {
     grid-area: products;
-
+    
     .all {
-      padding-bottom: 7rem;
+      @include Outline;
     }
     
     .product-item {
-      @include Outline;
       padding: 1rem;
 
       display: flex;
       align-items: center;
 
-      &:not(:last-child) {
-        margin-bottom: 2rem;
-      }
+      @extend %item-line; 
 
       &__img {
         width: 7rem;
@@ -101,26 +105,22 @@
 
   &__reviews {
     grid-area: reviews;
-    border-radius: 1rem;
-    border: 1px solid $color-grey;
 
-    margin-bottom: 7rem;
-
-    align-self: start;
+    .all {
+      @include Outline;
+      background: $color-white;
+    }
+ 
 
     &__header {
       margin-bottom: 2rem;
     }
 
     .review-item {
-      background: $color-white;
       padding: 1rem;
-      border-radius: .5rem;
       margin: .5rem;
-
-      &:not(:last-child) {
-        margin-bottom: 1rem;
-      } 
+     
+      @extend %item-line;
 
       display: grid;
       grid-template-columns: 6rem 1fr max-content;

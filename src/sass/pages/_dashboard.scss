@@ -1,0 +1,76 @@
+.dashboard {
+  padding: 4rem;
+  color: $color-dark;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, max-content); 
+  grid-gap: 2rem;
+
+  @include respond($bp-small) {
+    padding: 2rem;
+  }
+
+  & > * {
+    @include Outline;
+  }
+
+  &__user-review-text {
+    display: none;
+  }
+
+  form {
+
+    input, textarea, select {
+      display: block;
+      width: 100%;
+      
+      &:not(:last-child) {
+        margin-bottom: .5rem;
+      }
+    }
+
+    textarea {
+      min-height: 14rem;
+      max-height: 20rem;
+    }
+
+    button {
+      width: 20rem;
+      background: $color-dark;
+      color: $color-white;
+      padding: .5rem 1rem;
+      border: none;
+
+      @include Transition;
+
+      &:hover {
+        background: $color-primary;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .user {
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+    .img {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 100%;
+      background-size: cover;
+      background-position: top;
+    }
+
+    input {
+      display: none;
+    }
+
+    label {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+}

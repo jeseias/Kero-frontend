@@ -1,2 +1,40 @@
-section.page.dashboard#dashboard  
-  h1 Dashboard page
+section.page.dashboard#dashboard   
+
+  // - User Add Review Section
+  .dashboard__user-add-review 
+    h1.heading-1 Adicionar um testemunho
+    p.dashboard__user-review-text.text O seu testemunho ainda não está visivel, mas logo os administradores irão aprova-lo 
+    br
+    form.form__review 
+      textarea.form-element.saying(placeholder='O que tens a dizer sobre os nosso serviços.')
+      input.form-element.rating(type='number' max='5' min='0' step='0.1' placeholder='No escala de 1 - 5, quanto nos das?')
+      button.btn.btn--cover(type='submit') Criar testemunho
+
+  // - User change setting (name, email)
+  .dashboard__details
+    h1.heading-1 Muda os seus dados primordias
+    br
+    form.form__user-details 
+      input.form-element(type='text')#name
+      input.form-element(type='email')#email
+      input.form-element(type='number')#phone
+      .user
+        .img
+        label(for='file') Mudar imagen
+        input(type='file')#file
+      button.btn.btn--cover(type='submit') Salvar
+
+  // - User change password ONLY
+  .dashboard__user-password
+    h1.heading-1 Troque a sua senha
+    br 
+    form.form__user-password  
+      input.form-element(type='password' placeholder='A sua senha atual')#current-password
+      input.form-element(type='password' placeholder='Nova senha')#new-password
+      input.form-element(type='password' placeholder='Confimar a sua senha')#confirm-password
+      button.btn.btn--cover(type='submit') Mudar Senha
+
+  //- Delete My Acount
+  .dashboard__delete-account 
+    h1.heading-1 Eliminar a minha conta
+    button.btn.btn--cover Eliminar

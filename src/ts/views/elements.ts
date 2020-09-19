@@ -3,6 +3,9 @@ export const $$ = document.querySelectorAll.bind(document)
 export const GEBI = document.getElementById.bind(document)
 export const GEBC = document.getElementsByClassName.bind(document)
 
+// Elements
+const dashboard = `.page.dashboard#dashboard`
+
 export const afterDOM = {
   header: {
     normal: {
@@ -59,6 +62,15 @@ export default {
       allReviews: $(`.page.products#products .products__reviews .all`) as HTMLDivElement,
       categoryItems: Array.from($$(`.page.products#products .products__categories .category-item`)) as HTMLDivElement[],
     },
+    dashboard: {
+      self: <HTMLDivElement>$(`${dashboard}`),
+      reviewBox: {
+        form: <HTMLFormElement>$(`${dashboard} .form__review`),
+        message: <HTMLTextAreaElement>$(`${dashboard} form.form__review textarea`),
+        rating: <HTMLInputElement>$(`${dashboard} form.form__review input`),
+        submitBtn: <HTMLInputElement>$(`${dashboard} form.form__review button`),
+      }
+    },  
     contact: $('.page.contact#contact') as HTMLDivElement,
     error: $('.page.error#error') as HTMLDivElement
   },

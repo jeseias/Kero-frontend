@@ -66,17 +66,16 @@ const deleteData: (route: string, msg: string) => Promise<void> =
     }
   }
 
-const sendData: (route: string, data: any, msg: string, token?: boolean) => Promise<any> = 
+const sendData: (route: string, data: any, msg: string, token?: string) => Promise<any> = 
   async (route, data, msg, token) => {
     try { 
 
       let res: AxiosResponse
 
       if (token) {
-        const userToken = getUserToken()
         const res = await api.post(route, data, {
           headers: {
-            authorization: `Bearer ${userToken}`
+            authorization: `Bearer ${token}`
           }
         })
   
@@ -149,8 +148,8 @@ export class APICommunicator {
   /** 
    * Send data to resource
   */
-  public async store<T, R>(data: T, msg: string, route?: string): Promise<AxiosResponse<R>> {
-    const res = await sendData(route || this.route, data, msg)
+  public async store<T, R>(data: T, msg: string, token?: string, route?: string): Promise<AxiosResponse<R>> {
+    const res = await sendData(route || this.route, data, msg, token)
     return res
   }
 
