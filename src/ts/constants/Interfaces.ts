@@ -8,6 +8,7 @@ export interface IBasicUser {
   role: string
   email: string
   photo: string
+  phone: string
 }
 
 export interface IUser extends IBasicUser {

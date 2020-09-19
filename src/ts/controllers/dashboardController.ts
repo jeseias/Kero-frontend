@@ -36,10 +36,24 @@ const sendReview: () => Promise<void> = async () => {
   })
 }
 
+const setUserData: () => void = () => {
+  const { name, email, phone, img } = DOM.pages.dashboard.userDetails
+  const { loggedUser } = App.AppData
+
+  if (loggedUser) {
+    name.value = loggedUser.name
+    email.value = loggedUser.email
+    phone.value = loggedUser.phone
+
+    img.src = loggedUser.img__url
+  }
+}
+
 export const dashboardPageCtrl: () => Promise<void> = async () => {
 
   if (App.AppData.loggedUser) {
     toPage('dashboard')
+    setUserData()
     return await sendReview()
   } 
 
