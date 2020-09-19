@@ -45,8 +45,22 @@ const setUserData: () => void = () => {
     email.value = loggedUser.email
     phone.value = loggedUser.phone
 
-    img.src = loggedUser.img__url
+    img.style.backgroundImage = `url(${loggedUser.img__url})`
   }
+}
+
+const updateUserData: () => Promise<void> = async () => {
+  const { name, email, phone, img, file } = DOM.pages.dashboard.userDetails
+
+  file.addEventListener('change', () => {
+    const imgFile = Array.from(file.files!)[0]
+
+    if (img) {
+      const imgLink = URL.createObjectURL(imgFile)
+
+      img.style.backgroundImage = `url(${imgLink})`
+    }
+  })
 }
 
 export const dashboardPageCtrl: () => Promise<void> = async () => {
@@ -54,6 +68,8 @@ export const dashboardPageCtrl: () => Promise<void> = async () => {
   if (App.AppData.loggedUser) {
     toPage('dashboard')
     setUserData()
+
+    await updateUserData()
     return await sendReview()
   } 
 

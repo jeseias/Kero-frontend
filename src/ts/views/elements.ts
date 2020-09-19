@@ -76,7 +76,7 @@ export default {
         email: <HTMLInputElement>$(`${dashboard} .form__user-details input#email`),
         phone: <HTMLInputElement>$(`${dashboard} .form__user-details input#phone`),
         file: <HTMLInputElement>$(`${dashboard} .form__user-details input#file`),
-        img: <HTMLImageElement>$(`${dashboard} .form__user-details .img`)
+        img: <HTMLDivElement>$(`${dashboard} .form__user-details .img`)
       }
     },  
     contact: $('.page.contact#contact') as HTMLDivElement,
