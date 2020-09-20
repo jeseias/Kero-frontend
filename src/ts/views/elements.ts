@@ -71,7 +71,7 @@ export default {
         submitBtn: <HTMLInputElement>$(`${dashboard} form.form__review button`),
       },
       userDetails: {
-        userBox: <HTMLDivElement>$(`${dashboard} .form__user-details`),
+        userForm: <HTMLFormElement>$(`${dashboard} form.form__user-details`),
         name: <HTMLInputElement>$(`${dashboard} .form__user-details input#name`),
         email: <HTMLInputElement>$(`${dashboard} .form__user-details input#email`),
         phone: <HTMLInputElement>$(`${dashboard} .form__user-details input#phone`),

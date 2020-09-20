@@ -1,6 +1,8 @@
 import App from '../App'
 import { DashboardAPI } from '../models/Dashboard'
 import { alertUser } from '../models/Alert'
+import { saveUser } from '../models/Auth'
+import api from '../services/api'
 
 import { toPage } from '../routes/PageControllers'
 
@@ -50,7 +52,7 @@ const setUserData: () => void = () => {
 }
 
 const updateUserData: () => Promise<void> = async () => {
-  const { name, email, phone, img, file } = DOM.pages.dashboard.userDetails
+  const { name, email, phone, img, file, userForm } = DOM.pages.dashboard.userDetails
 
   file.addEventListener('change', () => {
     const imgFile = Array.from(file.files!)[0]
@@ -59,6 +61,69 @@ const updateUserData: () => Promise<void> = async () => {
       const imgLink = URL.createObjectURL(imgFile)
 
       img.style.backgroundImage = `url(${imgLink})`
+    }
+  })
+
+  const updateUserLS: (user: any) => void = (updatedUser) => {
+    const user = App.AppData.loggedUser!
+    user.email = updatedUser.email
+    user.name = updatedUser.name
+    user.photo = updatedUser.photo
+    user.img__url = updatedUser.img__url
+    saveUser(user!)
+    App.init()
+  }
+
+  userForm.addEventListener('submit', async (e: Event) => {
+    e.preventDefault()
+
+    const img = file.files?.item(0)
+
+    if (!name.value) return alertUser(false, 'O nome!')
+    if (!email.value) return alertUser(false, 'O email!')
+    if (!phone.value) return alertUser(false, 'O telefone!')
+
+    if (img) {
+      const userData = new FormData()
+
+      userData.append('photo', img)
+      userData.append('name', name.value)
+      userData.append('email', email.value)
+      userData.append('phone', phone.value)
+
+      try {
+        const res = await api.patch('/users/updateMe', userData, {
+          headers: {
+            authorization: `Bearer ${App.AppData.loggedUser!.token}`
+          }
+        })
+
+        const { status, data: { user: updatedUser } } = res.data
+        updateUserLS(updatedUser)
+        alertUser(true, 'Atualização feita com successo')
+
+      } catch (err) {
+        alertUser(false, err.response.message)
+      }
+    } else {
+      try {
+        const res = await api.patch('/users/updateMe', {
+          name: name.value,
+          email: email.value,
+          phone: name.value
+        }, {
+          headers: {
+            authorization: `Bearer ${App.AppData.loggedUser!.token}`
+          }
+        })
+
+        const { status, data: { user: updatedUser } } = res.data
+        updateUserLS(updatedUser)
+        alertUser(true, 'Atualização feita com successo')
+
+      } catch (err) {
+        alertUser(false, err.response.message)
+      }
     }
   })
 }

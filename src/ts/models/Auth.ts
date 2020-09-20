@@ -11,9 +11,18 @@ export const getUserToken: () => string =
   () => App.AppData.loggedUser!.token
 
 export const saveUser: (user: ILoggedUser) => void =  (user) => {
-  localStorage.setItem('kero-client', JSON.stringify(user))
-  App.AppData = { loggedUser: user }
-  App.init()
+  const setUser = () => {
+    localStorage.setItem('kero-client', JSON.stringify(user))
+    App.AppData = { loggedUser: user }
+    App.init()
+  }
+
+  if (JSON.parse(localStorage.getItem('kero-client')!)) {
+    localStorage.removeItem('kero-client')
+    return setUser()
+  }
+
+  setUser()
 }
 
 export const login: (data: ILogin) => Promise<void> = async (loginData) => {
