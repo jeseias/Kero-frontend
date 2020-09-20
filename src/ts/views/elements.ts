@@ -6,6 +6,7 @@ export const GEBC = document.getElementsByClassName.bind(document)
 // Elements
 const dashboard = `.page.dashboard#dashboard`
 const products = `.page.products#products`
+const carrinho = `.page.carrinho#carrinho`
 
 export const afterDOM = {
   header: {
@@ -92,6 +93,11 @@ export default {
         confirmPassword: <HTMLInputElement>$(`${dashboard} form.form__user-password input#confirm-password`),
       }
     },  
+    carrinho: {
+      self: <HTMLDivElement>$(`${carrinho} `),
+      top: <HTMLDivElement>$(`${carrinho} .top`),
+      all: <HTMLDivElement>$(`${carrinho} .allproducts`),
+    },
     contact: $('.page.contact#contact') as HTMLDivElement,
     error: $('.page.error#error') as HTMLDivElement
   },

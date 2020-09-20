@@ -58,7 +58,7 @@ const signupForm: () => void = () => {
       }
       
       btn.disabled = true
-      const { data: { token, data: { user } } } = await UsersAPI.store<ISignup, IAuthRes<ILoggedUser>>(signupData, 'A sua conta foi criada com successo', 'users/signup')
+      const { data: { token, data: { user } } } = await UsersAPI.store<ISignup, IAuthRes<ILoggedUser>>(signupData, 'A sua conta foi criada com successo', undefined, 'users/signup')
       
       formFieldsCleaner([name, email, number, password, passwordConfirm], null)
       btn.disabled = false 

@@ -9,7 +9,7 @@ import { TProductCategory } from '../constants/types'
 // All My templates
 const LOCATION = 'http://127.0.0.1:5000/files/img/users/'
 
-const tempTopProductsGenerator: (data: IProduct) => string = data => `
+export const tempTopProductsGenerator: (data: IProduct) => string = data => `
   <div class="product-card" id="product-${data.id}">
     <div class="product-card__img" style="background-image: url(${data.img__url})"></div>
     <p class="product-card__name">${data.name}</p>

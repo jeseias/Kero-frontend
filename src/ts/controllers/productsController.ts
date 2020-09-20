@@ -14,7 +14,7 @@ import { IProduct, IReview } from '../constants/Interfaces'
 const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Promise<void> = 
   async (products, targetClass) => {
     products.forEach(item => {
-      item.addEventListener('click', (e: Event) => {
+      item.addEventListener('click', async (e: Event) => {
         const el = <HTMLDivElement>e.target!
         let parent: HTMLElement  
 
@@ -29,7 +29,7 @@ const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Prom
           const id = parent.id.replace('product-', '')
           const price = <HTMLParagraphElement>parent.querySelector(`.${targetClass}__price`) 
 
-          addProductToShoppingList(id, parseInt(price.textContent!))
+          await addProductToShoppingList(id, parseInt(price.textContent!))
         }
       })
     })
@@ -51,6 +51,9 @@ export const productsPageCtrl: () => Promise<void> =
         item.addEventListener('click', () => {
           setThisActive(item, categoryItems, 'category-item--active') 
           swicthProductCategory(products, item.dataset.category!)
+
+          bookingProducts(allSubCategoryProducts(), 'product-card')
+          bookingProducts(allProducts(), 'product-item')
         })
       )
     }
