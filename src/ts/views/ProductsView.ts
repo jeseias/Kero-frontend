@@ -10,7 +10,7 @@ import { TProductCategory } from '../constants/types'
 const LOCATION = 'http://127.0.0.1:5000/files/img/users/'
 
 const tempTopProductsGenerator: (data: IProduct) => string = data => `
-  <div class="product-card">
+  <div class="product-card" id="product-${data.id}">
     <div class="product-card__img" style="background-image: url(${data.img__url})"></div>
     <p class="product-card__name">${data.name}</p>
     <p class="product-card__summary">${textShorter(80, data.summary)}</p>
@@ -22,7 +22,7 @@ const tempTopProductsGenerator: (data: IProduct) => string = data => `
 `
 
 const tempProductsGenerator: (data: IProduct) => string = data => `
-  <div class="product-item">
+  <div class="product-item" id="product-${data.id}">
     <img class="product-item__img" src="${data.img__url}" />
     <p class="product-item__name">${data.name}</p>
     <p class="product-item__price">${data.price}</p>
@@ -31,7 +31,7 @@ const tempProductsGenerator: (data: IProduct) => string = data => `
 ` 
   
 const tempReviewsGenerator: (data: IReview) => string = data => `
-  <div class="review-item">
+  <div class="review-item" id="${data.id}">
     <img class="review-item__img" src="${LOCATION}${data.user.photo}" />
     <span class="review-item__name">${data.user.name}</span>
     <div class="review-item__rating">${data.rating}</div>

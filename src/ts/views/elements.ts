@@ -5,6 +5,7 @@ export const GEBC = document.getElementsByClassName.bind(document)
 
 // Elements
 const dashboard = `.page.dashboard#dashboard`
+const products = `.page.products#products`
 
 export const afterDOM = {
   header: {
@@ -24,6 +25,12 @@ export const afterDOM = {
     emailInput: () => $(`.modal #loginform input#loginemail`) as HTMLInputElement,
     passwordInput: () => $(`.modal #loginform input#loginpassword`) as HTMLInputElement,
     submitloginBtn: () => $(`.modal #loginform input[type="submit"]`) as HTMLInputElement
+  },
+  pages: {
+    products: {
+      allSubCategoryProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__sub-categories .product-card`)),
+      allProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__products .all .product-item`)),
+    }
   }
 }
 

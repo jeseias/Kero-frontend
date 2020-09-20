@@ -70,6 +70,7 @@ export interface IBooking {
   product: string
   user: string
   price: number
+  paid: boolean
 }
 
 export interface IReviewSend {
@@ -92,4 +93,4 @@ export interface IPasswords {
   passwordCurrent: string
   password: string
   passwordConfirm: string
-}
+} 

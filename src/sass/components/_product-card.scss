@@ -36,5 +36,12 @@
   &__cart {
     color: $color-primary;
     font-weight: bold;
+
+    @include Transition;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
 }

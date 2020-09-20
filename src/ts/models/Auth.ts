@@ -39,3 +39,7 @@ export const logout: () => Promise<void> = async () => {
   alertUser(true, 'Logout Feito com successo')
   await App.AppSetup().headerSetup()
 }
+
+export const isUserLogged: () => boolean = () => {
+  return App.AppData.loggedUser ? true : false
+}
