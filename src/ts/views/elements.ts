@@ -77,6 +77,12 @@ export default {
         phone: <HTMLInputElement>$(`${dashboard} .form__user-details input#phone`),
         file: <HTMLInputElement>$(`${dashboard} .form__user-details input#file`),
         img: <HTMLDivElement>$(`${dashboard} .form__user-details .img`)
+      },
+      passwordBox: {
+        self: <HTMLFormElement>$(`${dashboard} form.form__user-password`),
+        currentPassword: <HTMLInputElement>$(`${dashboard} form.form__user-password input#current-password`),
+        newPassword: <HTMLInputElement>$(`${dashboard} form.form__user-password input#new-password`),
+        confirmPassword: <HTMLInputElement>$(`${dashboard} form.form__user-password input#confirm-password`),
       }
     },  
     contact: $('.page.contact#contact') as HTMLDivElement,

@@ -77,3 +77,19 @@ export interface IReviewSend {
   review: string
   rating: number
 }
+
+export interface IUserData {
+  name: string 
+  email: string
+  phone: number
+} 
+
+export interface IUserDataImg extends IUserData {
+  file: File
+}
+
+export interface IPasswords {
+  passwordCurrent: string
+  password: string
+  passwordConfirm: string
+}
