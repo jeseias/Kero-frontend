@@ -2,6 +2,7 @@
   @include Outline;
   padding: 1rem 2rem;
   background: lighten($color: $color-grey-light, $amount: 5);
+  position: relative;
 
   &__img {
     display: block;
@@ -43,5 +44,28 @@
       cursor: pointer;
       text-decoration: underline;
     }
+  }
+
+  &__settings {
+    @include PositionAbsolute(18rem, auto);
+    @include GridCenter;
+    @include Transition;
+    right: 1.5rem;
+    text-transform: uppercase;
+    background: rgb(223, 71, 71);
+    color: $color-white;
+    border-radius: 2px;
+    padding: .2rem .4rem;
+    font-weight: bold;
+    opacity: 0;
+
+    &:hover {
+      cursor: pointer;
+      background: darken($color: rgb(223, 71, 71), $amount: 5);
+    }
+  }
+
+  &:hover &__settings {
+    opacity: 1;
   }
 }

@@ -31,6 +31,9 @@ export const afterDOM = {
     products: {
       allSubCategoryProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__sub-categories .product-card`)),
       allProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__products .all .product-item`)),
+    },
+    carrinho: {
+      deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .product-card__settings`))
     }
   }
 }

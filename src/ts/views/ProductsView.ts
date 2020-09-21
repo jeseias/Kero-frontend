@@ -17,7 +17,7 @@ export const tempTopProductsGenerator: (data: IProduct) => string = data => `
     <div class="product-card__footer">
       <span class="product-card__price">${data.price} KZ</span>
       <span class="product-card__cart">Adicionar no carinho</span>
-    <div>
+    </div>
   </div>  
 `
 
