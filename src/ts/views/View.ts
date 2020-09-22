@@ -4,7 +4,7 @@ export const removeChildren: (parent: HTMLElement) => void =
     children.forEach(child => {
       parent.removeChild(child)
     })
-  } 
+  }  
 
 export const addChildren: (
     parent: HTMLElement, 

@@ -1,14 +1,16 @@
 import DOM from './elements'
 
-import { addChildren, textShorter } from './View'
+import { addChildren, textShorter, removeChildren } from './View'
 
 import { IProduct } from '../constants/Interfaces'
 
 export const shoppingListEmpty: () => void = () => {
-  const { self } = DOM.pages.carrinho
+  const { all } = DOM.pages.carrinho
 
-  self.insertAdjacentHTML('afterbegin', `
-    <div class="">O seu carrinho está vazio</div>
+  removeChildren(all)
+
+  all.insertAdjacentHTML('afterbegin', `
+    <div class="empty">O seu carrinho está vazio</div>
   `)
 }
 
@@ -21,12 +23,19 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
       <p class="product-card__name">${data.product.name}</p>
       <p class="product-card__summary">${textShorter(100, data.product.summary)}</p>
       <div class="product-card__footer">
-        <span class="product-card__price">${data.product.price} KZ</span>
-        <span class="product-card__cart">Adicionar no carinho</span>
+        <span class="product-card__price">${data.product.price} AKZ</span>
+        <span class="product-card__cart">Adicionar</span>
       </div>
       <span class="product-card__settings">Remover</span>  
     </div>  
   `
 
   addChildren(all, products, temp)
+}
+
+export const setUpShoppingHeader: (total: number, length: number) => void = (totalPrice, length) => {
+  const { top: { items, total } } = DOM.pages.carrinho
+
+  items.textContent = `${length} Producto`
+  total.textContent = `Total: ${totalPrice} AKZ`
 }

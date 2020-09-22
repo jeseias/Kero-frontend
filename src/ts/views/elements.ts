@@ -33,7 +33,8 @@ export const afterDOM = {
       allProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__products .all .product-item`)),
     },
     carrinho: {
-      deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .product-card__settings`))
+      deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .product-card__settings`)),
+      allProducts: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .allproducts .product-card`))
     }
   }
 }
@@ -87,7 +88,8 @@ export default {
         email: <HTMLInputElement>$(`${dashboard} .form__user-details input#email`),
         phone: <HTMLInputElement>$(`${dashboard} .form__user-details input#phone`),
         file: <HTMLInputElement>$(`${dashboard} .form__user-details input#file`),
-        img: <HTMLDivElement>$(`${dashboard} .form__user-details .img`)
+        img: <HTMLDivElement>$(`${dashboard} .form__user-details .img`),
+        btn: <HTMLButtonElement>$(`${dashboard} .form__user-details button`)
       },
       passwordBox: {
         self: <HTMLFormElement>$(`${dashboard} form.form__user-password`),
@@ -98,8 +100,12 @@ export default {
     },  
     carrinho: {
       self: <HTMLDivElement>$(`${carrinho} `),
-      top: <HTMLDivElement>$(`${carrinho} .top`),
-      all: <HTMLDivElement>$(`${carrinho} .allproducts`),
+      top: {
+        self: <HTMLDivElement>$(`${carrinho} .top`),
+        items: <HTMLParagraphElement>$(`${carrinho} .top .info__items`),
+        total: <HTMLParagraphElement>$(`${carrinho} .top .info__total`),
+      },
+      all: <HTMLDivElement>$(`${carrinho} .allproducts`)
     },
     contact: $('.page.contact#contact') as HTMLDivElement,
     error: $('.page.error#error') as HTMLDivElement

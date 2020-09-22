@@ -50,7 +50,7 @@ const setUserData: () => void = () => {
 }
 
 const updateUserData: () => Promise<void> = async () => {
-  const { name, email, phone, img, file, userForm } = DOM.pages.dashboard.userDetails
+  const { name, email, phone, img, file, userForm, btn } = DOM.pages.dashboard.userDetails
 
   file.addEventListener('change', () => {
     const imgFile = Array.from(file.files!)[0]
@@ -65,11 +65,16 @@ const updateUserData: () => Promise<void> = async () => {
   userForm.addEventListener('submit', async (e: Event) => {
     e.preventDefault()
 
+    btn.disabled = true
+    btn.textContent = 'Enviando...'
     const img = file.files?.item(0)
 
     if (!name.value) return alertUser(false, 'O nome!')
     if (!email.value) return alertUser(false, 'O email!')
     if (!phone.value) return alertUser(false, 'O telefone!')
+
+    btn.disabled = true
+    btn.textContent = 'Enviando...'
 
     if (img) return await imgDataUpdate({ 
       phone: parseInt(phone.value), 
