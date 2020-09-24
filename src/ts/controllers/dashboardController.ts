@@ -38,6 +38,9 @@ const sendReview: () => Promise<void> = async () => {
 
 const setUserData: () => void = () => {
   const { name, email, phone, img } = DOM.pages.dashboard.userDetails
+  const { blockInput, buildingInput, entraceInput, apartment } = DOM.pages.dashboard.locationBox
+
+  const userLocationInfo: IUserLocation = JSON.parse(localStorage.getItem('kero-client-location')!)
   const { loggedUser } = App.AppData
 
   if (loggedUser) {
@@ -46,6 +49,13 @@ const setUserData: () => void = () => {
     phone.value = loggedUser.phone
 
     img.style.backgroundImage = `url(${loggedUser.img__url})`
+  }
+
+  if (userLocationInfo) {
+    blockInput.value = `${userLocationInfo.block}`
+    buildingInput.value = `${userLocationInfo.building}`
+    entraceInput.value = `${userLocationInfo.entrace}`
+    apartment.value = `${userLocationInfo.apartment}`
   }
 }
 
