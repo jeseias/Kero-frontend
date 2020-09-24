@@ -13,7 +13,7 @@ export const getUserToken: () => string =
 export const saveUser: (user: ILoggedUser) => void =  (user) => {
   const setUser = () => {
     localStorage.setItem('kero-client', JSON.stringify(user))
-    App.AppData = { loggedUser: user }
+    App.AppData = { loggedUser: user, }
     App.init()
   }
 

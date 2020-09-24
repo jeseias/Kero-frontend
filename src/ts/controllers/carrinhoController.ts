@@ -2,17 +2,19 @@ import { getAllShopptinItems } from '../models/Carrinho'
 import { BookingAPI } from '../models/Booking'
 import { isUserLogged } from '../models/Auth'
 import { alertUser } from '../models/Alert'
+import App from '../App'
 
 import { toPage } from '../routes/PageControllers'
+import { checkoutProduct } from './checkoutController'
 
-import { displayShoppingItem, shoppingListEmpty, setUpShoppingHeader } from '../views/carrinhoView'
+import { 
+  displayShoppingItem, 
+  shoppingListEmpty, 
+  setUpShoppingHeader,
+} from '../views/carrinhoView'
 import { afterDOM } from '../views/elements'
 
-import { IProduct } from '../constants/Interfaces'
-
-const checkoutProduct: () => void = () => {
-  
-}
+import { IBookedProduct } from '../constants/Interfaces'
 
 const carrinhoPageDetails: () => void = () => {
   const { allProducts } = afterDOM.pages.carrinho
@@ -33,12 +35,14 @@ const showMyShoppingList: () => Promise<void> = async () => {
 
   if (!isUserLogged()) return shoppingListEmpty()
 
-  const products: { product: IProduct, _id: string }[] = await getAllShopptinItems()
+  const products: IBookedProduct[] = await getAllShopptinItems()
+  App.AppData.AllUserBookedProducts = products
 
   if (products.length === 0 ) return shoppingListEmpty()
 
   displayShoppingItem(products)
   carrinhoPageDetails()
+  checkoutProduct()
   await removeShoppingItem()
 }
 

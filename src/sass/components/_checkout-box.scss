@@ -1,0 +1,86 @@
+.checkout-box {
+  max-width: 70rem;
+  background: $color-white;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba($color-dark, .24);
+  margin: 3rem auto 0 auto;
+  max-height: calc(100vh - 10rem);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, max-content) 1fr max-content;
+
+  &__header {
+    padding: 2rem 1rem;
+    text-align: center
+  }
+
+  &__body {
+    overflow-y: scroll;
+    padding: 1rem;
+  }
+
+  &__checker {
+    display: grid;
+    grid-template-columns: 8rem 1fr 6rem 3rem 6rem;
+    grid-gap: .5rem;
+    color: $color-black; 
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem 2rem .3rem 1rem;
+
+    & :nth-child(3), & :nth-child(4), & :nth-child(5) {
+      justify-self: end;
+    }
+  }
+
+  &__product {
+    height: 7rem;
+    display: grid;
+    grid-template-columns: 8rem 1fr 5rem 3rem 5rem;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    &:not(:last-child) {
+      border-bottom: 2px solid $color-dark;
+    }
+
+    &__img {
+      width: 8rem;
+      height: auto;
+    }
+
+    &__name {
+      font-size: 1.5rem;
+      color: $color-primary;
+      font-weight: bold;
+    }
+
+    &__total, &__price {
+      justify-self: end;
+    } 
+  }
+
+  &__location {
+    padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, max-content) 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    &__total {
+      justify-self: end;
+    }
+
+    select, input {
+      grid-row: 1/2;
+    }
+
+    #checkout-btn {
+      display: block;
+      grid-row: 2/3;
+      grid-column: 4/5;
+      justify-self: end;
+    }
+  } 
+}

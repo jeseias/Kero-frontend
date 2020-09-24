@@ -1,6 +1,15 @@
 export interface IApp {
-  loggedUser: ILoggedUser | undefined 
+  loggedUser: ILoggedUser | undefined,
+  AllUserBookedProducts?: IBookedProduct[] | undefined
 }
+
+export interface IBookedProduct {
+  product: IProduct
+  _id: string 
+  paid: boolean
+  price: number
+  user: IUser
+} 
 
 export interface IBasicUser {
   _id: string 

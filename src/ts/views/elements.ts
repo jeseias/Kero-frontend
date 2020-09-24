@@ -34,7 +34,16 @@ export const afterDOM = {
     },
     carrinho: {
       deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .product-card__settings`)),
-      allProducts: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .allproducts .product-card`))
+      allProducts: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .allproducts .product-card`)),
+      checkoutModel: {
+        quantityInputs: () => <HTMLInputElement[]>Array.from($$(`.modal .checkout-box .checkout-box__product__quantity`)),
+        totalProductPrice: () => <HTMLParagraphElement[]>Array.from($$(`.modal .checkout-box .checkout-box__product__total`)),
+        blockInput: () => <HTMLSelectElement>$(`.modal .checkout-box  #location-form select#block`),
+        buildingInput: () => <HTMLInputElement>$(`.modal .checkout-box #location-form input#building`),
+        entraceInput: () => <HTMLSelectElement>$(`.modal .checkout-box #location-form select#entrace`),
+        mainTotalPrice: () => <HTMLSpanElement>$(`.modal .checkout-box #location-form span#total-price`),
+        submitBtn: () => <HTMLInputElement>$(`.modal .checkout-box #location-form input#checkout-btn`)
+      }
     }
   }
 }
@@ -104,6 +113,8 @@ export default {
         self: <HTMLDivElement>$(`${carrinho} .top`),
         items: <HTMLParagraphElement>$(`${carrinho} .top .info__items`),
         total: <HTMLParagraphElement>$(`${carrinho} .top .info__total`),
+        select: <HTMLSelectElement>$(`${carrinho} .top .action select`),
+        checkoutBtn: <HTMLButtonElement>$(`${carrinho} .top .action button`)
       },
       all: <HTMLDivElement>$(`${carrinho} .allproducts`)
     },
