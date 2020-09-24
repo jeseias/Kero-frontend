@@ -4,6 +4,8 @@ import { alertUser } from '../models/Alert'
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
 
+import { IUserLocation } from '../constants/Interfaces'
+
 const getTotalPrice: () => void = () => {
   const { totalProductPrice, mainTotalPrice } = afterDOM.pages.carrinho.checkoutModel
   let totalPrice = 0
@@ -36,12 +38,24 @@ const changeProductQuantity: () => void = () => {
   })
 }
 
+const setUserLocationInfoIS: () => void = () => {
+  const userLocation: IUserLocation = JSON.parse(localStorage.getItem('kero-client-location')!)
+  const { blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel
+
+  blockInput().value = `${userLocation.block}`
+  buildingInput().value = `${userLocation.building}`
+  entraceInput().value = `${userLocation.entrace}`
+  apartmentInput().value = `${userLocation.apartment}`
+}
+
 const checkoutAllProducts: () => void = () => {
   const allBookedProducts = App.AppData.AllUserBookedProducts
   displayCheckoutModal(allBookedProducts!)
 
   changeProductQuantity()
   getTotalPrice()
+
+  setUserLocationInfoIS()
 }
 
 const checkoutSelectedProducts: () => void = () => {

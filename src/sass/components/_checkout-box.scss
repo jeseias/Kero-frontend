@@ -65,7 +65,7 @@
   &__location {
     padding: 1rem 2rem;
     display: grid;
-    grid-template-columns: repeat(3, max-content) 1fr;
+    grid-template-columns: repeat(3, max-content) 5rem 1fr;
     grid-template-rows: 1fr 1fr;
 
     &__total {
@@ -79,7 +79,7 @@
     #checkout-btn {
       display: block;
       grid-row: 2/3;
-      grid-column: 4/5;
+      grid-column: 5/6;
       justify-self: end;
     }
   } 

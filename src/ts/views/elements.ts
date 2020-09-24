@@ -40,6 +40,7 @@ export const afterDOM = {
         totalProductPrice: () => <HTMLParagraphElement[]>Array.from($$(`.modal .checkout-box .checkout-box__product__total`)),
         blockInput: () => <HTMLSelectElement>$(`.modal .checkout-box  #location-form select#block`),
         buildingInput: () => <HTMLInputElement>$(`.modal .checkout-box #location-form input#building`),
+        apartmentInput: () => <HTMLInputElement>$(`.modal .checkout-box #location-form input#apartment`),
         entraceInput: () => <HTMLSelectElement>$(`.modal .checkout-box #location-form select#entrace`),
         mainTotalPrice: () => <HTMLSpanElement>$(`.modal .checkout-box #location-form span#total-price`),
         submitBtn: () => <HTMLInputElement>$(`.modal .checkout-box #location-form input#checkout-btn`)

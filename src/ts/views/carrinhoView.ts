@@ -83,13 +83,15 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => Promise<void>
           <option value="10"> Bloco 10 </option>
           <option value="11"> Bloco 11 </option>
           <option value="12"> Bloco 12 </option>
+          <option value="13"> Bloco 13 (Rosas) </option>
         </select>
-        <input type="number" step="1" placeholder="Predio" id="buidling"/>
+        <input type="number" step="1" placeholder="Predio" id="building"/>
         <select id="entrace">
           <option value="A"> Entrada A </option>
           <option value="B"> Entrada B </option>
           <option value="C"> Entrada C </option> 
         </select>
+        <input type="number" placeholder="Apartamento" id="apartment"/>
         <span class="checkout-box__location__total" id="total-price">Total: AKZ</span>
         <input type="submit" value="Encomendar" id="checkout-btn"/>
       </form>
