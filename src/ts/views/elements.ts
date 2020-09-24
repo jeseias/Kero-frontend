@@ -105,6 +105,14 @@ export default {
         currentPassword: <HTMLInputElement>$(`${dashboard} form.form__user-password input#current-password`),
         newPassword: <HTMLInputElement>$(`${dashboard} form.form__user-password input#new-password`),
         confirmPassword: <HTMLInputElement>$(`${dashboard} form.form__user-password input#confirm-password`),
+      },
+      locationBox: {
+        form: <HTMLFormElement>$(`${dashboard} .dashboard__location-information form`),
+        blockInput: <HTMLSelectElement>$(`${dashboard} .dashboard__location-information select#location-block`),
+        buildingInput: <HTMLInputElement>$(`${dashboard} .dashboard__location-information input#location-building`),
+        entraceInput: <HTMLSelectElement>$(`${dashboard} .dashboard__location-information select#location-entrace`),
+        apartment: <HTMLInputElement>$(`${dashboard} .dashboard__location-information input#location-apartment`),
+        submitBtn: <HTMLButtonElement>$(`${dashboard} .dashboard__location-information select#location-building`),
       }
     },  
     carrinho: {

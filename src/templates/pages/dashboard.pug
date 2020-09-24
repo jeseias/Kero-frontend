@@ -35,6 +35,30 @@ section.page.dashboard#dashboard
       button(type='submit') Mudar Senha
 
   //- Delete My Acount
-  .dashboard__delete-account 
-    h1.heading-1 Eliminar a minha conta
-    button Eliminar
+  .dashboard__location-information 
+    h1.heading-1 Minha Localização
+    form
+      select#location-block.form-element
+        option(value="1") Bloco 1
+        option(value="2") Bloco 2
+        option(value="3") Bloco 3
+        option(value="4") Bloco 4
+        option(value="5") Bloco 5
+        option(value="6") Bloco 6
+        option(value="7") Bloco 7
+        option(value="8") Bloco 8
+        option(value="9") Bloco 9
+        option(value="10") Bloco 10
+        option(value="11") Bloco 11
+        option(value="12") Bloco 12
+        option(value="13") Bloco 13 (Predios Rosa)
+      input#location-building.form-element(type="number" step="1" placeholder="Predio")
+      select#location-entrace.form-element
+        option(value="A") Entrada A
+        option(value="B") Entrada B
+        option(value="C") Entrada C 
+      input#location-apartment.form-element(type="number" placeholder="Apartamento Ex: 001")
+      button(type='submit') Salvar
+
+
+

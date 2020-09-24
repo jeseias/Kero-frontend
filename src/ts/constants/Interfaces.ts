@@ -11,6 +11,13 @@ export interface IBookedProduct {
   user: IUser
 } 
 
+export interface IUserLocation {
+  block: number
+  building: number,
+  entrace: string
+  apartment: string
+}
+
 export interface IBasicUser {
   _id: string 
   name: string 

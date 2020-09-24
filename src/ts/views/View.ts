@@ -1,3 +1,5 @@
+import { alertUser } from '../models/Alert'
+
 export const removeChildren: (parent: HTMLElement) => void = 
   (parent) => {
     const children = Array.from(parent.children);
@@ -5,6 +7,12 @@ export const removeChildren: (parent: HTMLElement) => void =
       parent.removeChild(child)
     })
   }  
+
+export const userInputNotifacation: (args: [HTMLInputElement, string][]) => void = (input) => {
+  input.forEach(element => {
+    if (!element[0].value) return alertUser(false, element[1])
+  })
+}
 
 export const addChildren: (
     parent: HTMLElement, 

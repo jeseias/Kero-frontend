@@ -5,9 +5,9 @@ import { alertUser } from '../models/Alert'
 import { toPage } from '../routes/PageControllers'
 
 import DOM from '../views/elements'
-import { formFieldsCleaner } from '../views/View'
+import { formFieldsCleaner, userInputNotifacation } from '../views/View'
 
-import { IReviewSend, IReview } from '../constants/Interfaces'
+import { IReviewSend, IReview, IUserLocation } from '../constants/Interfaces'
 
 const sendReview: () => Promise<void> = async () => {
   const { message, rating, form, submitBtn } = DOM.pages.dashboard.reviewBox
@@ -106,6 +106,28 @@ const updateUserPassword: () => Promise<void> = async () => {
   })
 }
 
+const saveUserLocation: () => void = () => {
+  const { blockInput, buildingInput, entraceInput, apartment, form } = DOM.pages.dashboard.locationBox
+  
+  form.addEventListener('submit', (e: Event) => {
+    e.preventDefault()
+
+    userInputNotifacation([
+      [buildingInput, 'O numero do seu predio']
+    ]) 
+
+    const userLocation: IUserLocation = {
+      block: parseInt(blockInput.value),
+      building: parseInt(buildingInput.value),
+      entrace: entraceInput.value,
+      apartment: apartment.value
+    }
+
+   localStorage.setItem('kero-client-location', JSON.stringify(userLocation))
+  });
+
+}
+
 export const dashboardPageCtrl: () => Promise<void> = async () => {
 
   if (!App.AppData.loggedUser) {
@@ -115,6 +137,7 @@ export const dashboardPageCtrl: () => Promise<void> = async () => {
 
   toPage('dashboard')
   setUserData()
+  saveUserLocation()
 
   await updateUserData()
   await updateUserPassword()
