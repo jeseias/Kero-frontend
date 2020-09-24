@@ -6,17 +6,17 @@ import { toPage } from './routes/PageControllers'
 
 import HeaderView from './views/HeaderView'
 
-import { ILoggedUser, IApp } from './constants/Interfaces'
+import { ILoggedUser, IApp, IKeroClient } from './constants/Interfaces'
 
 class App {
 
   public AppData: IApp
 
   constructor() {
-    const loggedUser: ILoggedUser = JSON.parse(localStorage.getItem('kero-client')!)
+    const KeroClient: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
 
     this.AppData = {
-      loggedUser  
+      loggedUser: KeroClient.loggedUser 
     }
   }
 

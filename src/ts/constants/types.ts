@@ -8,3 +8,5 @@ export type TDataObjects = FormData | IBooking | IMessage | ILogin | ISignup
 export type TProductCategory = 'eletronicos' | 'alimentação' | 'materias' | 'vestuários'
 
 export type TAppData = 'loggedUser'
+
+export type TCheckout = string

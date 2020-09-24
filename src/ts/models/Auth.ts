@@ -2,8 +2,7 @@ import App from '../App'
 import { alertUser } from '../models/Alert'
 import { APICommunicator } from '../Utils/API'
 
-import { ILogin, ILoggedUser, IAuthRes, IUser } from '../constants/Interfaces'
-import { AxiosResponse } from 'axios'
+import { ILogin, ILoggedUser, IAuthRes, IUser, IKeroClient } from '../constants/Interfaces'
 
 const AuthAPI: (route: string) => APICommunicator = (route) => new APICommunicator(route)
 
@@ -11,15 +10,23 @@ export const getUserToken: () => string =
   () => App.AppData.loggedUser!.token
 
 export const saveUser: (user: ILoggedUser) => void =  (user) => {
-  const setUser = () => {
-    localStorage.setItem('kero-client', JSON.stringify(user))
-    App.AppData = { loggedUser: user, }
-    App.init()
-  }
+  const KeroClient: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
 
-  if (JSON.parse(localStorage.getItem('kero-client')!)) {
-    localStorage.removeItem('kero-client')
-    return setUser()
+  const setUser = () => {
+    KeroClient.loggedUser = user
+    localStorage.setItem('kero-client', JSON.stringify(KeroClient))
+    App.AppData = { loggedUser: user }
+    App.init()
+  } 
+
+  if (!KeroClient) {
+    const KeroClientObj: IKeroClient = {
+      loggedUser: user
+    } 
+
+    localStorage.setItem('kero-client', JSON.stringify(KeroClientObj))
+    App.AppData = { loggedUser: user }
+    App.init()
   }
 
   setUser()

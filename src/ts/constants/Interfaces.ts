@@ -11,6 +11,30 @@ export interface IBookedProduct {
   user: IUser
 } 
 
+export interface IKeroClient {
+  loggedUser?: ILoggedUser
+  location?: IUserLocation
+  checkout?: string[]
+}
+
+export interface ICheckoutProductSend {
+  products: IProductToBeBooked[]
+  user: string 
+  total: number 
+  location: IUserLocation
+}
+
+export interface ICheckoutProduct extends ICheckoutProductSend {
+  state: 'incomplete' | 'active' | 'complete',
+  _id: string
+}
+
+export interface IProductToBeBooked {
+  productID: string 
+  price: number 
+  quantity: number
+}
+
 export interface IUserLocation {
   block: number
   building: number,
@@ -40,6 +64,13 @@ export interface IAuthRes<T> {
   token: string,
   data: {
     user: T
+  }
+}
+
+export interface INoramlRes<T> {
+  data: {
+    doc?: T
+    docs?: T
   }
 }
 

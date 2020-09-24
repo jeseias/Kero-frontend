@@ -8,7 +8,7 @@ export const removeChildren: (parent: HTMLElement) => void =
     })
   }  
 
-export const userInputNotifacation: (args: [HTMLInputElement, string][]) => void = (input) => {
+export const userInputNotifacation: (args: [HTMLInputElement | HTMLSelectElement, string][]) => void = (input) => {
   input.forEach(element => {
     if (!element[0].value) return alertUser(false, element[1])
   })

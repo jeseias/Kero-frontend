@@ -7,7 +7,7 @@ import { toPage } from '../routes/PageControllers'
 import DOM from '../views/elements'
 import { formFieldsCleaner, userInputNotifacation } from '../views/View'
 
-import { IReviewSend, IReview, IUserLocation } from '../constants/Interfaces'
+import { IReviewSend, IReview, IUserLocation, IKeroClient } from '../constants/Interfaces'
 
 const sendReview: () => Promise<void> = async () => {
   const { message, rating, form, submitBtn } = DOM.pages.dashboard.reviewBox
@@ -42,7 +42,7 @@ const setUserData: () => void = () => {
     locationBox: { blockInput, buildingInput, entraceInput, apartment }
   } = DOM.pages.dashboard 
 
-  const userLocationInfo: IUserLocation = JSON.parse(localStorage.getItem('kero-client-location')!)
+  const { location }: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
   const { loggedUser } = App.AppData
 
   if (loggedUser) {
@@ -53,11 +53,11 @@ const setUserData: () => void = () => {
     img.style.backgroundImage = `url(${loggedUser.img__url})`
   }
 
-  if (userLocationInfo) {
-    blockInput.value = `${userLocationInfo.block}`
-    buildingInput.value = `${userLocationInfo.building}`
-    entraceInput.value = `${userLocationInfo.entrace}`
-    apartment.value = `${userLocationInfo.apartment}`
+  if (location) {
+    blockInput.value = `${location.block}`
+    buildingInput.value = `${location.building}`
+    entraceInput.value = `${location.entrace}`
+    apartment.value = `${location.apartment}`
   }
 }
 
@@ -135,7 +135,13 @@ const saveUserLocation: () => void = () => {
       apartment: apartment.value
     }
 
-   localStorage.setItem('kero-client-location', JSON.stringify(userLocation))
+   const KeroClient: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!);
+   console.log(KeroClient)
+
+   KeroClient.location = userLocation
+   console.log(KeroClient)
+
+   localStorage.setItem('kero-client', JSON.stringify(KeroClient))
   });
 
 }

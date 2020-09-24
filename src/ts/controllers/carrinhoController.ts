@@ -28,7 +28,7 @@ const carrinhoPageDetails: () => void = () => {
     sum += n
   } 
 
-  setUpShoppingHeader(sum ,info.length)
+  setUpShoppingHeader(sum, info.length)
 }
 
 const showMyShoppingList: () => Promise<void> = async () => {

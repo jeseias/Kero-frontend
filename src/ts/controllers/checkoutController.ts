@@ -1,8 +1,10 @@
 import App from '../App'
+import { setUpCheckoutInformation, CheckoutAPI, addCheckout } from '../models/Checkout'
 import { alertUser } from '../models/Alert'
 
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
+import { userInputNotifacation } from '../views/View'
 
 import { IUserLocation } from '../constants/Interfaces'
 
@@ -15,6 +17,7 @@ const getTotalPrice: () => void = () => {
   }
 
   mainTotalPrice().textContent = `Total final: ${totalPrice} AKZ`
+  mainTotalPrice().dataset.totalPrice = `${totalPrice}`
 
 }
 
@@ -49,6 +52,8 @@ const setUserLocationInfoIS: () => void = () => {
 }
 
 const checkoutAllProducts: () => void = () => {
+  const { form, blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel 
+
   const allBookedProducts = App.AppData.AllUserBookedProducts
   displayCheckoutModal(allBookedProducts!)
 
@@ -56,6 +61,23 @@ const checkoutAllProducts: () => void = () => {
   getTotalPrice()
 
   setUserLocationInfoIS()
+
+  form().addEventListener('submit', async (e: Event) => {
+    e.preventDefault()
+
+    userInputNotifacation([
+      [blockInput(), 'O bloco'],
+      [buildingInput(), 'O Predio'],
+      [entraceInput(), 'A entrada'],
+      [apartmentInput(), 'O apartamento']
+    ])
+
+    const checkoutDetails = setUpCheckoutInformation()
+    const { data: { doc } }  = await CheckoutAPI
+      .store(checkoutDetails, 'Encomenda feita com successo', App.AppData.loggedUser!.token)
+
+    addCheckout(doc._id)
+  })
 }
 
 const checkoutSelectedProducts: () => void = () => {
