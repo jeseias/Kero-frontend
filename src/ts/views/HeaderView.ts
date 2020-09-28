@@ -33,6 +33,11 @@ const userLoggedHeader: (user: ILoggedUser) => void = (user) => {
   const temp = `
     ${HeaderMainTemp}
     <div class="user">
+      <div class="checkout">
+        <div class="checkout__icon"></div>
+        <ul class="checkout__menu"> 
+        </ul>
+      </div>
       <p class="user__name">${user.name}</p>
       <img class="user__img" src='${user.img__url}' /> 
       <div class="user__icon"></div>

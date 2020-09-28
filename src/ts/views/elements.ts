@@ -4,6 +4,7 @@ export const GEBI = document.getElementById.bind(document)
 export const GEBC = document.getElementsByClassName.bind(document)
 
 // Elements
+const header = `header.header`
 const dashboard = `.page.dashboard#dashboard`
 const products = `.page.products#products`
 const carrinho = `.page.carrinho#carrinho`
@@ -15,10 +16,12 @@ export const afterDOM = {
       signupBtn: () => <HTMLButtonElement>GEBI(`signupbtn`)
     },
     user: {
-      self: () => <HTMLDivElement>$(`header.header .user`),
-      menuBtn: () => <HTMLDivElement>$(`header.header .user .user__icon`),
-      menuBox: () => <HTMLDivElement>$(`header.header .user .user__menu`),
-      logoutbtn: () => <HTMLDivElement>$(`header.header .user .user__menu #logoutbtn`),
+      self: () => <HTMLDivElement>$(`${header} .user`),
+      menuBtn: () => <HTMLDivElement>$(`${header} .user .user__icon`),
+      menuBox: () => <HTMLDivElement>$(`${header} .user .user__menu`),
+      logoutbtn: () => <HTMLDivElement>$(`${header} .user .user__menu #logoutbtn`),
+      checkoutBtn: () => <HTMLUListElement>$(`${header} .user .checkout .checkout__icon`),
+      checkoutMenu: () => <HTMLUListElement>$(`${header} .user .checkout .checkout__menu`)
     }
   },
   loginForm: {
@@ -142,6 +145,6 @@ export default {
   },
 
   header: {
-    self: $('header.header') as HTMLDivElement
+    self: $('header.header') as HTMLDivElement,
   }
 }

@@ -3,8 +3,7 @@ import App from '../App'
 
 import { afterDOM } from '../views/elements'
 
-import { ICheckoutProductSend, IProductToBeBooked } from '../constants/Interfaces'
-import { TCheckout } from '../constants/types'
+import { ICheckoutProductSend, IProductToBeBooked, IKeroClient } from '../constants/Interfaces'
 
 export const CheckoutAPI = new APICommunicator('checkouts')
 
@@ -42,19 +41,4 @@ export const setUpCheckoutInformation: () => ICheckoutProductSend = () => {
    user
   }
 }
-
-export const addCheckout: (id: string) => void = (id) => {
-  const checkoutStorage = 'kero-client-checkouts'
-  const allCheckouts: TCheckout[] = JSON.parse(localStorage.getItem(checkoutStorage)!) 
-
-  const saveCheckout = (data: TCheckout[]) => {
-    localStorage.setItem(checkoutStorage, JSON.stringify(data))
-  }
-
-  if (allCheckouts) {
-    allCheckouts.push(id)
-    return saveCheckout(allCheckouts)
-  }
-
-  saveCheckout([id])
-}
+ 

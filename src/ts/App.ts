@@ -1,5 +1,6 @@
 import { showUserMenu } from './controllers/headerController'
 import { loginHanlder } from './controllers/authController'
+import { displayCheckoutMenu, displayCheckoutOnHeaderCtrl } from './controllers/checkoutController'
 
 import { PageSwitcher } from './routes/index'
 import { toPage } from './routes/PageControllers'
@@ -24,6 +25,8 @@ class App {
     const headerSetup: (user?: ILoggedUser) => Promise<void> = async (user) => {
       if (user) {
         HeaderView.userLoggedHeader(user)
+        displayCheckoutMenu()
+        await displayCheckoutOnHeaderCtrl()
         return showUserMenu()
       }
       

@@ -25,8 +25,9 @@ export interface ICheckoutProductSend {
 }
 
 export interface ICheckoutProduct extends ICheckoutProductSend {
-  state: 'incomplete' | 'active' | 'complete',
+  state: 'sent' | 'active' | 'complete',
   _id: string
+  createdAt: Date
 }
 
 export interface IProductToBeBooked {

@@ -1,12 +1,14 @@
 import App from '../App'
-import { setUpCheckoutInformation, CheckoutAPI, addCheckout } from '../models/Checkout'
+import { setUpCheckoutInformation, CheckoutAPI } from '../models/Checkout'
 import { alertUser } from '../models/Alert'
+import { hideModal } from '../models/Modal'
 
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
 import { userInputNotifacation } from '../views/View'
+import { displayMyCheckouts } from '../views/checkoutView'
 
-import { IUserLocation } from '../constants/Interfaces'
+import { IKeroClient, ICheckoutProduct } from '../constants/Interfaces'
 
 const getTotalPrice: () => void = () => {
   const { totalProductPrice, mainTotalPrice } = afterDOM.pages.carrinho.checkoutModel
@@ -42,13 +44,13 @@ const changeProductQuantity: () => void = () => {
 }
 
 const setUserLocationInfoIS: () => void = () => {
-  const userLocation: IUserLocation = JSON.parse(localStorage.getItem('kero-client-location')!)
+  const { location }: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
   const { blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel
 
-  blockInput().value = `${userLocation.block}`
-  buildingInput().value = `${userLocation.building}`
-  entraceInput().value = `${userLocation.entrace}`
-  apartmentInput().value = `${userLocation.apartment}`
+  blockInput().value = `${location!.block}`
+  buildingInput().value = `${location!.building}`
+  entraceInput().value = `${location!.entrace}`
+  apartmentInput().value = `${location!.apartment}`
 }
 
 const checkoutAllProducts: () => void = () => {
@@ -73,10 +75,10 @@ const checkoutAllProducts: () => void = () => {
     ])
 
     const checkoutDetails = setUpCheckoutInformation()
-    const { data: { doc } }  = await CheckoutAPI
-      .store(checkoutDetails, 'Encomenda feita com successo', App.AppData.loggedUser!.token)
+    await CheckoutAPI.store(checkoutDetails, 'Encomenda feita com successo', App.AppData.loggedUser!.token)
 
-    addCheckout(doc._id)
+    hideModal()
+    App.init()
   })
 }
 
@@ -91,4 +93,21 @@ export const checkoutProduct: () => void = () => {
     if (select.selectedIndex === 1) return checkoutAllProducts()
     if (select.selectedIndex === 0) return checkoutSelectedProducts()
   })
+}
+
+export const displayCheckoutMenu: () => void = () => {
+  const { checkoutBtn, checkoutMenu } = afterDOM.header.user
+
+  checkoutBtn().addEventListener('click', () => {
+    checkoutMenu().classList.toggle('visible')
+  })
+
+  checkoutMenu().addEventListener('mouseleave', () => {
+    checkoutMenu().classList.remove('visible')
+  })
+}
+
+export const displayCheckoutOnHeaderCtrl: () => Promise<void> = async () => {
+  const allMyCheckouts: ICheckoutProduct[] = await CheckoutAPI.index(App.AppData.loggedUser!.token)
+  displayMyCheckouts(allMyCheckouts)
 }

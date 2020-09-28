@@ -6,7 +6,21 @@ export const removeChildren: (parent: HTMLElement) => void =
     children.forEach(child => {
       parent.removeChild(child)
     })
-  }  
+  } 
+  
+export const addChild: <T>(
+  parent: HTMLDivElement, 
+  data: T, 
+  tempGenerator: (data: T) => string,
+  where?: InsertPosition
+) => void =
+  (parent, data, tempGenerator, where) => {
+    if (parent.children) {
+      removeChildren(parent)
+    }
+
+    parent.insertAdjacentHTML(where || 'afterbegin', tempGenerator(data))
+  }
 
 export const userInputNotifacation: (args: [HTMLInputElement | HTMLSelectElement, string][]) => void = (input) => {
   input.forEach(element => {
