@@ -1,27 +1,14 @@
 import App from '../App'
-import { setUpCheckoutInformation, CheckoutAPI } from '../models/Checkout'
+import { setUpCheckoutInformation, CheckoutAPI, getTotalPrice } from '../models/Checkout'
 import { alertUser } from '../models/Alert'
 import { hideModal } from '../models/Modal'
 
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
 import { userInputNotifacation } from '../views/View'
-import { displayMyCheckouts } from '../views/checkoutView'
+import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
 
 import { IKeroClient, ICheckoutProduct } from '../constants/Interfaces'
-
-const getTotalPrice: () => void = () => {
-  const { totalProductPrice, mainTotalPrice } = afterDOM.pages.carrinho.checkoutModel
-  let totalPrice = 0
-
-  for (let n of totalProductPrice()) {
-    totalPrice += parseInt(n.textContent!)
-  }
-
-  mainTotalPrice().textContent = `Total final: ${totalPrice} AKZ`
-  mainTotalPrice().dataset.totalPrice = `${totalPrice}`
-
-}
 
 const changeProductQuantity: () => void = () => {
   const { quantityInputs } = afterDOM.pages.carrinho.checkoutModel
@@ -110,4 +97,17 @@ export const displayCheckoutMenu: () => void = () => {
 export const displayCheckoutOnHeaderCtrl: () => Promise<void> = async () => {
   const allMyCheckouts: ICheckoutProduct[] = await CheckoutAPI.index(App.AppData.loggedUser!.token)
   displayMyCheckouts(allMyCheckouts)
+}
+
+export const displayOneCheckoutCtrl: () => Promise<void> = async () => {
+  const { allCheckoutItems } = afterDOM.header.user
+
+  if (allCheckoutItems()) {
+    allCheckoutItems().forEach(item => {
+      item.addEventListener('click', async () => {
+        const checkout: ICheckoutProduct = await CheckoutAPI.show(item.id, App.AppData.loggedUser!.token)
+        await displayOneCheckout(checkout)
+      })
+    })
+  }
 }

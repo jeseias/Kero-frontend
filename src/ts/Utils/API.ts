@@ -3,11 +3,10 @@ import api from '../services/api'
 import { alertUser } from '../models/Alert'
 import { getUserToken } from '../models/Auth'
 
-import { TAppObjectData, TAppData } from '../constants/types'
 import { } from '../constants/Interfaces'
 import { AxiosResponse } from 'axios'
  
-const fecthData: (route: string, token?: string) => Promise<TAppObjectData> =
+const fecthData: (route: string, token?: string) => Promise<any> =
   async (route, token) => {
     try {
 
@@ -153,8 +152,9 @@ export class APICommunicator {
     return res
   }
 
-  public async show(id: string) {
-    const data = await fecthData(`${this.route}/${id}`)
+  public async show(id: string, token?: string) {
+    const data = await fecthData(`${this.route}/${id}`, token)
+    return data
   }
 
   public async update<T>(id: string, data: T, msg: string, route?: string) {

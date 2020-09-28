@@ -21,7 +21,8 @@ export const afterDOM = {
       menuBox: () => <HTMLDivElement>$(`${header} .user .user__menu`),
       logoutbtn: () => <HTMLDivElement>$(`${header} .user .user__menu #logoutbtn`),
       checkoutBtn: () => <HTMLUListElement>$(`${header} .user .checkout .checkout__icon`),
-      checkoutMenu: () => <HTMLUListElement>$(`${header} .user .checkout .checkout__menu`)
+      checkoutMenu: () => <HTMLUListElement>$(`${header} .user .checkout .checkout__menu`),
+      allCheckoutItems: () => <HTMLLIElement[]>Array.from($$(`${header} .user .checkout__item`))
     }
   },
   loginForm: {

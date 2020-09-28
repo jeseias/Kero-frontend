@@ -1,6 +1,9 @@
 import { showUserMenu } from './controllers/headerController'
 import { loginHanlder } from './controllers/authController'
-import { displayCheckoutMenu, displayCheckoutOnHeaderCtrl } from './controllers/checkoutController'
+import { 
+  displayCheckoutMenu, 
+  displayCheckoutOnHeaderCtrl, 
+  displayOneCheckoutCtrl } from './controllers/checkoutController'
 
 import { PageSwitcher } from './routes/index'
 import { toPage } from './routes/PageControllers'
@@ -26,7 +29,10 @@ class App {
       if (user) {
         HeaderView.userLoggedHeader(user)
         displayCheckoutMenu()
+
         await displayCheckoutOnHeaderCtrl()
+        await displayOneCheckoutCtrl()
+
         return showUserMenu()
       }
       

@@ -42,6 +42,7 @@ export const setUpShoppingHeader: (total: number, length: number) => void = (tot
 }
 
 export const displayCheckoutModal: (products: IBookedProduct[]) => Promise<void> = async (products) => {
+  console.log(products)
   const temp = `
     <div class="checkout-box">
       <div class="close">X</div>
@@ -59,7 +60,7 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => Promise<void>
       <div class="checkout-box__body">
         <div class="checkout-box__body__allproducts">
           ${products.map(item => `
-            <div class="checkout-box__product" id="${item._id}">
+            <div class="checkout-box__product" id="${item.product.id}">
               <img src="${item.product.img__url}" class="checkout-box__product__img"/>
               <p class="checkout-box__product__name">${item.product.name}</p>
               <p class="checkout-box__product__price">${item.product.price}</p>

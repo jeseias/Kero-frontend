@@ -42,3 +42,15 @@ export const setUpCheckoutInformation: () => ICheckoutProductSend = () => {
   }
 }
  
+export const getTotalPrice: () => void = () => {
+  const { totalProductPrice, mainTotalPrice } = afterDOM.pages.carrinho.checkoutModel
+  let totalPrice = 0
+
+  for (let n of totalProductPrice()) {
+    totalPrice += parseInt(n.textContent!)
+  }
+
+  mainTotalPrice().textContent = `Total final: ${totalPrice} AKZ`
+  mainTotalPrice().dataset.totalPrice = `${totalPrice}`
+  
+}
