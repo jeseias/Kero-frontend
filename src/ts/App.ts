@@ -26,7 +26,6 @@ class App {
         loggedUser: KeroClient.loggedUser 
       }
     }
-
   }
 
   public AppSetup() {

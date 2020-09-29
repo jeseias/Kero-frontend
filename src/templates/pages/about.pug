@@ -1,47 +1,51 @@
 section.page.about#about  
   .info
     h1 Hiper Mercado Kero
-    p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos error doloremque, pariatur unde a natus, adipisci cupiditate 
+    p.info__text Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos error doloremque, pariatur unde a natus, adipisci 
       | fugiat quo corporis nulla ad quia ipsa aperiam? Architecto atque sed vitae, inventore fuga blanditiis odio sint ducimus 
-      |recusandae dignissimos, vero autem ut repudiandae! Minima non quasi, nam asperiores a tenetur alias cum!
-    p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos error doloremque, pariatur unde a natus, adipisci cupiditate 
+      | recusandae dignissimos, vero autem ut repudiandae! Minima non quasi, nam asperiores a tenetur alias cum !
+    p.info__text Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos error doloremque, pariatur unde a natus, adipisci   
       | fugiat quo corporis nulla ad quia ipsa aperiam? Architecto atque sed vitae, inventore fuga blanditiis odio sint ducimus 
-      |recusandae dignissimos, vero autem ut repudiandae! Minima non quasi, nam asperiores a tenetur alias cum!
+      | recusandae dignissimos, vero autem ut repudiandae! Minima non quasi, nam asperiores a tenetur alias cum!
+    p.info__text Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ex praesentium odio. 
+      | Lorem ipsum dolor sit amet.
   .details  
+    h1 Nossas Qualidades
     .detail
-      h1 Principios
-      p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, impedit molestias? Obcaecati?
+      li.detail__title Principios
+      p.detail__text Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora a delectus commodi maiores consequuntur 
+        | necessitatibus cumque porro reprehenderit tenetur autem reiciendis
     .detail
-      h1 Missão  
-      p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, impedit molestias? Obcaecati?
+      li.detail__title Missão  
+      p.detail__text Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora a delectus commodi maiores consequuntur 
+        | necessitatibus cumque porro reprehenderit tenetur autem reiciendis
     .detail
-      h1 Valores  
-      p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, impedit molestias? Obcaecati?
-    .detail
-      h1 Principio  
-      p Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, impedit molestias? Obcaecati?
+      li.detail__title Valores  
+      p.detail__text Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora a delectus commodi maiores consequuntur 
+        | necessitatibus cumque porro reprehenderit tenetur autem reiciendis
+    //- .detail
+    //-   li.detail__title Principio 
+    //-   p.detail__text Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora a delectus commodi maiores consequuntur 
+    //-     | necessitatibus cumque porro reprehenderit tenetur autem reiciendis 
   .socials
-    ul
-      li Telefone: 92343534 / 912434534
-      li E-mail: geral@kero.co.ao
-      li Localização: Luanda Cacuaco, Sequele
     ul
       li Facebook
       li Instagram
       li Twitter
+      li Telefone: 92343534 / 912434534
+      li E-mail: geral@kero.co.ao
+      li Localização: Luanda Cacuaco, Sequele
   form.contact-box.form
     h1 Deixe-nos uma mensagen
-    p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores, possimus!
-    input(type='text' placeholder='nome')#messagename
-    input(type='number' placeholder='telefone')#messagenumber
-    textarea#messagetext
-    input#btn(type='submit' value='Enviar')
+    input.form-element(type='text' placeholder='nome')#messagename
+    input.form-element(type='number' placeholder='telefone')#messagenumber
+    textarea.form-element#messagetext(placeholder="Sua mensagen")
+    input.btn#btn(type='submit' value='Enviar')
   form.signup-box.form
     h1 Seje nosso cliente
-    p Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam quod rem maxime.
-    input#signupname(type='text' placeholder='nome')
-    input#signupemail(type='email' placeholder='email')
-    input#signupnumber(type='number' placeholder='telefone')
-    input#signuppassword(type='password' placeholder='senha')
-    input#signuppasswordconfirm(type='password' placeholder='confirma senha')
-    input#signupbtn(type='submit' value='Quero ser um cliente')  
+    input.form-element#signupname(type='text' placeholder='nome')
+    input.form-element#signupemail(type='email' placeholder='email')
+    input.form-element#signupnumber(type='number' placeholder='telefone')
+    input.form-element#signuppassword(type='password' placeholder='senha')
+    input.form-element#signuppasswordconfirm(type='password' placeholder='confirma senha')
+    input.btn#signupbtn(type='submit' value='Quero ser um cliente')  
