@@ -17,11 +17,16 @@ class App {
   public AppData: IApp
 
   constructor() {
-    const KeroClient: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
+    const KeroClient: IKeroClient | null = JSON.parse(localStorage.getItem('kero-client')!)
 
-    this.AppData = {
-      loggedUser: KeroClient.loggedUser 
+    this.AppData = {  }
+
+    if (KeroClient) {
+      this.AppData = {
+        loggedUser: KeroClient.loggedUser 
+      }
     }
+
   }
 
   public AppSetup() {

@@ -1,5 +1,5 @@
 export interface IApp {
-  loggedUser: ILoggedUser | undefined,
+  loggedUser?: ILoggedUser | undefined,
   AllUserBookedProducts?: IBookedProduct[] | undefined
 }
 
