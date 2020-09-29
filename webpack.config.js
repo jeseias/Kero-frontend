@@ -33,7 +33,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/assets/', to: './assets' }
+        { from: 'src/assets/img', to: 'img' }
       ],
     })
   ],

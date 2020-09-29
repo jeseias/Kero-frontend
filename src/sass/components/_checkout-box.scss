@@ -1,5 +1,5 @@
 %checkout {
-  max-width: 70rem;
+  max-width: 50rem;
   background: $color-white;
   border-radius: 1rem;
   box-shadow: 0 0 1rem rgba($color-dark, .24);
@@ -9,6 +9,7 @@
 
 .checkout-box {
  @extend %checkout;
+ max-width: 70rem;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -93,7 +94,7 @@
   @extend %checkout;
   
   &__header {
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 1rem 1rem;
 
     h1 {
       color: $color-dark;
@@ -101,9 +102,13 @@
     }
   }
 
+  &__all-products {
+    padding: 1rem;
+  }
+
   &__product {
     display: grid;
-    grid-template-columns: 5rem 1fr 10rem;
+    grid-template-columns: 5rem 1fr 10rem 3rem 10rem;
     grid-gap: 1rem;
 
     &__img {
