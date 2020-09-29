@@ -1,3 +1,9 @@
+%carttitle {
+  font-size: 2rem;
+  color: $color-dark;
+  font-weight: bold;
+}
+
 .carrinho {
   grid-template-columns: 1fr;
   grid-template-rows: 8rem 1fr;
@@ -32,5 +38,33 @@
   .top {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    .info {
+      display: grid;
+      align-content: center;
+      
+      &__items, &__total {
+        @extend %carttitle;
+      }
+    }
+
+    .action {
+      
+      h1 {
+        @extend %carttitle;
+      }
+
+      select {
+        max-width: 22rem;
+        display: inline;
+      }
+
+      button {
+        display: inline-block;
+        text-align: left;
+        margin-left: 1rem;
+        width: auto;
+      }
+    }
   }
 }
