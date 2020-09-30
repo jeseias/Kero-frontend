@@ -16,6 +16,20 @@
     "products reviews"
   ;
 
+  @include respond($bp-big) {
+    grid-gap: 1rem;
+  }
+
+  @include respond($bp-smallest) {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "categories"
+      "subcategories"
+      "reviews"
+      "products"
+    ;
+  }
+
   & > div {
     padding: 1rem;
 
@@ -29,8 +43,12 @@
     grid-area: categories;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(max-content, 23%));
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
+
+    @include respond($bp-smallest) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .category-item {
       @include Outline;
@@ -67,19 +85,42 @@
     
     .all {
       @include Outline;
+
+      @include respond($bp-small) {
+        padding: .5rem;
+      }
     }
     
     .product-item {
       padding: 1rem;
 
+      
       display: flex;
       align-items: center;
+
+      @include respond($bp-small) {
+        padding: .5rem;
+        text-align: right;
+
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        grid-template-rows: repeat(3, 1fr);
+        grid-gap: 1rem;
+      }
 
       @extend %item-line; 
 
       &__img {
         width: 7rem;
         margin-right: 1rem;
+
+        @include respond($bp-small) {
+          width: 100%;
+          height: auto;
+
+          grid-column: 1/2;
+          grid-row: 1/-1;
+        }
       }
 
       &__name {
@@ -87,30 +128,57 @@
         color: $color-dark;
         font-size: 1.5rem;
         margin-right: auto;
+
+        @include respond($bp-small) { 
+          grid-column: 2/3;
+          grid-row: 1/2;
+          margin: 0;
+          text-align: right;
+        }
       }
 
       &__price {
         font-size: 1.3rem;
         font-weight: bold;
         color: $color-dark;
+
+        @include respond($bp-small) { 
+          grid-column: 2/3;
+          grid-row: 2/3;
+        }
       }
 
       &__cart {
         margin-left: 4rem;
         color: $color-primary;
         font-weight: bold;
+
+         @include respond($bp-small) { 
+          grid-column: 2/3;
+          grid-row: 3/4;
+        }
       }
     }
   }
 
   &__reviews {
     grid-area: reviews;
+    overflow-x: hidden;
 
     .all {
+
       @include Outline;
       background: $color-white;
+      
+      @include respond($bp-big) {
+        padding: 0;
+      }
+
+      @include respond($bp-smallest) {
+        display: flex;
+        overflow-x: scroll; 
+      }
     }
- 
 
     &__header {
       margin-bottom: 2rem;
@@ -149,6 +217,16 @@
       &__summary {
         grid-area: 2/1/3/4;
         color: lighten($color: $color-dark, $amount: 20);
+      }
+
+      @include respond($bp-smallest) {
+        min-width: 22rem;
+        padding: .5rem;
+        
+        &:not(:last-child) {
+          border-bottom: none;
+          border-right: 2px solid $color-dark;
+        }
       }
     }
   }

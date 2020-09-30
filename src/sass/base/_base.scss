@@ -68,7 +68,7 @@ body {
 
     @include respond($bp-big) {
       width: calc(100vw - 8rem);
-      top: 9rem;
+      top: 8rem;
       right: 1rem;
     }
   } 
