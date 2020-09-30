@@ -1,15 +1,26 @@
 .home {
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 35rem max-content;
+  grid-template-rows: repeat(2, max-content);
   grid-gap: 2rem;
 
-  .banner, .info, .cta { @include Outline; }
+  @include respond($bp-smallest) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, max-content);
+  }
+
+  .banner, .info, .cta { 
+    @include Outline; 
+    
+    @include respond($bp-smallest) {
+      grid-column: 1/2;
+    }
+  }
 
   .banner {
     grid-area: 1/1/2/3;
     position: relative;
     overflow: hidden;
-    padding: 0;
+    padding: 0; 
 
     @include Outline;
 
@@ -49,6 +60,10 @@
     background: $color-white;
     padding: 1rem;
 
+    @include respond($bp-smallest) {
+      grid-row: 2/3;
+    }
+
     &__title {
       font-size: 3.5rem;
       color: $color-dark;
@@ -71,6 +86,11 @@
     background: $color-white;
     padding: 1rem;
     position: relative;
+
+    @include respond($bp-smallest) {
+      grid-row: 3/4;
+      grid-column: 1/2;
+    }
 
     &__title {
       color: $color-dark;
@@ -99,6 +119,10 @@
       bottom: 0;
       left: 0;
       width: 100%;
+
+      @include respond($bp-small) {
+        position: relative;
+      }
     }
 
     button {
