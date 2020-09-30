@@ -4,6 +4,24 @@
   padding: 3rem;
 }
 
+.aside {
+  position: relative;
+
+  .toggle-btn {
+    width: 4rem;
+    height: 4rem;
+    background: $color-dark;
+
+    @include PositionAbsolute(4rem, 80%);
+    display: none;
+
+    @include respond($bp-big) {
+      display: block;
+    }
+  }
+}
+
+
 .nav {
 
   &__list {

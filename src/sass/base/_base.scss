@@ -26,6 +26,10 @@ body {
   display: block; 
   position: relative; 
 
+  @include respond($bp-big) {
+    padding: 0;
+  }
+
   .header {
     position: absolute;
     top: 4rem;
@@ -35,6 +39,18 @@ body {
     background: rgba($color-primary, .04);
     border-top-right-radius: 1rem;
     @include Outline;
+
+    @include respond($bp-largest) {
+      width: calc(100vw - 31rem);
+      right: 2rem;
+      top: 2rem;
+    }
+
+    @include respond($bp-big) {
+      top: 1rem;
+      right: 1rem;
+      width: calc(100vw - 8rem);
+    }
   }
 
   .pages {
@@ -43,6 +59,18 @@ body {
     top: 12rem;
     width: calc(100vw - 38rem);
     padding-bottom: 2rem;
+
+    @include respond($bp-largest) {
+      width: calc(100vw - 31rem);
+      right: 2rem;
+      top: 10rem;
+    }
+
+    @include respond($bp-big) {
+      width: calc(100vw - 8rem);
+      top: 9rem;
+      right: 1rem;
+    }
   } 
 
   .aside {
@@ -57,13 +85,20 @@ body {
     top: 4rem;
     left: 4rem;
 
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+
     @include respond($bp-largest) {
       left: 2rem;
       top: 2rem;
+      height: calc(100vh - 4rem);
     }
 
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
+    @include respond($bp-big) {
+      top: 1rem;
+      left: -19rem;
+      height: calc(100vh - 2rem);
+    }
   }
 
   .page {
