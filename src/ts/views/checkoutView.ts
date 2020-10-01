@@ -39,7 +39,7 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
 
   const products: IProduct[] = await Promise.all(items)
 
-  const found = checkout.products.find(item => item.productID === products[2].id)
+  const found = checkout.products.find((item, i) => item.productID === products[i].id)
 
   console.log(found!.quantity)
 
@@ -53,16 +53,16 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
         <p><span>Estado:</span><b> ${checkout.state}</b></p>
       </div>
       <div class="checkoutone-box__all-products">
-        ${products.map(product => `
+        ${products.map((product, i) => `
           <div class="checkoutone-box__product">
             <img src="${product.img__url}" class="checkoutone-box__product__img" />
             <h2 class="class="checkoutone-box__product__title">${product.name}</h2>
             <p class="class="checkoutone-box__product__price">${product.price} AKZ</p>
             <p class="class="checkoutone-box__product__quantity">
-              ${checkout.products.find(item => item.productID === products[2].id)!.quantity}
+              ${checkout.products.find(item => item.productID === products[i].id)!.quantity}
             </p>
             <p class="class="checkoutone-box__product__total">
-              ${checkout.products.find(item => item.productID === products[2].id)!.quantity * product.price} AKZ
+              ${checkout.products.find(item => item.productID === products[i].id)!.quantity * product.price} AKZ
             </p>
           </div>
         `)}
