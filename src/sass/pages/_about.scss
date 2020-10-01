@@ -21,7 +21,6 @@
 
   .info {
 
-
     @include respond($bp-small) {
       grid-row: 3/4;
     }
@@ -86,6 +85,11 @@
 
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(10rem, 33.333%));
+
+      @include respond($bp-small) {
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+      }
     }
   }
 }
