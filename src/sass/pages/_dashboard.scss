@@ -1,5 +1,4 @@
 .dashboard {
-  padding: 4rem;
   color: $color-dark;
 
   grid-template-columns: 1fr 1fr;
@@ -7,7 +6,7 @@
   grid-gap: 2rem;
 
   @include respond($bp-small) {
-    padding: 2rem;
+    grid-template-columns: 1fr;
   }
 
   & > * {

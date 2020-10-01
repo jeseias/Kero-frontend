@@ -36,7 +36,7 @@ const userLoggedHeader: (user: ILoggedUser) => void = (user) => {
     <div class="user">
       <div class="checkout">
         <svg class="checkout__icon">
-          <use xlink:href="${svgLocation}bell"></use>
+          <use xlink:href="${svgLocation}shopping-bag"></use>
         </svg>
         <ul class="checkout__menu"> 
         </ul>

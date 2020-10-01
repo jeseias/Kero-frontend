@@ -1,17 +1,25 @@
 import App from '../App'
 
 import * as PageCTRL from './PageControllers'
-import { sliderFunction } from '../controllers/homeController'
+import { sliderFunction, callSlider } from '../controllers/homeController'
 import { loginHanlder } from '../controllers/authController'
 
 export const goToPage: (page: string) => void = async (page) => {
-
   if (!App.AppData.loggedUser) {
     await loginHanlder()
   }
 
+  // if (page !== '') {
+  //   clearInterval(sliderFunction)
+  // }
+
+  if (page !== 'home') {
+    console.log('Not equal')
+    clearInterval(sliderFunction)
+  } 
+
   if (page === '' || page === 'home') {
-    sliderFunction()
+    callSlider()
     await PageCTRL.homePageCtrl()
   } else if (page === 'products') {
     await PageCTRL.productsPageCtrl()
