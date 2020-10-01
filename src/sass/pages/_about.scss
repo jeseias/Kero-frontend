@@ -3,6 +3,10 @@
   grid-template-rows: repeat(3, max-content);
   grid-gap: 2rem;
 
+  @include respond($bp-small) {
+    grid-template-columns: 1fr;
+  } 
+
   & > * {
     @include Outline;
     padding: 1rem;
@@ -17,6 +21,11 @@
 
   .info {
 
+
+    @include respond($bp-small) {
+      grid-row: 3/4;
+    }
+
     &__text {
       font-size: 1.5rem;
 
@@ -27,6 +36,10 @@
   }
 
   .details {
+
+    @include respond($bp-small) {
+      grid-row: 4/5;
+    }
 
     .detail {
       margin-bottom: 1rem;
@@ -47,8 +60,16 @@
   .form {
     grid-area: 1/2/2/2;
 
+    @include respond($bp-small) {
+      grid-column: 1/-1;
+    }
+
     &.signup-box {
       grid-area: 2/2/3/2;
+
+      @include respond($bp-small) {
+        grid-column: 1/-1;
+      }
     }
 
     textarea {
