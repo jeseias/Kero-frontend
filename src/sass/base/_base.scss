@@ -20,11 +20,16 @@ body {
   box-sizing: border-box;
   background: lighten($color: $color-grey-light, $amount: 3);
   padding-bottom: 8rem;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   padding: 2rem;
   
   display: block; 
-  position: relative; 
+  position: relative;  
+
+  & > * {
+    @include Transition;
+    z-index: 1;
+  }
 
   @include respond($bp-big) {
     padding: 0;
@@ -39,6 +44,8 @@ body {
     background: rgba($color-primary, .04);
     border-top-right-radius: 1rem;
     @include Outline;
+    @include Transition;
+
 
     @include respond($bp-largest) {
       width: calc(100vw - 31rem);
@@ -50,6 +57,14 @@ body {
       top: 1rem;
       right: 1rem;
       width: calc(100vw - 8rem);
+
+      &.slide {
+        right: -21rem;
+      }
+    }
+
+    @include respond($bp-small) {
+      width: calc(100vw - 6rem);
     }
   }
 
@@ -58,7 +73,7 @@ body {
     right: 4rem;
     top: 12rem;
     width: calc(100vw - 38rem);
-    padding-bottom: 2rem;
+    padding-bottom: 2rem; 
 
     @include respond($bp-largest) {
       width: calc(100vw - 31rem);
@@ -70,6 +85,14 @@ body {
       width: calc(100vw - 8rem);
       top: 8rem;
       right: 1rem;
+
+      &.slide {
+        right: -21rem; 
+      }
+    }
+
+    @include respond($bp-small) {
+      width: calc(100vw - 6rem);
     }
   } 
 
@@ -98,7 +121,15 @@ body {
       top: 1rem;
       left: -19rem;
       height: calc(100vh - 2rem);
+
+      &.slide {
+        left: 1rem;
+      }
     }
+
+    @include respond($bp-small) {
+      left: -21rem;
+    } 
   }
 
   .page {

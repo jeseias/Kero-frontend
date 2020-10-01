@@ -57,7 +57,7 @@ export const afterDOM = {
 
 export default {
   pages: {
-    self: Array.from($$('.page')) as HTMLDivElement[],
+    self: <HTMLDivElement>$('.pages'),
     home: {
       self: $('.page.home#home') as HTMLDivElement,
       banner: $('.page.home#home .banner') as HTMLDivElement,
@@ -138,6 +138,8 @@ export default {
   },
 
   aside: {
+    self: <HTMLDivElement>$(`aside.aside`),
+    asideToggleBtn: <HTMLElement>$(`aside.aside .toggle-btn`),
     nav: {
       self: $('header.header nav.nav') as HTMLDivElement,
       items: Array.from($$('aside.aside nav.nav .nav__item')) as HTMLLIElement[],

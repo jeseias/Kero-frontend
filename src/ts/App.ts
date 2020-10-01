@@ -1,5 +1,6 @@
 import { showUserMenu } from './controllers/headerController'
 import { loginHanlder } from './controllers/authController'
+import { showAsideFull } from './controllers/pageController'
 import { 
   displayCheckoutMenu, 
   displayCheckoutOnHeaderCtrl, 
@@ -57,6 +58,7 @@ class App {
     await this.AppSetup().headerSetup(this.AppData.loggedUser)
 
     PageSwitcher()
+    showAsideFull()
   }
 }
 

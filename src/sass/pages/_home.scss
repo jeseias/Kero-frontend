@@ -1,3 +1,10 @@
+%full {
+
+  @include respond($bp-small) {
+    grid-column: 1/3 !important;
+  }
+}
+
 .home {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(2, max-content);
@@ -14,6 +21,8 @@
     @include respond($bp-smallest) {
       grid-column: 1/2;
     }
+
+    @extend %full;
   }
 
   .banner {

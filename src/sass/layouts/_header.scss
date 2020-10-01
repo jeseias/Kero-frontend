@@ -12,6 +12,10 @@
   &:hover {
     cursor: pointer;
   }
+
+  @include respond($bp-tiny) {
+    margin-right: 0;
+  }
 }
 
 .header {
@@ -95,6 +99,10 @@
     &__name {
       font-weight: bold;
       color: $color-dark;
+
+      @include respond($bp-tiny) {
+        display: none;
+      }
     }
 
     &__icon {

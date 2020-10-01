@@ -19,6 +19,12 @@
     @include respond($bp-big) {
       display: block;
     }
+    
+    @include respond($bp-small) {
+      left: 87%;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 }
 
@@ -73,6 +79,10 @@
     
     @include respond($bp-big) {
       margin-right: 1.5rem;
+    }
+
+    @include respond($bp-small) {
+      margin-right: .2rem;
     }
   }
 }
