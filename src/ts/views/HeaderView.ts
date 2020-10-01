@@ -29,18 +29,23 @@ const normalHeader = () => {
 
 const userLoggedHeader: (user: ILoggedUser) => void = (user) => {
   const { self } = DOM.header
+  const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
 
   const temp = `
     ${HeaderMainTemp}
     <div class="user">
       <div class="checkout">
-        <div class="checkout__icon"></div>
+        <svg class="checkout__icon">
+          <use xlink:href="${svgLocation}bell"></use>
+        </svg>
         <ul class="checkout__menu"> 
         </ul>
       </div>
       <p class="user__name">${user.name}</p>
       <img class="user__img" src='${user.img__url}' /> 
-      <div class="user__icon"></div>
+      <svg class="user__icon">
+        <use xlink:href="${svgLocation}chevron-with-circle-down"></use>
+      </svg>
       <ul class="user__menu">
         <a class="user__menu__item" href="#dashboard">Minha Conta</a>
         <a class="user__menu__item" href="#carrinho">Carrinho</a> 

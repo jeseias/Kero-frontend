@@ -7,13 +7,14 @@
 .aside {
   position: relative;
 
-  .toggle-btn {
-    width: 4rem;
-    height: 4rem;
-    background: $color-dark;
+  .toggle-btn { 
+    width: 3rem;
+    height: 3rem;
+    fill: $color-dark;
+
+    display: none;
 
     @include PositionAbsolute(4rem, 80%);
-    display: none;
 
     @include respond($bp-big) {
       display: block;
@@ -34,7 +35,9 @@
     display: block;
     color: $color-dark;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.5rem; 
+
+    display: flex;
 
     @include Transition;
 
@@ -42,15 +45,34 @@
       border-left: 2px solid $color-primary;
       color: $color-primary;
       background: rgba($color-primary, .04);
+
+      svg {
+        fill: $color-primary;
+      }
     }
 
     &:hover {
       color: $color-primary;
+
+      svg {
+        fill: $color-primary;
+      }
     }
   }
 
+  &__title {
+    margin-right: auto;
+  }
+
   &__icon {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    fill: $color-dark;
+
+    @include Transition;
+    
+    @include respond($bp-big) {
+      margin-right: 1.5rem;
+    }
   }
 }

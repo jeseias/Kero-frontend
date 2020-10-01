@@ -29,12 +29,32 @@ section.page.about#about
     //-     | necessitatibus cumque porro reprehenderit tenetur autem reiciendis 
   .socials
     ul
-      li Facebook
-      li Instagram
-      li Twitter
-      li Telefone: 92343534 / 912434534
-      li E-mail: geral@kero.co.ao
-      li Localização: Luanda Cacuaco, Sequele
+      -
+        const imgLocation = `src/assets/SVGs/sprite.svg#icon-`
+      li.social  
+        svg.social__icon
+          use(xlink:href=`${imgLocation}facebook2`) 
+        span Facebook
+      li.social  
+        svg.social__icon
+          use(xlink:href=`${imgLocation}instagram`) 
+        span Instagram
+      li.social  
+        svg.social__icon
+          use(xlink:href=`${imgLocation}whatsapp`)  
+        span 923546342
+      li.social
+        svg.social__icon
+          use(xlink:href=`${imgLocation}phone`)  
+        span 92343534 / 912434534
+      li.social
+        svg.social__icon
+          use(xlink:href=`${imgLocation}envelop`)  
+        span geral@kero.co.ao
+      li.social 
+        svg.social__icon
+          use(xlink:href=`${imgLocation}location2`)
+        span Luanda Cacuaco, Sequele
   form.contact-box.form
     h1 Deixe-nos uma mensagen
     input.form-element(type='text' placeholder='nome')#messagename

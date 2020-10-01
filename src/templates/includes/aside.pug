@@ -1,11 +1,23 @@
+-
+  const imgLocation = `src/assets/SVGs/sprite.svg#icon-`
+
 aside.aside 
   .logo Kero
-  .toggle-btn
+  svg.toggle-btn
+    use(xlink:href=`${imgLocation}paragraph-justify`) 
   nav.nav 
     ul.nav__list
-      each item in [{name:'Início',link:'home'},{name:'Produtos',link:'products'},{name:'Carrinho',link:'carrinho'},{name:'Sobre',link:'about'}]
+      - 
+        const navItems = [
+          ['Início', 'home', 'home'],
+          ['Produtos', 'products', 'stack'],
+          ['Carrinho', 'carrinho', 'cart'],
+          ['Sobre', 'about', 'address-book']
+        ]
+
+      each item in navItems
         li.nav__item
-          a(href=`#${item.link}`).nav__link
+          a(href=`#${item[1]}`).nav__link
+            span.nav__title= item[0]
             svg.nav__icon 
-              use(xlink:href='') 
-            span= item.name
+              use(xlink:href=`${imgLocation}${item[2]}`) 

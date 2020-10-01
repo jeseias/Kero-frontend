@@ -1,10 +1,9 @@
 @mixin icon {
   display: block;
   padding: .3rem .3rem;
-  background: $color-primary;
-  color: $color-white;
-  height: 1rem;
-  width: 1rem;
+  fill: $color-dark;
+  height: 2rem;
+  width: 2rem;
   margin-right: 1rem;
 
   @include GridCenter;
@@ -12,7 +11,6 @@
 
   &:hover {
     cursor: pointer;
-    background: lighten($color: $color-primary, $amount: 10);
   }
 }
 
