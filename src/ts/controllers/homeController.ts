@@ -19,7 +19,7 @@ export const sliderFunction = () => () => {
 } 
 
 export const slider: (flag: boolean) => void = (flag) => {
-  const intervalID = () => setInterval(sliderFunction(), 1000)
+  const intervalID = () => setInterval(sliderFunction(), 3000)
   
   if (flag) {
     intervalID()
