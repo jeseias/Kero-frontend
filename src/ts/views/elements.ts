@@ -39,6 +39,7 @@ export const afterDOM = {
     carrinho: {
       deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .product-card__settings`)),
       allProducts: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .allproducts .product-card`)),
+      selectBtn: () => <HTMLSpanElement[]>Array.from($$(`${carrinho} .allproducts .product-card .product-card__cart`)),
       checkoutModel: {
         form: () => <HTMLFormElement>$(`.modal .checkout-box #location-form`),
         products: () => <HTMLDivElement[]>Array.from($$(`.modal .checkout-box .checkout-box__product`)),

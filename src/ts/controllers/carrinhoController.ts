@@ -59,8 +59,27 @@ const removeShoppingItem: () => Promise<void> = async () => {
   })
 } 
 
+const selectProduct: () => void = () => {
+  const { selectBtn } = afterDOM.pages.carrinho
+
+  selectBtn().forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.parentElement!.parentElement!
+
+      parent.classList.toggle('product-card--selected')
+      
+      if (parent.classList.contains('product-card--selected')) {
+        btn.textContent = 'Selecionado'
+      } else {
+        btn.textContent = 'Selecionar'
+      }
+    })
+  })
+}
+
 export const carrinhoController: () => Promise<void> = async () => {
   toPage('carrinho')
 
-  showMyShoppingList()
+  await showMyShoppingList()
+  selectProduct()
 }

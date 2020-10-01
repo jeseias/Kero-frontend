@@ -2,13 +2,14 @@ import App from '../App'
 import { setUpCheckoutInformation, CheckoutAPI, getTotalPrice } from '../models/Checkout'
 import { alertUser } from '../models/Alert'
 import { hideModal } from '../models/Modal'
+import { BookingAPI } from '../models/Booking'
 
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
 import { userInputNotifacation } from '../views/View'
 import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
 
-import { IKeroClient, ICheckoutProduct } from '../constants/Interfaces'
+import { IKeroClient, ICheckoutProduct, IBookedProduct } from '../constants/Interfaces'
 
 const changeProductQuantity: () => void = () => {
   const { quantityInputs } = afterDOM.pages.carrinho.checkoutModel
@@ -34,17 +35,16 @@ const setUserLocationInfoIS: () => void = () => {
   const { location }: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
   const { blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel
 
-  blockInput().value = `${location!.block}`
-  buildingInput().value = `${location!.building}`
-  entraceInput().value = `${location!.entrace}`
-  apartmentInput().value = `${location!.apartment}`
+  // blockInput().value = `${location!.block}`
+  // buildingInput().value = `${location!.building}`
+  // entraceInput().value = `${location!.entrace}`
+  // apartmentInput().value = `${location!.apartment}`
 }
 
-const checkoutAllProducts: () => void = () => {
+const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) => {
   const { form, blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel 
 
-  const allBookedProducts = App.AppData.AllUserBookedProducts
-  displayCheckoutModal(allBookedProducts!)
+  displayCheckoutModal(products)
 
   changeProductQuantity()
   getTotalPrice()
@@ -54,31 +54,51 @@ const checkoutAllProducts: () => void = () => {
   form().addEventListener('submit', async (e: Event) => {
     e.preventDefault()
 
-    userInputNotifacation([
-      [blockInput(), 'O bloco'],
+    const validated = userInputNotifacation([
       [buildingInput(), 'O Predio'],
-      [entraceInput(), 'A entrada'],
       [apartmentInput(), 'O apartamento']
     ])
 
-    const checkoutDetails = setUpCheckoutInformation()
-    await CheckoutAPI.store(checkoutDetails, 'Encomenda feita com successo', App.AppData.loggedUser!.token)
+    console.log(validated)
 
-    hideModal()
-    App.init()
+    if (validated) {
+      const checkoutDetails = setUpCheckoutInformation()
+      await CheckoutAPI.store(checkoutDetails, 'Encomenda feita com successo', App.AppData.loggedUser!.token)
+  
+      hideModal()
+      App.init()
+    }
+
   })
 }
 
-const checkoutSelectedProducts: () => void = () => {
+const checkoutAllProducts: () => void = () => {
+  checkoutBookedProducts(App.AppData.AllUserBookedProducts!)  
+}
+
+const checkoutSelectedProducts: () => Promise<void> = async () => {
+  const { allProducts } = afterDOM.pages.carrinho
+
+  const products = allProducts().filter(product => product.classList.contains('product-card--selected'))
+
+  const selectedProducts = await Promise.all(products.map(async item => {
+    return await BookingAPI.show<IBookedProduct>(item.id.replace('product-', ''), App.AppData.loggedUser!.token)
+  }))
+
+  if (!selectedProducts[0]) {
+    return alertUser(false, 'Não há produtos selecionados')
+  }
+
+  checkoutBookedProducts(selectedProducts)
 
 }
 
 export const checkoutProduct: () => void = () => {
   const { top: { select, checkoutBtn } } = DOM.pages.carrinho
 
-  checkoutBtn.addEventListener('click', () => {
+  checkoutBtn.addEventListener('click', async () => {
     if (select.selectedIndex === 1) return checkoutAllProducts()
-    if (select.selectedIndex === 0) return checkoutSelectedProducts()
+    if (select.selectedIndex === 0) return await checkoutSelectedProducts()
   })
 }
 

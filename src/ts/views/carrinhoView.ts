@@ -17,6 +17,7 @@ export const shoppingListEmpty: () => void = () => {
 
 export const displayShoppingItem: (products: { product: IProduct, _id: string }[]) => void = (products) => {
   const { all } = DOM.pages.carrinho 
+  const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
 
   const temp: (data: { product: IProduct, _id: string }) => string = data => `
     <div class="product-card" id="product-${data._id}">
@@ -25,9 +26,11 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
       <p class="product-card__summary">${textShorter(100, data.product.summary)}</p>
       <div class="product-card__footer">
         <span class="product-card__price">${data.product.price} AKZ</span>
-        <span class="product-card__cart">Adicionar</span>
+        <span class="product-card__cart">Selecionar</span>
       </div>
-      <span class="product-card__settings">Remover</span>  
+      <svg class="product-card__settings">
+        <use xlink:href="${svgLocation}bin"></use>
+      </svg>  
     </div>  
   `
 
@@ -41,8 +44,7 @@ export const setUpShoppingHeader: (total: number, length: number) => void = (tot
   total.textContent = `Total: ${totalPrice} AKZ`
 }
 
-export const displayCheckoutModal: (products: IBookedProduct[]) => Promise<void> = async (products) => {
-  console.log(products)
+export const displayCheckoutModal: (products: IBookedProduct[]) => void = (products) => {
   const temp = `
     <div class="checkout-box">
       <div class="close">X</div>

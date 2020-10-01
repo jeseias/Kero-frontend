@@ -4,6 +4,10 @@
   background: lighten($color: $color-grey-light, $amount: 5);
   position: relative;
 
+  &--selected {
+    border: 2px solid $color-primary;
+  }
+
   &__img {
     display: block;
     margin: 0 auto 1rem auto;
@@ -44,24 +48,31 @@
       cursor: pointer;
       text-decoration: underline;
     }
+
+    &--icon {
+      width: 1.8rem;
+      height: 1.8rem;
+      fill: $color-primary;
+    }
   }
 
   &__settings {
-    @include PositionAbsolute(18rem, auto);
+    @include PositionAbsolute(15.5rem, auto);
     @include GridCenter;
     @include Transition;
     right: 1.5rem;
-    text-transform: uppercase;
-    background: rgb(223, 71, 71);
-    color: $color-white;
+    background: $color-red;
+    fill: $color-white;
     border-radius: 2px;
-    padding: .2rem .4rem;
     font-weight: bold;
+    padding: .1rem;
     opacity: 0;
+    width: 2.5rem;
+    height: 4rem;
 
     &:hover {
       cursor: pointer;
-      background: darken($color: rgb(223, 71, 71), $amount: 5);
+      background: darken($color: $color-red, $amount: 3);
     }
   }
 

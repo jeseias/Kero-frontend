@@ -35,7 +35,7 @@ export const displayMyCheckouts: (checkouts: ICheckoutProduct[]) => void = (chec
 
 export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> = async (checkout) => {
 
-  const items = checkout.products.map(async item => await ProductAPI.show(item.productID, App.AppData.loggedUser!._id))
+  const items = checkout.products.map(async item => await ProductAPI.show<IProduct>(item.productID, App.AppData.loggedUser!._id))
 
   const products: IProduct[] = await Promise.all(items)
 

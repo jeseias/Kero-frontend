@@ -152,7 +152,7 @@ export class APICommunicator {
     return res
   }
 
-  public async show(id: string, token?: string) {
+  public async show<R>(id: string, token?: string): Promise<R> {
     const data = await fecthData(`${this.route}/${id}`, token)
     return data
   }

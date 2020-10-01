@@ -30,7 +30,6 @@ const normalHeader = () => {
 const userLoggedHeader: (user: ILoggedUser) => void = (user) => {
   const { self } = DOM.header
   const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
-
   const temp = `
     ${HeaderMainTemp}
     <div class="user">
