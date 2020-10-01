@@ -2,10 +2,11 @@ import { toPage } from '../routes/PageControllers'
 
 import DOM from '../views/elements'
 
-let moveLength = 0
 const { bannerItems } = DOM.pages.home 
+let moveLength = 0
 
-export const sliderFunction = setInterval(() => {
+export const sliderFunction = () => () => {
+  console.log('I was called')
   if (moveLength > 200) moveLength = 0
 
   bannerItems.forEach(item => {
@@ -15,11 +16,16 @@ export const sliderFunction = setInterval(() => {
   console.log(moveLength)
 
   moveLength += 100
-}, 2000)
+} 
 
-export const callSlider: () => void = () => {
-  console.log('I was called')
-  sliderFunction
+export const slider: (flag: boolean) => void = (flag) => {
+  const intervalID = () => setInterval(sliderFunction(), 1000)
+  
+  if (flag) {
+    intervalID()
+  } else {
+    clearInterval(intervalID())
+  }
 }
 
 
