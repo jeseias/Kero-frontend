@@ -1,5 +1,5 @@
 %checkout {
-  max-width: 50rem;
+  max-width: 55rem;
   background: $color-white;
   border-radius: 1rem;
   box-shadow: 0 0 1rem rgba($color-dark, .24);
@@ -95,6 +95,9 @@
   
   &__header {
     padding: 2rem 1rem 1rem 1rem;
+    color: $color-dark;
+    font-weight: bold;
+    font-size: 1.5rem;
 
     h1 {
       color: $color-dark;
@@ -106,14 +109,72 @@
     padding: 1rem;
   }
 
+  &__divider {
+    display: grid;
+    grid-template-columns: 5rem 1fr 8rem 2rem 6rem 8rem 4rem;
+    color: $color-dark;
+    font-weight: bold;
+    grid-gap: 1rem;
+    align-content: center;
+    align-items: center;
+    padding: 0 1rem 1rem 1rem;
+    border-bottom: 2px solid $color-dark;
+  }
+
   &__product {
     display: grid;
-    grid-template-columns: 5rem 1fr 10rem 3rem 10rem;
+    grid-template-columns: 5rem 1fr 3rem 2rem 6rem 8rem;
+    align-content: center;
+    align-items: center;
     grid-gap: 1rem;
+    color: $color-dark;
+
+    &--complete {
+      grid-template-columns: 5rem 1fr 8rem 2rem 6rem 8rem 4rem;
+    }
+
+    &__state {
+      display: inline-block;
+      background: $color-white;
+      padding: .5rem 1rem;
+      font-weight: bold;
+      border: 2px solid;
+      max-width: 8rem;
+      text-align: center;
+      @include GridCenter;
+
+      &--completo {
+        color: $color-primary;
+        border-color: currentColor;
+      }
+
+      &--active {
+        color: $color-red;
+        border-color: currentColor;
+      }
+
+      &--sent {
+        color: $color-secondary;
+        border-color: currentColor;
+      }
+    }
 
     &__img {
       width: 100%;
       height: auto;
+    }
+
+    &__remove {
+      fill: $color-red;
+      width: 2rem;
+      height: 3rem;
+
+      @include Transition;
+
+      &:hover {
+        cursor: pointer;
+        fill: darken($color: $color-red, $amount: 4);
+      }
     }
   }
 }

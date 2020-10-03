@@ -1,5 +1,7 @@
 import { alertUser } from '../models/Alert'
 
+export const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
+
 export const removeChildren: (parent: HTMLElement) => void = 
   (parent) => {
     const children = Array.from(parent.children);
