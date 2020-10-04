@@ -46,6 +46,8 @@ body {
     @include Outline;
     @include Transition;
 
+    z-index: 10000;
+
 
     @include respond($bp-largest) {
       width: calc(100vw - 31rem);
@@ -74,6 +76,8 @@ body {
     top: 12rem;
     width: calc(100vw - 38rem);
     padding-bottom: 2rem; 
+
+    z-index: 1;
 
     @include respond($bp-largest) {
       width: calc(100vw - 31rem);

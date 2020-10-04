@@ -7,7 +7,7 @@ import { afterDOM } from '../views/elements'
 import { loginTemp } from '../views/AuthView'
 
 export const loginHanlder: () => Promise<void> = async () => {
-  const { loginBtn, signupBtn } = afterDOM.header.normal
+  const { loginBtn } = afterDOM.header.normal
   
   loginBtn().addEventListener('click', () => {
     showModal(loginTemp)

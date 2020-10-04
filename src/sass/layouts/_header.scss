@@ -16,12 +16,13 @@
   @include respond($bp-tiny) {
     margin-right: 0;
   }
-}
+} 
 
 .header {
   @include GridCenter; 
   grid-template-columns: 1fr 1fr;
   padding: 0 2rem;
+  position: relative;
 
   h1 {
     color: $color-dark;
@@ -88,6 +89,9 @@
 
   .user {
     position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10000;
 
     &__img {
       width: 5rem;
@@ -109,16 +113,16 @@
       @include icon;
     }
 
-    &__menu {
+    &__menu { 
       list-style: none;
 
+      display: block;
       position: absolute;
+      right: 0;
       width: 10rem;
-      right: 0rem;
       bottom: -6rem;
-      top: 4rem;
-      opacity: 0;
       z-index: 100;
+      opacity: 0;
 
       border-radius: .2rem;
       box-shadow: 0 0 1rem rgba($color-dark, .35);
@@ -128,7 +132,6 @@
       @include Transition;
 
       &.visible {
-        z-index: 100;
         opacity: 1;
         bottom: -4.5rem;
       }

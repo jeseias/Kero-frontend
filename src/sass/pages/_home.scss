@@ -8,9 +8,7 @@
 .home {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(2, max-content);
-  grid-gap: 2rem;
-
-  z-index: 1;
+  grid-gap: 2rem; 
 
   @include respond($bp-smallest) {
     grid-template-columns: 1fr;
@@ -30,8 +28,11 @@
   .banner {
     grid-area: 1/1/2/3;
     position: relative;
+    top: 0;
+    left: 0;
     overflow: hidden;
-    padding: 0; 
+    padding: 0;
+    z-index: -1;
 
     @include Outline;
 
