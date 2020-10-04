@@ -40,8 +40,10 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
   const products: IProduct[] = await Promise.all(items)
 
   const temp = `
-    <div class="checkoutone-box">
-      <div class="close">X</div>
+    <div class="checkoutone-box" id="checkout-${checkout._id}">
+      <svg class="close">
+        <use xlink:href="${svgLocation}circle-with-cross"></use>
+      </svg>
       <div class="checkoutone-box__header">
         <h1>Minha encomenda</h1>
         <p><span>Itens:</span><b> ${checkout.products.length}</b></p>
@@ -77,7 +79,7 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
                 <span class="checkoutone-box__product__state checkoutone-box__product__state--complete">Completado</span>
               ` : checkout.state === 'active' 
                   ? `<span class="checkoutone-box__product__state checkoutone-box__product__state--active">A caminho</span>` 
-                  : `<span class="checkoutone-box__product__state checkoutone-box__product__state--sent">Enviado</span>`
+                  : `<span class="checkoutone-box__product__state checkoutone-box__product__state--sent">A caminho</span>`
             }
             ${true ? `
               <svg class="checkoutone-box__product__remove">

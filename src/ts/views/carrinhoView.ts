@@ -1,7 +1,7 @@
 import { showModal } from '../models/Modal'
 import DOM from './elements'
 
-import { addChildren, textShorter, removeChildren } from './View'
+import { addChildren, textShorter, removeChildren, svgLocation } from './View'
 
 import { IProduct, IBookedProduct } from '../constants/Interfaces'
 
@@ -47,7 +47,9 @@ export const setUpShoppingHeader: (total: number, length: number) => void = (tot
 export const displayCheckoutModal: (products: IBookedProduct[]) => void = (products) => {
   const temp = `
     <div class="checkout-box">
-      <div class="close">X</div>
+      <svg class="close">
+        <use xlink:href="${svgLocation}circle-with-cross"></use>
+      </svg>
       <div class="checkout-box__header">
         <h1>Todos produtos que seram comprados</h1>
         <p>Podes autmentar a quantidade de certos produtos</p>
@@ -73,7 +75,7 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => void = (produ
         </div>
       </div>
       <form id="location-form" class="checkout-box__location">
-        <select id="block">
+        <select class="form-element" id="block">
           <option value="1"> Bloco 1 </option>
           <option value="2"> Bloco 2 </option>
           <option value="3"> Bloco 3 </option>
@@ -88,15 +90,15 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => void = (produ
           <option value="12"> Bloco 12 </option>
           <option value="13"> Bloco 13 (Rosas) </option>
         </select>
-        <input type="number" step="1" placeholder="Predio" id="building"/>
-        <select id="entrace">
+        <input class="form-element" type="number" step="1" placeholder="Predio" id="building"/>
+        <select class="form-element" id="entrace">
           <option value="A"> Entrada A </option>
           <option value="B"> Entrada B </option>
           <option value="C"> Entrada C </option> 
         </select>
-        <input type="number" placeholder="Apartamento" id="apartment"/>
+        <input class="form-element" type="number" placeholder="Apartamento" id="apartment"/>
         <span class="checkout-box__location__total" id="total-price">Total: AKZ</span>
-        <input type="submit" value="Encomendar" id="checkout-btn"/>
+        <input class="form-element" type="submit" value="Encomendar" id="checkout-btn"/>
       </form>
     </div>
   `
