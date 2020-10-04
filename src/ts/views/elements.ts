@@ -53,6 +53,9 @@ export const afterDOM = {
         submitBtn: () => <HTMLInputElement>$(`.modal .checkout-box #location-form input#checkout-btn`)
       }
     }
+  },
+  checkoutItems: {
+    checkoutDeleteBtn: () => <HTMLElement>$(`.checkoutone-box__header__remover`),
   }
 }
 

@@ -114,12 +114,28 @@ export const displayCheckoutOnHeaderCtrl: () => Promise<void> = async () => {
 }
 
 export const displayOneCheckoutCtrl: () => Promise<void> = async () => {
-  const { allCheckoutItems } = afterDOM.header.user
+  const { 
+    header: { user: { allCheckoutItems } },
+    checkoutItems: { checkoutDeleteBtn }
+   } = afterDOM
 
     allCheckoutItems().forEach(item => {
       item.addEventListener('click', async () => {
         const checkout: ICheckoutProduct = await CheckoutAPI.show(item.id, App.AppData.loggedUser!.token)
         await displayOneCheckout(checkout)
+        const deleteBtn = checkoutDeleteBtn()
+        // checkout.state === 'complete'
+
+        console.log(deleteBtn)
+
+        deleteBtn.addEventListener('click', async () => {
+          const id = deleteBtn.parentElement!.parentElement!.id.replace('checkout-', '')
+
+          await CheckoutAPI.destroy(id, '')
+          alertUser(true, 'Elminado com successo')
+          hideModal()
+          App.init()
+        })
       })
     })
 }
