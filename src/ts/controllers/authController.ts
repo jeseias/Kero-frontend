@@ -24,7 +24,9 @@ export const loginHanlder: () => Promise<void> = async () => {
       if (!password) return alertUser(false, 'Senha!')
   
       await login({ email, password })
-      hideModal()
+      setTimeout(() => {
+        hideModal()
+      }, 1000)
     })
   }) 
 }

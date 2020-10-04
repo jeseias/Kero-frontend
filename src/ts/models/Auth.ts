@@ -10,10 +10,12 @@ export const getUserToken: () => string =
   () => App.AppData.loggedUser!.token
 
 export const saveUser: (user: ILoggedUser) => void =  (user) => {
-  const KeroClient: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
+  let KeroClient: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
 
   const setUser = () => {
-    KeroClient.loggedUser = user
+    KeroClient = {
+      loggedUser: user
+    }
     localStorage.setItem('kero-client', JSON.stringify(KeroClient))
     App.AppData = { loggedUser: user }
     App.init()
