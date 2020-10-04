@@ -2,6 +2,40 @@ import { alertUser } from '../models/Alert'
 
 export const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
 
+export const menuToggler: (btn: HTMLElement, menu: HTMLElement, type: 'user' | 'checkout') => void = (btn, menu, type) => {
+  btn.addEventListener('click', () => {
+    menu.style.display = 'block'
+
+    setTimeout(() => {
+      menu.classList.toggle('visible') 
+
+      if (!menu.classList.contains('visible')) {
+        menu.classList.remove('visible')
+
+        setTimeout(() => {
+          menu.style.display = 'none'
+        }, 350)
+      } else {
+        setTimeout(() => { 
+
+          document.body.addEventListener('click', (e: Event) => {
+            const el = <HTMLElement>e.target
+
+            if (!el.classList.contains(`${type}__menu__item`) || !el.classList.contains(`${type}__item`)) {
+              if (el.classList.contains(`${type}__icon`)) return
+              menu.classList.remove('visible')
+            } 
+          })
+        }, 100)
+      }
+    }, 100)
+  })
+
+ menu.addEventListener('mouseleave', () => {
+   menu.classList.remove('visible')
+  })
+}
+
 export const removeChildren: (parent: HTMLElement) => void = 
   (parent) => {
     const children = Array.from(parent.children);

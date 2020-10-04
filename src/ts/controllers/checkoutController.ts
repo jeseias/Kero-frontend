@@ -6,7 +6,7 @@ import { BookingAPI } from '../models/Booking'
 
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
-import { userInputNotifacation } from '../views/View'
+import { userInputNotifacation, menuToggler } from '../views/View'
 import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
 
 import { IKeroClient, ICheckoutProduct, IBookedProduct } from '../constants/Interfaces'
@@ -105,16 +105,7 @@ export const checkoutProduct: () => void = () => {
 export const displayCheckoutMenu: () => void = () => {
   const { checkoutBtn, checkoutMenu } = afterDOM.header.user
 
-  checkoutBtn().addEventListener('click', () => {
-    checkoutMenu().style.display = 'block'
-    setTimeout(() => {
-      checkoutMenu().classList.toggle('visible') 
-    }, 100)
-  })
-
-  checkoutMenu().addEventListener('mouseleave', () => {
-    checkoutMenu().classList.remove('visible')
-  })  
+  menuToggler(checkoutBtn(), checkoutMenu(), 'checkout')  
 }
 
 export const displayCheckoutOnHeaderCtrl: () => Promise<void> = async () => {
