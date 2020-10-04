@@ -107,6 +107,18 @@ export const displayCheckoutMenu: () => void = () => {
 
   checkoutBtn().addEventListener('click', () => {
     checkoutMenu().classList.toggle('visible')
+
+    setTimeout(() => {
+      if (checkoutMenu().classList.contains('visible')) {
+        document.body.addEventListener('click', (e: Event) => {
+          const el = <HTMLElement>e.target
+  
+          if (!el.classList.contains('user__menu')) {
+            checkoutMenu().classList.remove('visible')
+          }
+        })
+      }
+    }, 100)
   })
 
   checkoutMenu().addEventListener('mouseleave', () => {
