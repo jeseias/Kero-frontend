@@ -48,6 +48,20 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
         <h1>Minha encomenda</h1>
         <p><span>Itens:</span><b> ${checkout.products.length}</b></p>
         <p><span>Total:</span><b> ${checkout.total} AKZ </b></p>
+        <p><span>Estado:</span><b class="checkoutone-box__header__state"> 
+          ${checkout.state === 'complete' 
+                ? `
+                  <span class="checkoutone-box__header__state checkoutone-box__header__state--complete">Completado</span>
+                ` : checkout.state === 'active' 
+                    ? `<span class="checkoutone-box__header__state checkoutone-box__header__state--active">A caminho</span>` 
+                    : `<span class="checkoutone-box__header__state checkoutone-box__header__state--sent">Encomenda Feita</span>`
+              }
+        </b></p>
+        ${checkout.state === 'complete' ? `
+            <svg class="checkoutone-box__header__remover">
+              <use xlink:href="${svgLocation}bin"></use>
+            </svg>
+        ` : ''}
       </div>
       <div class="checkoutone-box__divider">
         <span>Produto</span>
@@ -55,16 +69,10 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
         <span>Preço (AKZ)</span>
         <span>Qtd</span>
         <span>Total (AKZ)</span>
-        <span>Estado</span>
       </div>
       <div class="checkoutone-box__all-products">
         ${products.map((product, i) => `
-          <div 
-            class="
-              checkoutone-box__product 
-              ${true ? ' checkoutone-box__product--complete' : ''}
-            "
-          >
+          <div class=" checkoutone-box__product">
             <img src="${product.img__url}" class="checkoutone-box__product__img" />
             <h2 class="class="checkoutone-box__product__title">${product.name}</h2>
             <p class="class="checkoutone-box__product__price">${product.price}</p>
@@ -73,19 +81,7 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
             </p>
             <p class="class="checkoutone-box__product__total">
               ${checkout.products.find(item => item.productID === products[i].id)!.quantity * product.price}
-            </p>
-            ${checkout.state === 'complete' 
-              ? `
-                <span class="checkoutone-box__product__state checkoutone-box__product__state--complete">Completado</span>
-              ` : checkout.state === 'active' 
-                  ? `<span class="checkoutone-box__product__state checkoutone-box__product__state--active">A caminho</span>` 
-                  : `<span class="checkoutone-box__product__state checkoutone-box__product__state--sent">A caminho</span>`
-            }
-            ${true ? `
-              <svg class="checkoutone-box__product__remove">
-                <use xlink:href="${svgLocation}bin"></use>
-              </svg>
-            `: ''}
+            </p>  
           </div>
         `)}
       </div>

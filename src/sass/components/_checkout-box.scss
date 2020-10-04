@@ -150,6 +150,9 @@
 
 .checkoutone-box {
   @extend %checkout;
+
+  display: grid;
+  grid-template-rows: repeat(2, max-content) 1fr;
   
   &__header {
     padding: 2rem 1rem 1rem 1rem;
@@ -161,10 +164,47 @@
       color: $color-dark;
       text-align: center;
     }
+
+    &__state {
+      display: inline-block;
+      background: $color-white;
+      padding: .5rem 1rem;
+      font-weight: bold;
+      text-align: center;
+
+      &--completo {
+        color: $color-primary;
+      }
+
+      &--active {
+        color: $color-red;
+      }
+
+      &--sent {
+        color: $color-secondary;
+      }
+    }
+
+    &__remover {
+      display: inline-block;
+      width: 3rem;
+      height: 4rem;
+      background: $color-red;
+      fill: $color-white;
+      padding: .2rem;
+      border-radius: 1px;
+
+      @include Transition;
+
+      &:hover {
+        background: darken($color: $color-red, $amount: 4);
+      }
+    }
   }
 
   &__all-products {
     padding: 1rem; 
+    overflow-y: scroll;
 
     @include respond($bp-small) { 
       padding: .5rem;
@@ -173,7 +213,7 @@
 
   &__divider {
     display: grid;
-    grid-template-columns: 5rem 1fr 8rem 2rem 6rem 8rem 4rem;
+    grid-template-columns: 5rem 1fr 3rem 2rem 6rem;
     color: $color-dark;
     font-weight: bold;
     grid-gap: 1rem;
@@ -181,92 +221,19 @@
     align-items: center;
     padding: 0 1rem 1rem 1rem;
     border-bottom: 2px solid $color-dark;
-
-    @include respond($bp-small) { 
-      grid-template-columns: 1fr 5rem 2rem 5rem max-content 4rem;;
-
-      & :nth-child(1) {
-        display: none;
-        visibility: hidden;
-      }
-    }
   }
 
   &__product {
     display: grid;
-    grid-template-columns: 5rem 1fr 3rem 2rem 6rem 8rem;
+    grid-template-columns: 8rem 1fr 3rem 2rem 6rem;
     align-content: center;
     align-items: center;
     grid-gap: 1rem;
-    color: $color-dark;
-
-    &--complete {
-      grid-template-columns: 5rem 1fr 8rem 2rem 6rem 8rem 4rem;
-    }
-
-    @include respond($bp-small) {
-      grid-gap: .5rem;
-
-      &--complete {
-        grid-template-columns: 1fr 5rem 2rem 5rem max-content 4rem;
-        grid-template-rows: max-content 1fr;
-      }
-
-      & > * {
-        grid-row: 2/3;
-      }
-
-      &__img {
-        justify-self: center;
-        align-self: center;
-        grid-row: 1/2;  
-        width: 5rem;
-        height: auto;
-      }
-    }
-
-    &__state {
-      display: inline-block;
-      background: $color-white;
-      padding: .5rem 1rem;
-      font-weight: bold;
-      border: 2px solid;
-      max-width: 8rem;
-      text-align: center;
-      @include GridCenter;
-
-      &--completo {
-        color: $color-primary;
-        border-color: currentColor;
-      }
-
-      &--active {
-        color: $color-red;
-        border-color: currentColor;
-      }
-
-      &--sent {
-        color: $color-secondary;
-        border-color: currentColor;
-      }
-    }
+    color: $color-dark;  
 
     &__img {
       width: 100%;
       height: auto;
-    }
-
-    &__remove {
-      fill: $color-red;
-      width: 2rem;
-      height: 3rem;
-
-      @include Transition;
-
-      &:hover {
-        cursor: pointer;
-        fill: darken($color: $color-red, $amount: 4);
-      }
-    }
+    } 
   }
 }

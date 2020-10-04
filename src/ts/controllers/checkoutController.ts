@@ -116,12 +116,10 @@ export const displayCheckoutOnHeaderCtrl: () => Promise<void> = async () => {
 export const displayOneCheckoutCtrl: () => Promise<void> = async () => {
   const { allCheckoutItems } = afterDOM.header.user
 
-  if (allCheckoutItems()) {
     allCheckoutItems().forEach(item => {
       item.addEventListener('click', async () => {
         const checkout: ICheckoutProduct = await CheckoutAPI.show(item.id, App.AppData.loggedUser!.token)
         await displayOneCheckout(checkout)
       })
     })
-  }
 }

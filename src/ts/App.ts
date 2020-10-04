@@ -10,6 +10,7 @@ import { PageSwitcher } from './routes/index'
 import { toPage } from './routes/PageControllers'
 
 import HeaderView from './views/HeaderView'
+import { afterDOM } from './views/elements'
 
 import { ILoggedUser, IApp, IKeroClient } from './constants/Interfaces'
 
@@ -33,8 +34,8 @@ class App {
     const headerSetup: (user?: ILoggedUser) => Promise<void> = async (user) => {
       if (user) {
         HeaderView.userLoggedHeader(user)
-        displayCheckoutMenu()
-
+        displayCheckoutMenu() 
+          
         await displayCheckoutOnHeaderCtrl()
         await displayOneCheckoutCtrl()
 
