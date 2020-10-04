@@ -106,24 +106,15 @@ export const displayCheckoutMenu: () => void = () => {
   const { checkoutBtn, checkoutMenu } = afterDOM.header.user
 
   checkoutBtn().addEventListener('click', () => {
-    checkoutMenu().classList.toggle('visible')
-
+    checkoutMenu().style.display = 'block'
     setTimeout(() => {
-      if (checkoutMenu().classList.contains('visible')) {
-        document.body.addEventListener('click', (e: Event) => {
-          const el = <HTMLElement>e.target
-  
-          if (!el.classList.contains('user__menu')) {
-            checkoutMenu().classList.remove('visible')
-          }
-        })
-      }
+      checkoutMenu().classList.toggle('visible') 
     }, 100)
   })
 
   checkoutMenu().addEventListener('mouseleave', () => {
     checkoutMenu().classList.remove('visible')
-  })
+  })  
 }
 
 export const displayCheckoutOnHeaderCtrl: () => Promise<void> = async () => {

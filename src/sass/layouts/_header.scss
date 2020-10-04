@@ -53,8 +53,8 @@
       width: 20rem;
       right: 0rem;
       top: 4rem;
-      z-index: -1;
-      opacity: 0;
+        opacity: 0;
+      display: none;
 
       border-radius: .2rem;
       box-shadow: 0 0 1rem rgba($color-dark, .35);
@@ -116,7 +116,7 @@
     &__menu { 
       list-style: none;
 
-      display: block;
+      display: none;
       position: absolute;
       right: 0;
       width: 10rem;
@@ -132,6 +132,7 @@
       @include Transition;
 
       &.visible {
+        display: block;
         opacity: 1;
         bottom: -4.5rem;
       }
