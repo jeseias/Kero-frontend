@@ -33,4 +33,11 @@
 
 <b>❗ This webapp depends on a server to provide all it's data. So if the server is not yet online, the webapp will be very empty ❗</b> <br >
 
-<b>❗ And this webapp is still underdevelopment so please dont mind the if somethings just dont look right ❗</b>
+<b>❗ And this webapp is still under development so please dont mind the if somethings just dont look right ❗</b>
+
+> ## Built With ⚒ ?
+> **I went a little bit old fashion while building this app, but used some pretty new and cool web technologies.**
+> 1. **Pug** (HTML)
+> 2. **SASS** (CSS)
+> 3. **Typescript** (Javascript) <br >
+> <p>Using a framework like <b>ReactJS</b> would be really totally perfect for this kind of app. I plan on swicthing it someday to <b>ReactJS</b>. </p>
