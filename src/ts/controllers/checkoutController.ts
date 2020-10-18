@@ -1,8 +1,11 @@
 import App from '../App'
-import { setUpCheckoutInformation, CheckoutAPI, getTotalPrice } from '../models/Checkout'
 import { alertUser } from '../models/Alert'
 import { hideModal } from '../models/Modal'
 import { BookingAPI } from '../models/Booking'
+import { 
+  setUpCheckoutInformation, 
+  CheckoutAPI, 
+  getTotalPrice } from '../models/Checkout'
 
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
@@ -39,7 +42,7 @@ const setUserLocationInfoIS: () => void = () => {
   // buildingInput().value = `${location!.building}`
   // entraceInput().value = `${location!.entrace}`
   // apartmentInput().value = `${location!.apartment}`
-}
+}  
 
 const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) => {
   const { form, blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel 
@@ -57,9 +60,7 @@ const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) 
     const validated = userInputNotifacation([
       [buildingInput(), 'O Predio'],
       [apartmentInput(), 'O apartamento']
-    ])
-
-    console.log(validated)
+    ]) 
 
     if (validated) {
       const checkoutDetails = setUpCheckoutInformation()
@@ -68,7 +69,6 @@ const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) 
       hideModal()
       App.init()
     }
-
   })
 }
 
@@ -119,23 +119,22 @@ export const displayOneCheckoutCtrl: () => Promise<void> = async () => {
     checkoutItems: { checkoutDeleteBtn }
    } = afterDOM
 
-    allCheckoutItems().forEach(item => {
-      item.addEventListener('click', async () => {
-        const checkout: ICheckoutProduct = await CheckoutAPI.show(item.id, App.AppData.loggedUser!.token)
-        await displayOneCheckout(checkout)
-        const deleteBtn = checkoutDeleteBtn()
-        // checkout.state === 'complete'
+  allCheckoutItems().forEach(item => {
+    item.addEventListener('click', async () => {
+      const checkout: ICheckoutProduct = await CheckoutAPI.show(item.id, App.AppData.loggedUser!.token)
+      await displayOneCheckout(checkout)
+      const deleteBtn = checkoutDeleteBtn() 
 
-        console.log(deleteBtn)
+      console.log(deleteBtn)
 
-        deleteBtn.addEventListener('click', async () => {
-          const id = deleteBtn.parentElement!.parentElement!.id.replace('checkout-', '')
+      deleteBtn.addEventListener('click', async () => {
+        const id = deleteBtn.parentElement!.parentElement!.id.replace('checkout-', '')
 
-          await CheckoutAPI.destroy(id, '')
-          alertUser(true, 'Elminado com successo')
-          hideModal()
-          App.init()
-        })
+        await CheckoutAPI.destroy(id, '')
+        alertUser(true, 'Elminado com successo')
+        hideModal()
+        App.init()
       })
     })
+  })
 }

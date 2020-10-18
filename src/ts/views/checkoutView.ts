@@ -57,7 +57,7 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
                     : `<span class="checkoutone-box__header__state checkoutone-box__header__state--sent">Encomenda Feita</span>`
               }
         </b></p>
-        ${true ? `
+        ${checkout.state === 'complete' ? `
             <svg class="checkoutone-box__header__remover">
               <use xlink:href="${svgLocation}bin"></use>
             </svg>

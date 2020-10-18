@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "this is my website",
   "main": "index.js",
-  "author": "jeseias domingos",
+  "author": "grupo programação",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --mode development",
+    "start": "webpack --mode production",
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --mode development --open"
   },

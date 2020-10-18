@@ -7,7 +7,7 @@
 
 .home {
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(2, max-content);
+  grid-template-rows: 38rem max-content;
   grid-gap: 2rem; 
 
   @include respond($bp-smallest) {
