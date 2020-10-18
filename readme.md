@@ -1,4 +1,4 @@
-# E-commerce Applicaiton
+# E-commerce Applicaiton 
 
 ![](.Github/readme/app.png)
 
@@ -6,13 +6,14 @@
 
 <br>
 
-> ## This App is divived into **3** parts
-> 1. **Backend** 
-> 1. **Frontend** for clientes
->> fs 
+# 🔤 App Info
 
-1. This is the frontend Repo
-2. You can find the backend code  
+**This application is just a piece 🍰 of a collection of other apps, which work together, to form one big powerfull e-commerce App 🎂.**
 
+
+> ## App division 
+> 1. Client
+> 2. This is the frontend Repo
+> 3. You can find the backend code  
 
 
