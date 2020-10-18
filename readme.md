@@ -40,4 +40,4 @@
 > 1. **Pug** (HTML)
 > 2. **SASS** (CSS)
 > 3. **Typescript** (Javascript) <br >
-> <p>Using a framework like <b>ReactJS</b> would be really totally perfect for this kind of app. I plan on swicthing it someday to <b>ReactJS</b>. </p>
+> <p>Using a framework like <b>ReactJS</b> would be totally perfect for this kind of app. I plan on swicthing it someday to <b>ReactJS</b>. </p>
