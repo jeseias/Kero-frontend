@@ -29,7 +29,7 @@
 >- Adding **Reviews** for the public to see 👀 
 >- Getting in **Touch** by sending messages 🍂
 
-<p>You can visit this webapp <a target="_blank" href="https://kerosequele.netlify.app/#products">here</a>.</p>
+<p>You can visit this webapp <a target="_blank" href="https://kerosequele.netlify.app">here</a>.</p>
 
 <b>❗ This webapp depends on a server to provide all it's data. So if the server is not yet online, the webapp will be very empty ❗</b> <br >
 
