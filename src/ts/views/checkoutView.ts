@@ -24,7 +24,7 @@ export const displayMyCheckouts: (checkouts: ICheckoutProduct[]) => void = (chec
       </li>
     `
   
-    return addChildren(checkoutMenu(), checkouts, temp)
+    return addChildren(checkoutMenu(), checkouts, temp, 'afterbegin')
   }
 
   checkoutMenu().insertAdjacentHTML('afterbegin', `
