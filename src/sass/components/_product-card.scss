@@ -3,6 +3,7 @@
   padding: 1rem 2rem;
   background: lighten($color: $color-grey-light, $amount: 5);
   position: relative;
+  font-weight: bold;
 
   &--selected {
     border: 2px solid $color-primary;
@@ -18,13 +19,14 @@
   }
 
   &__name {
-    color: $color-dark;
+    color: $color-primary;
     font-size: 1.5rem;
-    font-weight: bold;
   }
 
   &__summary {
     padding: 1rem 0;
+    height: 4.3rem;
+    color: $color-dark;
   }
 
   &__footer {
@@ -33,7 +35,6 @@
 
   &__price {
     color: $color-dark;
-    font-weight: bold;
     margin-right: auto;
     font-size: 1.5rem;
   } 
@@ -41,12 +42,15 @@
   &__cart {
     color: $color-primary;
     font-weight: bold;
+    padding: .2rem .5rem;
 
     @include Transition;
 
     &:hover {
       cursor: pointer;
-      text-decoration: underline;
+      background: $color-primary;
+      color: $color-white;
+      border-radius: 2px;
     }
 
     &--icon {

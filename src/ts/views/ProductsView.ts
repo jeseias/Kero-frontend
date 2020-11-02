@@ -1,6 +1,6 @@
 import { filterProducts, getCategoryProducts, getTopProject } from '../models/Products'
 
-import DOM from './elements'
+import DOM, { GEBI } from './elements'
 import { addChildren, textShorter, setThisActive } from './View'
 
 import { IProduct, IReview } from '../constants/Interfaces' 
@@ -15,7 +15,7 @@ export const tempTopProductsGenerator: (data: IProduct) => string = data => `
     <p class="product-card__name">${data.name}</p>
     <p class="product-card__summary">${textShorter(80, data.summary)}</p>
     <div class="product-card__footer">
-      <span class="product-card__price">${data.price} KZ</span>
+      <span class="product-card__price">${data.price} AKZ</span>
       <span class="product-card__cart">Adicionar no carinho</span>
     </div>
   </div>  
@@ -30,14 +30,26 @@ const tempProductsGenerator: (data: IProduct) => string = data => `
   </div> 
 ` 
   
-const tempReviewsGenerator: (data: IReview) => string = data => `
-  <div class="review-item" id="${data.id}">
-    <img class="review-item__img" src="${LOCATION}${data.user.photo}" />
-    <span class="review-item__name">${data.user.name}</span>
-    <div class="review-item__rating">${data.rating}</div>
-    <p class="review-item__summary">${data.review}</p>
-  </div>  
-`
+const tempReviewsGenerator: (data: IReview) => string = data => {
+  // const allStarsTemp: string[] = []
+  // for (let i = 0; i < data.rating; i++) {
+  //     allStarsTemp.push( `
+  //       <svg class="review-item__star">
+  //         <use xlink:href="src/assets/SVGs/sprite.svg#icon-star-full"></use>
+  //       </svg>
+  //     `)  
+  // }
+
+  return `
+    <div class="review-item" id="${data.id}">
+      <img class="review-item__img" src="${LOCATION}${data.user.photo}" />
+      <span class="review-item__name">${data.user.name}</span>
+      <div class="review-item__rating" data-star="${data.rating}">
+      </div>
+      <p class="review-item__summary">${data.review}</p>
+    </div>  
+  `
+}
 
 const displayAllProducts: (
   parent: HTMLElement, 
@@ -83,4 +95,18 @@ export const mountProductPage: (
   displayAllProducts(topProducts, getTopProject(filterdDefaultProducts), tempTopProductsGenerator, 'afterbegin')
 
   addChildren(allReviews, reviews, tempReviewsGenerator, 'beforeend')
+
+  reviews.forEach(item => {
+    const reviewParentDiv = <HTMLDivElement>GEBI(item.id)
+    const ratingContainer = <HTMLDivElement>reviewParentDiv.querySelector('.review-item__rating')
+    const starLength = ratingContainer.dataset.star!
+
+    for (let i = 0; i < parseInt(starLength) ; i++) {
+      ratingContainer.insertAdjacentHTML('afterbegin', `
+        <svg class="review-item__star">
+          <use xlink:href="src/assets/SVGs/sprite.svg#icon-star-full"></use>
+        </svg>
+      `)
+    }
+  })
 }
