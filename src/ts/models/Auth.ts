@@ -2,6 +2,8 @@ import App from '../App'
 import { alertUser } from '../models/Alert'
 import { APICommunicator } from '../Utils/API'
 
+import { showUserMenu } from '../controllers/headerController'
+
 import { ILogin, ILoggedUser, IAuthRes, IUser, IKeroClient } from '../constants/Interfaces'
 
 const AuthAPI: (route: string) => APICommunicator = (route) => new APICommunicator(route)
@@ -40,6 +42,7 @@ export const login: (data: ILogin) => Promise<void> = async (loginData) => {
 
   const loggedUser: ILoggedUser = { ...user, token }
   saveUser(loggedUser)
+  window.location.reload()
 }
 
 export const logout: () => Promise<void> = async () => {

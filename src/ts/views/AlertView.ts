@@ -41,6 +41,7 @@ export const removeAlert: (time: number) => void =
       alertBox.classList.remove('visible')
 
       setTimeout(() => {
+        console.log(alertBox.parentElement)
         alertBox.parentElement?.removeChild(alertBox)
       }, 1000)
     }, time)

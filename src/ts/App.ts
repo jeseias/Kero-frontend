@@ -60,6 +60,7 @@ class App {
 
     PageSwitcher()
     showAsideFull()
+
   }
 }
 
