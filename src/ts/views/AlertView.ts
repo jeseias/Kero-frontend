@@ -26,6 +26,7 @@ export const displayAlert: (type: boolean, msg: string) => void =
 
     if (isAlertBox) {
       isAlertBox.parentElement?.removeChild(isAlertBox)
+      isAlertBox.parentElement?.removeChild(isAlertBox)
       addAlert()
     } else {
       addAlert()
@@ -41,7 +42,7 @@ export const removeAlert: (time: number) => void =
       alertBox.classList.remove('visible')
 
       setTimeout(() => {
-        console.log(alertBox.parentElement)
+        alertBox.parentElement?.removeChild(alertBox)
         alertBox.parentElement?.removeChild(alertBox)
       }, 1000)
     }, time)

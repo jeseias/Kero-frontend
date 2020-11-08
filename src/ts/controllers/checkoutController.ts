@@ -125,7 +125,6 @@ export const displayOneCheckoutCtrl: () => Promise<void> = async () => {
       await displayOneCheckout(checkout)
       const deleteBtn = checkoutDeleteBtn() 
 
-      console.log(deleteBtn)
 
       deleteBtn.addEventListener('click', async () => {
         const id = deleteBtn.parentElement!.parentElement!.id.replace('checkout-', '')
