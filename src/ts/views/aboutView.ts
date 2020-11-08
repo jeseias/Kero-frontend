@@ -8,4 +8,7 @@ export const autoMountUserData: (user: IKeroClient) => void = user => {
 
   name.value = `${user.loggedUser?.name}`
   number.value = `${user.loggedUser?.phone}`
+
+  name.readOnly = true
+  number.readOnly = true
 } 
