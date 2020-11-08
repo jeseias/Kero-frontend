@@ -8,6 +8,7 @@ const header = `header.header`
 const dashboard = `.page.dashboard#dashboard`
 const products = `.page.products#products`
 const carrinho = `.page.carrinho#carrinho`
+const home = `.page.home#home`
 
 export const afterDOM = {
   header: {
@@ -67,6 +68,7 @@ export default {
       banner: $('.page.home#home .banner') as HTMLDivElement,
       bannerSlider: $('.page.home#home .banner .banner__slider') as HTMLDivElement,
       bannerItems: Array.from($$('.page.home#home .banner .banner__item')) as HTMLDivElement[],
+      popularProducts: <HTMLDivElement>$(`${home} .home-top-products`)
     },
     about: {
       self: $('.page.about#about') as HTMLDivElement,
@@ -93,7 +95,7 @@ export default {
       topProducts: $(`.page.products#products .sub-categories-products`) as HTMLDivElement,
       allReviews: $(`.page.products#products .products__reviews .all`) as HTMLDivElement,
       categoryItems: Array.from($$(`.page.products#products .products__categories .category-item`)) as HTMLDivElement[],
-    },
+    }, 
     dashboard: {
       self: <HTMLDivElement>$(`${dashboard}`),
       reviewBox: {
