@@ -15,6 +15,7 @@
     "subcategories reviews"
     "products reviews"
   ;
+  max-width: 100% !important;
 
   @include respond($bp-big) {
     grid-gap: 1rem;
@@ -76,9 +77,18 @@
 
   &__sub-categories {
     grid-area: subcategories;
+    width: 100%;
+    overflow-x: scroll;
 
     .sub-categories-products {
-      @include ProductContainer;
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-gap: 2rem;
+      padding: 1rem;
+      width: 100%;
+
+      overflow-x: scroll;
+      overflow-y: hidden;
     } 
   }
 
@@ -175,6 +185,8 @@
   &__reviews {
     grid-area: reviews;
     overflow-x: hidden;
+    // padding-right: 10% !important;
+    max-width: 100% !important;
 
     .all {
 
@@ -205,6 +217,7 @@
       grid-template-columns: 6rem 1fr max-content;
       grid-template-rows: 6rem 1fr;
       grid-gap: .4rem;
+      width: 100%;
 
       &__img {
         grid-area: 1/1/2/2;

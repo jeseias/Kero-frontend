@@ -30,16 +30,7 @@ const tempProductsGenerator: (data: IProduct) => string = data => `
   </div> 
 ` 
   
-const tempReviewsGenerator: (data: IReview) => string = data => {
-  // const allStarsTemp: string[] = []
-  // for (let i = 0; i < data.rating; i++) {
-  //     allStarsTemp.push( `
-  //       <svg class="review-item__star">
-  //         <use xlink:href="src/assets/SVGs/sprite.svg#icon-star-full"></use>
-  //       </svg>
-  //     `)  
-  // }
-
+const tempReviewsGenerator: (data: IReview) => string = data => { 
   return `
     <div class="review-item" id="${data.id}">
       <img class="review-item__img" src="${LOCATION}${data.user.photo}" />
@@ -88,11 +79,14 @@ export const mountProductPage: (
 ) => void = (products, reviews) => {
   const { allProducts, allReviews, topProducts, categoryItems } = DOM.pages.products
   const filterdDefaultProducts = filterProducts(products, 'eletronicos')
+  const filteredTopProducts = getTopProject(filterdDefaultProducts);
+
+  topProducts.style.gridTemplateColumns = `repeat(${filteredTopProducts.length}, 25rem)`
 
   setThisActive(categoryItems[0], categoryItems, 'category-item--active')
   
   displayAllProducts(allProducts, filterdDefaultProducts , tempProductsGenerator, 'afterbegin')
-  displayAllProducts(topProducts, getTopProject(filterdDefaultProducts), tempTopProductsGenerator, 'afterbegin')
+  displayAllProducts(topProducts, filteredTopProducts, tempTopProductsGenerator, 'afterbegin')
 
   addChildren(allReviews, reviews, tempReviewsGenerator, 'beforeend')
 
