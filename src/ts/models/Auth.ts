@@ -2,9 +2,7 @@ import App from '../App'
 import { alertUser } from '../models/Alert'
 import { APICommunicator } from '../Utils/API'
 
-import { showUserMenu } from '../controllers/headerController'
-
-import { ILogin, ILoggedUser, IAuthRes, IUser, IKeroClient } from '../constants/Interfaces'
+import { ILogin, ILoggedUser, IAuthRes, IUser, IKeroClient } from '../constants/interfaces'
 
 const AuthAPI: (route: string) => APICommunicator = (route) => new APICommunicator(route)
 

@@ -1,4 +1,4 @@
-import { IProduct } from '../constants/Interfaces'
+import { IProduct } from '../constants/interfaces'
 
 import DOM from '../views/elements'
 import { addChildren } from '../views/View'

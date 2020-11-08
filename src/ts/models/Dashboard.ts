@@ -4,7 +4,7 @@ import { alertUser } from './Alert'
 import api from '../services/api'
 import App from '../App'
 
-import { IUserData, IUserDataImg, IPasswords } from '../constants/Interfaces'
+import { IUserData, IUserDataImg, IPasswords } from '../constants/interfaces'
 
 export const DashboardAPI: (route: string) => APICommunicator = (route) => new APICommunicator(route) 
 

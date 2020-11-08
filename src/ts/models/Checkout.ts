@@ -3,7 +3,7 @@ import App from '../App'
 
 import { afterDOM } from '../views/elements'
 
-import { ICheckoutProductSend, IProductToBeBooked, IKeroClient } from '../constants/Interfaces'
+import { ICheckoutProductSend, IProductToBeBooked, IKeroClient } from '../constants/interfaces'
 
 export const CheckoutAPI = new APICommunicator('checkouts')
 

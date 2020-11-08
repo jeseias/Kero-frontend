@@ -5,7 +5,7 @@ import App from '../App'
 import { afterDOM } from './elements'
 import { addChildren, svgLocation  } from './View'
 
-import { ICheckoutProduct, IProduct } from '../constants/Interfaces'
+import { ICheckoutProduct, IProduct } from '../constants/interfaces'
 
 export const displayMyCheckouts: (checkouts: ICheckoutProduct[]) => void = (checkouts) => {
   const { checkoutMenu } = afterDOM.header.user 

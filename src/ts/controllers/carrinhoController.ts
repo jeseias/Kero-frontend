@@ -14,7 +14,7 @@ import {
 } from '../views/carrinhoView'
 import { afterDOM } from '../views/elements'
 
-import { IBookedProduct } from '../constants/Interfaces'
+import { IBookedProduct } from '../constants/interfaces'
 
 const carrinhoPageDetails: () => void = () => {
   const { allProducts } = afterDOM.pages.carrinho

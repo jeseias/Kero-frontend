@@ -9,7 +9,7 @@ import { mountProductPage, swicthProductCategory } from '../views/ProductsView'
 import { setThisActive } from '../views/View'
 import DOM, { afterDOM } from '../views/elements'
 
-import { IProduct, IReview } from '../constants/Interfaces'
+import { IProduct, IReview } from '../constants/interfaces'
 
 const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Promise<void> = 
   async (products, targetClass) => {

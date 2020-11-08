@@ -5,7 +5,7 @@ import { toPage } from '../routes/PageControllers'
 import DOM from '../views/elements'
 import { mountPopularProducts } from '../views/HomeView'
 
-import { IProduct } from '../constants/Interfaces'
+import { IProduct } from '../constants/interfaces'
 
 const { bannerItems } = DOM.pages.home 
 let moveLength = 0

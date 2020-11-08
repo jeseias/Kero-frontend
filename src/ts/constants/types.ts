@@ -1,4 +1,4 @@
-import { IProduct, IReview, IUser, IBooking, IMessage, ILogin, ISignup } from './Interfaces'
+import { IProduct, IReview, IUser, IBooking, IMessage, ILogin, ISignup } from './interfaces'
 
 export type TAppObjectData = IReview | IProduct | IUser | IReview[] | IProduct[]
 export type TAppObjectDataAll = IReview[] | IProduct[]

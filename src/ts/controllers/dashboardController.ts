@@ -7,7 +7,7 @@ import { toPage } from '../routes/PageControllers'
 import DOM from '../views/elements'
 import { formFieldsCleaner, userInputNotifacation } from '../views/View'
 
-import { IReviewSend, IReview, IUserLocation, IKeroClient } from '../constants/Interfaces'
+import { IReviewSend, IReview, IUserLocation, IKeroClient } from '../constants/interfaces'
 
 const sendReview: () => Promise<void> = async () => {
   const { message, rating, form, submitBtn } = DOM.pages.dashboard.reviewBox

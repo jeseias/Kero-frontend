@@ -1,6 +1,6 @@
 import DOM from './elements'
 
-import { ILoggedUser } from '../constants/Interfaces'
+import { ILoggedUser } from '../constants/interfaces'
 
 const mountHeader: (header: HTMLDivElement, temp: string) => void = (header, temp) => {
   Array.from(header.children).forEach(child => header.removeChild(child))

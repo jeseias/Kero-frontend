@@ -1,9 +1,7 @@
-import App from '../App'
 import api from '../services/api'
 import { alertUser } from '../models/Alert'
 import { getUserToken } from '../models/Auth'
 
-import { } from '../constants/Interfaces'
 import { AxiosResponse } from 'axios'
  
 const fecthData: (route: string, token?: string) => Promise<any> =

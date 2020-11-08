@@ -12,7 +12,7 @@ import { toPage } from './routes/PageControllers'
 import HeaderView from './views/HeaderView'
 import { afterDOM } from './views/elements'
 
-import { ILoggedUser, IApp, IKeroClient } from './constants/Interfaces'
+import { ILoggedUser, IApp, IKeroClient } from './constants/interfaces'
 
 class App {
 

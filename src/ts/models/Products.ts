@@ -2,7 +2,7 @@ import { APICommunicator } from '../Utils/API'
 import { BookingAPI } from './Booking'
 import App from '../App'
 
-import { IProduct, IBooking } from '../constants/Interfaces'
+import { IProduct, IBooking } from '../constants/interfaces'
 import { TProductCategory } from '../constants/types'
 
 export const ProductAPI = new APICommunicator('/products')

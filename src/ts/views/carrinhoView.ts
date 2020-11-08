@@ -3,7 +3,7 @@ import DOM from './elements'
 
 import { addChildren, textShorter, removeChildren, svgLocation } from './View'
 
-import { IProduct, IBookedProduct } from '../constants/Interfaces'
+import { IProduct, IBookedProduct } from '../constants/interfaces'
 
 export const shoppingListEmpty: () => void = () => {
   const { all } = DOM.pages.carrinho

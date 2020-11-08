@@ -3,7 +3,7 @@ import { filterProducts, getCategoryProducts, getTopProject } from '../models/Pr
 import DOM, { GEBI } from './elements'
 import { addChildren, textShorter, setThisActive } from './View'
 
-import { IProduct, IReview } from '../constants/Interfaces' 
+import { IProduct, IReview } from '../constants/interfaces' 
 import { TProductCategory } from '../constants/types' 
 
 // All My templates

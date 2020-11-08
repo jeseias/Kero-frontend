@@ -12,7 +12,7 @@ import DOM, { afterDOM } from '../views/elements'
 import { userInputNotifacation, menuToggler } from '../views/View'
 import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
 
-import { IKeroClient, ICheckoutProduct, IBookedProduct } from '../constants/Interfaces'
+import { IKeroClient, ICheckoutProduct, IBookedProduct } from '../constants/interfaces'
 
 const changeProductQuantity: () => void = () => {
   const { quantityInputs } = afterDOM.pages.carrinho.checkoutModel

@@ -2,14 +2,15 @@ import App from '../App'
 import { ContactAPI } from '../models/About'
 import { UsersAPI } from '../models/Users'
 import { alertUser } from '../models/Alert'
-import { saveUser } from '../models/Auth'
+import { saveUser, isUserLogged } from '../models/Auth'
 
 import { toPage } from '../routes/PageControllers'
+import { autoMountUserData } from '../views/aboutView'
 
 import DOM from '../views/elements'
 import { formFieldsCleaner } from '../views/View'
 
-import { ISignup, IMessage, ILoggedUser, IAuthRes } from '../constants/Interfaces'
+import { ISignup, IMessage, ILoggedUser, IAuthRes, IKeroClient } from '../constants/interfaces'
 
 const contactForm: () => void = () => {
   const { form, name, number, message, btn } = DOM.pages.about.messageForm
@@ -69,10 +70,21 @@ const signupForm: () => void = () => {
     })
 }
 
+const autoFillDataInForm: () => void = () => {
+  if (isUserLogged()) {
+    let KeroClient: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
+
+    autoMountUserData(KeroClient)
+  } 
+}
+
 export const aboutPageCtrl: () => Promise<void> = 
   async () => {
     toPage('about')
 
     contactForm()
     signupForm()
+
+    // If user is logged Auto fill his user data
+    autoFillDataInForm()
   }
