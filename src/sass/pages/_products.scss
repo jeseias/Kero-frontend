@@ -45,7 +45,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem; 
-    max-height: 8rem;
 
     @include respond($bp-smallest) {
       grid-template-columns: repeat(2, 1fr);
@@ -55,6 +54,8 @@
       @include Outline;
       @include Transition;
       cursor: pointer;
+      max-height: 8rem;
+
 
       &--active, &:hover {
         border: none;
