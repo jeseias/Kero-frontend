@@ -12,8 +12,10 @@ const hideModal: () => void =
       const el = <HTMLDivElement>e.target
       if (el && el.classList.contains('modal')) {
         closeModel(el)
+      } else if (el && el.closest('.close')) {
+        closeModel(<HTMLDivElement>el.closest('.modal'))
       }
-    })
+    }) 
   }
 
 export const displayModal: (
