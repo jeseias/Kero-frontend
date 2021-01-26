@@ -5,7 +5,7 @@ import { alertUser } from '../models/Alert'
 import { toPage } from '../routes/PageControllers'
 
 import DOM from '../views/elements'
-import { formFieldsCleaner, userInputNotifacation } from '../views/View'
+import { formFieldsCleaner, userInputNotification } from '../views/View'
 
 import { IReviewSend, IReview, IUserLocation, IKeroClient } from '../constants/interfaces'
 
@@ -124,7 +124,7 @@ const saveUserLocation: () => void = () => {
   form.addEventListener('submit', (e: Event) => {
     e.preventDefault()
 
-    userInputNotifacation([
+    userInputNotification([
       [buildingInput, 'O numero do seu predio']
     ]) 
 

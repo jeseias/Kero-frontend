@@ -9,7 +9,7 @@ import {
 
 import { displayCheckoutModal } from '../views/carrinhoView'
 import DOM, { afterDOM } from '../views/elements'
-import { userInputNotifacation, menuToggler } from '../views/View'
+import { userInputNotification, menuToggler } from '../views/View'
 import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
 
 import { IKeroClient, ICheckoutProduct, IBookedProduct } from '../constants/interfaces'
@@ -57,7 +57,7 @@ const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) 
   form().addEventListener('submit', async (e: Event) => {
     e.preventDefault()
 
-    const validated = userInputNotifacation([
+    const validated = userInputNotification([
       [buildingInput(), 'O Predio'],
       [apartmentInput(), 'O apartamento']
     ]) 
