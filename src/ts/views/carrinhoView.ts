@@ -12,7 +12,9 @@ export const shoppingListEmpty: () => void = () => {
   console.log( all)
 
   all.insertAdjacentHTML('afterbegin', `
-    <div class="empty">O seu carrinho está vazio</div>
+    <div class="empty">
+      <h1>O seu carrinho está vazio</h1>
+    </div>
   `)
 }
 

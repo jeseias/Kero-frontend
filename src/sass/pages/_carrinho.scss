@@ -23,7 +23,9 @@
 
   .empty {
     @include GridCenter;
-    color: $color-dark;
+    color: $color-black;
+    text-align: center;
+    grid-column: 1/-1;
 
     h1 {
       font-size: 2rem;
