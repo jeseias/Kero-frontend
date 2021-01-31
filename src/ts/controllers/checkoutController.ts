@@ -38,10 +38,12 @@ const setUserLocationInfoIS: () => void = () => {
   const { location }: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
   const { blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel
 
-  // blockInput().value = `${location!.block}`
-  // buildingInput().value = `${location!.building}`
-  // entraceInput().value = `${location!.entrace}`
-  // apartmentInput().value = `${location!.apartment}`
+  if (location) {
+    location.apartment && (apartmentInput().value = `${location!.apartment}`);
+    location.block && (blockInput().value = `${location!.block}`);
+    location.building && (buildingInput().value = `${location!.building}`);
+    location.entrace && (entraceInput().value = `${location!.entrace}`);
+  } 
 }  
 
 const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) => {
