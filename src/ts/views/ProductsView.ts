@@ -13,10 +13,10 @@ export const tempTopProductsGenerator: (data: IProduct) => string = data => `
   <div class="product-card" id="product-${data.id}">
     <div class="product-card__img" style="background-image: url(${data.img__url})"></div>
     <p class="product-card__name">${data.name}</p>
-    <p class="product-card__summary">${textShorter(80, data.summary)}</p>
+    <p class="product-card__summary">${textShorter(60, data.summary)}</p>
     <div class="product-card__footer">
       <span class="product-card__price">${data.price} AKZ</span>
-      <span class="product-card__cart">Adicionar no carinho</span>
+      <span class="product-card__cart">Adicionar</span>
     </div>
   </div>  
 `
