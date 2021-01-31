@@ -14,6 +14,7 @@ import { ISignup, IMessage, ILoggedUser, IAuthRes, IKeroClient } from '../consta
 
 const contactForm: () => void = () => {
   const { form, name, number, message, btn } = DOM.pages.about.messageForm
+  const user = App.AppData.loggedUser
 
   form.addEventListener('submit', async (e: Event) => {
     e.preventDefault()
@@ -30,10 +31,18 @@ const contactForm: () => void = () => {
 
     btn.disabled = true
     btn.value = 'Enviando mensagen ...'
+
     await ContactAPI.store<IMessage, {}>(data, 'Mensagem enviada com successo')
+
     formFieldsCleaner([name, number, message], null)
+
     btn.value = 'Enviar'
     btn.disabled = false
+
+    if (user) {
+      name.value = user.name
+      number.value = user.phone
+    }
   })
 }
 
