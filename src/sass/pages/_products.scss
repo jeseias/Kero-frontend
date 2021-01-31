@@ -8,37 +8,44 @@
 .products {
   display: grid;
   grid-template-columns: 1fr 30%;
-  grid-template-rows: repeat(3, max-content) 1fr;
-  grid-gap: 2rem;
-  grid-template-areas: 
-    "categories reviews"
-    "subcategories reviews"
-    "products reviews"
-  ;
-  max-width: 100% !important;
+  
+  // &__content {
+    grid-column: 1/2;
+    width: 100%;
 
-  @include respond($bp-big) {
-    grid-gap: 1rem;
-  }
-
-  @include respond($bp-smallest) {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-rows: 8rem 39rem min-content 1fr;
+    grid-gap: 2rem;
     grid-template-areas: 
-      "categories"
-      "subcategories"
-      "reviews"
-      "products"
+      "categories reviews"
+      "subcategories reviews"
+      "products reviews"
     ;
-  }
 
-  & > div {
-    padding: 1rem;
-
-    h1 {
-      color: $color-dark;
-      margin-bottom: 2rem;
+    @include respond($bp-big) {
+      grid-gap: 1rem;
     }
-  }  
+  
+    @include respond($bp-smallest) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 16rem 39rem min-content 1fr;
+      grid-template-areas: 
+        "categories"
+        "subcategories"
+        "reviews"
+        "products"
+      ;
+    }
+
+    & > div {
+      padding: 1rem;
+  
+      h1 {
+        color: $color-dark;
+        margin-bottom: 2rem;
+      }
+    }
+  // }  
 
   &__categories {
     grid-area: categories;
@@ -56,7 +63,7 @@
       @include GridCenter;
       @include Transition;
       cursor: pointer;
-      height: 6rem;
+      height: 6.5rem;
 
       &--active, &:hover {
         border: none;
@@ -182,6 +189,8 @@
     overflow-x: hidden;
     // padding-right: 10% !important;
     max-width: 100% !important;
+    // grid-column: 2/3;
+    // grid-row: 1/2;
 
     .all {
 
@@ -248,7 +257,7 @@
       }
 
       @include respond($bp-smallest) {
-        min-width: 22rem;
+        min-width: 25rem;
         padding: .5rem;
         
         &:not(:last-child) {
