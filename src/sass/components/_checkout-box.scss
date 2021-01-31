@@ -28,25 +28,41 @@
 
   &__checker {
     display: grid;
-    grid-template-columns: 8rem 1fr 6rem 3rem 6rem;
+    grid-template-columns: 8rem 1fr 8rem 4rem 8rem;
     grid-gap: .5rem;
     color: $color-black; 
     font-size: 1rem;
     font-weight: bold;
     padding: 1rem 2rem .3rem 1rem;
+    padding-bottom: 1rem;
+    border-bottom: .2rem solid $color-black;
+
+    @include respond($bp-small) { 
+      grid-template-columns: 8rem 1fr 8rem 4rem;
+    }
 
     & :nth-child(3), & :nth-child(4), & :nth-child(5) {
       justify-self: end;
+    }
+
+    & :nth-child(5) {
+      @include respond($bp-small) { 
+        display: none;
+      }
     }
   }
 
   &__product {
     height: 7rem;
     display: grid;
-    grid-template-columns: 8rem 1fr 5rem 3rem 5rem;
+    grid-template-columns: 8rem 1fr 8rem 4rem 8rem;
     grid-gap: 1rem;
     justify-content: center;
     align-items: center;
+
+    @include respond($bp-small) { 
+      grid-template-columns: 8rem 1fr 8rem 4rem;
+    }
 
     &:not(:last-child) {
       border-bottom: 2px solid $color-dark;
@@ -73,6 +89,12 @@
       color: $color-dark;
       font-weight: bold;
     } 
+
+    &__total {
+      @include respond($bp-small) { 
+        display: none;
+      }
+    }
   }
 
   &__location {
@@ -144,6 +166,7 @@
       grid-row: 2/3;
       grid-column: 5/6;
       justify-self: end;
+      width: 12rem;
     }
   } 
 }

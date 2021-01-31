@@ -87,9 +87,9 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => void = (produ
             <div class="checkout-box__product" id="${item.product.id}">
               <img src="${item.product.img__url}" class="checkout-box__product__img"/>
               <p class="checkout-box__product__name">${item.product.name}</p>
-              <p class="checkout-box__product__price">${item.product.price}</p>
+              <p class="checkout-box__product__price">${item.product.price} AKZ</p>
               <input class="checkout-box__product__quantity" type="number" step="1" value="1" />
-              <p class="checkout-box__product__total" data-price="${item.product.price}">${item.product.price}</p>
+              <p class="checkout-box__product__total" data-price="${item.product.price}">${item.product.price} AKZ</p>
             </div>
           `)}
         </div>
