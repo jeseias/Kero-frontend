@@ -36,6 +36,7 @@
 
     &__text {
       font-size: 1.5rem;
+      padding-left: 1rem;
 
       &:not(:last-child) {
         margin-bottom: 2rem;
@@ -58,10 +59,12 @@
         color: $color-dark;
         margin-bottom: .5rem;
         font-size: 1.5rem;
+        font-weight: bold;
+        padding-left: 1rem;
       }
 
       &__text {
-        padding-left: 1rem;
+        padding-left: 2rem;
         font-size: 1.5rem;
       }
     }

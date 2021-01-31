@@ -47,7 +47,7 @@ const setUserLocationInfoIS: () => void = () => {
 }  
 
 const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) => {
-  const { form, blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel 
+  const { form, buildingInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel 
 
   displayCheckoutModal(products)
 
