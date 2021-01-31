@@ -5,6 +5,15 @@
   padding: .5rem 1rem;
   border: none;
 
+  &.disabled {
+    background: grey;
+
+    &:hover {
+      background: grey;
+      cursor: context-menu;
+    }
+  }
+
   @include Transition;
 
   &:hover {

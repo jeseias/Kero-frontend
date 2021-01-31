@@ -9,6 +9,7 @@ export const shoppingListEmpty: () => void = () => {
   const { all } = DOM.pages.carrinho
 
   removeChildren(all)
+  console.log( all)
 
   all.insertAdjacentHTML('afterbegin', `
     <div class="empty">O seu carrinho está vazio</div>
@@ -19,20 +20,39 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
   const { all } = DOM.pages.carrinho 
   const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
 
-  const temp: (data: { product: IProduct, _id: string }) => string = data => `
-    <div class="product-card" id="product-${data._id}">
-      <div class="product-card__img" style="background-image: url(${data.product.img__url})"></div>
-      <p class="product-card__name">${data.product.name}</p>
-      <p class="product-card__summary">${textShorter(100, data.product.summary)}</p>
-      <div class="product-card__footer">
-        <span class="product-card__price">${data.product.price} AKZ</span>
-        <span class="product-card__cart">Selecionar</span>
-      </div>
-      <svg class="product-card__settings">
-        <use xlink:href="${svgLocation}bin"></use>
-      </svg>  
-    </div>  
-  `
+  const temp: (data: { product: IProduct, _id: string }) => string = data => {
+    if (!data.product) {
+      return  `
+        <div class="product-card" id="product-${data._id}">
+        <div class="product-card__img" style="background-image: url()"></div>
+        <p class="product-card__name">Produto não disponivel</p>
+        <p class="product-card__summary"></p>
+        <div class="product-card__footer">
+          <span class="product-card__price"></span>
+          <span class="product-card__cart"></span>
+        </div>
+        <svg class="product-card__settings">
+          <use xlink:href="${svgLocation}bin"></use>
+        </svg>  
+      </div> 
+      `
+    }
+    
+    return `
+      <div class="product-card" id="product-${data._id}">
+        <div class="product-card__img" style="background-image: url(${data.product.img__url})"></div>
+        <p class="product-card__name">${data.product.name}</p>
+        <p class="product-card__summary">${textShorter(100, data.product.summary)}</p>
+        <div class="product-card__footer">
+          <span class="product-card__price">${data.product.price} AKZ</span>
+          <span class="product-card__cart">Selecionar</span>
+        </div>
+        <svg class="product-card__settings">
+          <use xlink:href="${svgLocation}bin"></use>
+        </svg>  
+      </div>  
+    `
+  }
 
   addChildren(all, products, temp)
 }

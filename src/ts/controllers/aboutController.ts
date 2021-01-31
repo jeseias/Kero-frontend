@@ -15,59 +15,64 @@ import { ISignup, IMessage, ILoggedUser, IAuthRes, IKeroClient } from '../consta
 const contactForm: () => void = () => {
   const { form, name, number, message, btn } = DOM.pages.about.messageForm
 
-    form.addEventListener('submit', async (e: Event) => {
-      e.preventDefault()
+  form.addEventListener('submit', async (e: Event) => {
+    e.preventDefault()
 
-      if (!name.value) return alertUser(false, 'Diz-nos o seu nome!')
-      if (!number.value) return alertUser(false, 'Precisamos do seu numero de telfone')
-      if (!message.value) return alertUser(false, 'Escreva a mensagen!')
+    if (!name.value) return alertUser(false, 'Diz-nos o seu nome!')
+    if (!number.value) return alertUser(false, 'Precisamos do seu numero de telfone')
+    if (!message.value) return alertUser(false, 'Escreva a mensagen!')
 
-      const data = {
-        name: name.value,
-        number: parseInt(number.value),
-        message: message.value
-      }
+    const data = {
+      name: name.value,
+      number: parseInt(number.value),
+      message: message.value
+    }
 
-      btn.disabled = true
-      btn.value = 'Enviando mensagen ...'
-      await ContactAPI.store<IMessage, {}>(data, 'Mensagem enviada com successo')
-      formFieldsCleaner([name, number, message], null)
-      btn.value = 'Enviar'
-      btn.disabled = false
-    })
+    btn.disabled = true
+    btn.value = 'Enviando mensagen ...'
+    await ContactAPI.store<IMessage, {}>(data, 'Mensagem enviada com successo')
+    formFieldsCleaner([name, number, message], null)
+    btn.value = 'Enviar'
+    btn.disabled = false
+  })
 }
 
 const signupForm: () => void = () => {
   const { form, name, number, email, password, passwordConfirm, btn } = DOM.pages.about.signupForm
 
-    form.addEventListener('submit', async (e: Event) => {
-      e.preventDefault()
+  if (App.AppData.loggedUser) {
+    btn.disabled = true;
+    btn.classList.add('disabled')
+  }
 
-      if (!name.value) return alertUser(false, 'Seu nome!')
-      if (!number.value) return alertUser(false, 'Seu numero de telefone')
-      if (!email.value) return alertUser(false, 'Seu email!')
-      if (!password.value) return alertUser(false, 'Sua senha!')
-      if (!passwordConfirm.value) return alertUser(false, 'Confima a sua senha!')
-      if (password.value !== passwordConfirm.value) return alertUser(false, 'Senhas não são iguais!')
+  form.addEventListener('submit', async (e: Event) => {
+    e.preventDefault()
 
-      const signupData: ISignup = {
-        name: name.value,
-        email: email.value,
-        phone: parseInt(number.value),
-        password: password.value,
-        passwordConfirm: passwordConfirm.value
-      }
-      
-      btn.disabled = true
-      const { data: { token, data: { user } } } = await UsersAPI.store<ISignup, IAuthRes<ILoggedUser>>(signupData, 'A sua conta foi criada com successo', undefined, 'users/signup')
-      
-      formFieldsCleaner([name, email, number, password, passwordConfirm], null)
-      btn.disabled = false 
-      
-      const loggedUser: ILoggedUser = { ...user, token }
-      saveUser(loggedUser)
-      App.toPage('products')
-    })
+    if (!name.value) return alertUser(false, 'Seu nome!')
+    if (!number.value) return alertUser(false, 'Seu numero de telefone')
+    if (!email.value) return alertUser(false, 'Seu email!')
+    if (!password.value) return alertUser(false, 'Sua senha!')
+    if (!passwordConfirm.value) return alertUser(false, 'Confima a sua senha!')
+    if (password.value !== passwordConfirm.value) return alertUser(false, 'Senhas não são iguais!')
+
+    const signupData: ISignup = {
+      name: name.value,
+      email: email.value,
+      phone: parseInt(number.value),
+      password: password.value,
+      passwordConfirm: passwordConfirm.value
+    }
+    
+    btn.disabled = true
+    const { data: { token, data: { user } } } = await UsersAPI.store<ISignup, IAuthRes<ILoggedUser>>(signupData, 'A sua conta foi criada com successo', undefined, 'users/signup')
+    
+    formFieldsCleaner([name, email, number, password, passwordConfirm], null)
+    btn.disabled = false 
+    
+    const loggedUser: ILoggedUser = { ...user, token }
+    saveUser(loggedUser)
+    App.toPage('products')
+  })
 }
 
 const autoFillDataInForm: () => void = () => {

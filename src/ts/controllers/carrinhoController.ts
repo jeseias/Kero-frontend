@@ -32,13 +32,12 @@ const carrinhoPageDetails: () => void = () => {
 }
 
 const showMyShoppingList: () => Promise<void> = async () => {
-
   if (!isUserLogged()) return shoppingListEmpty()
-
+  
   const products: IBookedProduct[] = await getAllShopptinItems()
   App.AppData.AllUserBookedProducts = products
-
-  if (products.length === 0 ) return shoppingListEmpty()
+  
+  if (!products[0]) return shoppingListEmpty()
 
   displayShoppingItem(products)
   carrinhoPageDetails()
