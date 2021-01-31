@@ -34,10 +34,16 @@ export const goToPage: (page: string) => void = async (page) => {
 }
 
 export const PageSwitcher: () => void = () => {
+  function takeToPage() {
+    const hash = window.location.hash.slice(1);
+    goToPage(hash);
+  } 
+
+  takeToPage();
+  
   ['hashchange', 'load'].forEach((event: string) => {
     window.addEventListener(event, () => {
-      const hash = window.location.hash.slice(1)
-      goToPage(hash)
+      takeToPage()
     })
   })
 }
