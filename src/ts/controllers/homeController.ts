@@ -10,7 +10,7 @@ import { IProduct } from '../constants/interfaces'
 const { bannerItems } = DOM.pages.home 
 let moveLength = 0
 
-const getAllPopulerProducts: () => Promise<void> = async () => {
+const getAllPopularProducts: () => Promise<void> = async () => {
   const products: IProduct[] = await ProductAPI.index()
   const popularProducts = products.filter(item => item.top === true)
 
@@ -40,5 +40,5 @@ export const slider: (flag: boolean) => void = (flag) => {
 export const homePageCtrl: () => Promise<void> = async () => {
   toPage('home')
 
-  await getAllPopulerProducts()
+  await getAllPopularProducts()
 } 
