@@ -1,4 +1,4 @@
-import { getAllShopptinItems } from '../models/Carrinho'
+import { getAllShoppingItems } from '../models/Cart'
 import { BookingAPI } from '../models/Booking'
 import { isUserLogged } from '../models/Auth'
 import { alertUser } from '../models/Alert'
@@ -11,42 +11,38 @@ import {
   displayShoppingItem, 
   shoppingListEmpty, 
   setUpShoppingHeader,
-} from '../views/carrinhoView'
+} from '../views/cartView'
 import { afterDOM } from '../views/elements'
 
 import { IBookedProduct } from '../constants/interfaces'
 
-const carrinhoPageDetails: () => void = () => {
-  const { allProducts } = afterDOM.pages.carrinho
-  let sum = 0
+const cartPageDetails: () => void = () => {
+  const { AllUserBookedProducts } = App.AppData
 
-  const info = allProducts().map(item => {
-    return parseInt(item.querySelector('.product-card__price')!.textContent!)
-  })
-
-  for (let n of info) {
-    sum += n
-  } 
-
-  setUpShoppingHeader(sum, info.length)
+  if (AllUserBookedProducts) {
+    const prices = AllUserBookedProducts?.reduce((acc, cur) => acc + cur.product.price, 0)
+    setUpShoppingHeader(prices, AllUserBookedProducts.length)
+  } else {
+    setUpShoppingHeader(0, 0)
+  }
 }
 
 const showMyShoppingList: () => Promise<void> = async () => {
   if (!isUserLogged()) return shoppingListEmpty()
   
-  const products: IBookedProduct[] = await getAllShopptinItems()
+  const products: IBookedProduct[] = await getAllShoppingItems()
   App.AppData.AllUserBookedProducts = products
   
   if (!products[0]) return shoppingListEmpty()
 
   displayShoppingItem(products)
-  carrinhoPageDetails()
+  cartPageDetails()
   checkoutProduct()
   await removeShoppingItem()
 }
 
 const removeShoppingItem: () => Promise<void> = async () => {
-  const { deleteBtns } = afterDOM.pages.carrinho
+  const { deleteBtns } = afterDOM.pages.cart
 
   deleteBtns().forEach(btn => {
     btn.addEventListener('click', async () => {
@@ -59,7 +55,7 @@ const removeShoppingItem: () => Promise<void> = async () => {
 } 
 
 const selectProduct: () => void = () => {
-  const { selectBtn } = afterDOM.pages.carrinho
+  const { selectBtn } = afterDOM.pages.cart
 
   selectBtn().forEach(btn => {
     btn.addEventListener('click', () => {
@@ -76,8 +72,8 @@ const selectProduct: () => void = () => {
   })
 }
 
-export const carrinhoController: () => Promise<void> = async () => {
-  toPage('carrinho')
+export const cartController: () => Promise<void> = async () => {
+  toPage('cart')
 
   await showMyShoppingList()
   selectProduct()

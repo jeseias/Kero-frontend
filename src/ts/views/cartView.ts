@@ -4,12 +4,12 @@ import DOM from './elements'
 import { addChildren, textShorter, removeChildren, svgLocation } from './View'
 
 import { IProduct, IBookedProduct } from '../constants/interfaces'
+import { formatMoney } from '../Utils/logic'
 
 export const shoppingListEmpty: () => void = () => {
-  const { all } = DOM.pages.carrinho
+  const { all } = DOM.pages.cart
 
   removeChildren(all)
-  console.log( all)
 
   all.insertAdjacentHTML('afterbegin', `
     <div class="empty">
@@ -19,7 +19,7 @@ export const shoppingListEmpty: () => void = () => {
 }
 
 export const displayShoppingItem: (products: { product: IProduct, _id: string }[]) => void = (products) => {
-  const { all } = DOM.pages.carrinho 
+  const { all } = DOM.pages.cart 
   const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
 
   const temp: (data: { product: IProduct, _id: string }) => string = data => {
@@ -46,7 +46,7 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
         <p class="product-card__name">${data.product.name}</p>
         <p class="product-card__summary">${textShorter(100, data.product.summary)}</p>
         <div class="product-card__footer">
-          <span class="product-card__price">${data.product.price} AKZ</span>
+          <span class="product-card__price">${formatMoney(data.product.price)}</span>
           <span class="product-card__cart">Selecionar</span>
         </div>
         <svg class="product-card__settings">
@@ -60,10 +60,10 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
 }
 
 export const setUpShoppingHeader: (total: number, length: number) => void = (totalPrice, length) => {
-  const { top: { items, total } } = DOM.pages.carrinho
+  const { top: { items, total } } = DOM.pages.cart
 
   items.textContent = `${length} Producto`
-  total.textContent = `Total: ${totalPrice} AKZ`
+  total.textContent = `Total: ${formatMoney(totalPrice)}`
 }
 
 export const displayCheckoutModal: (products: IBookedProduct[]) => void = (products) => {
@@ -79,9 +79,9 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => void = (produ
       <div class="checkout-box__checker">
         <span>Produto</span>
         <span>Nome</span>
-        <span>Preco (AKZ)</span>
+        <span>Preco (AOA)</span>
         <span>Qtd</span>
-        <span>Total (AKZ)</span>
+        <span>Total (AOA)</span>
       </div>
       <div class="checkout-box__body">
         <div class="checkout-box__body__allproducts">
@@ -89,9 +89,9 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => void = (produ
             <div class="checkout-box__product" id="${item.product.id}">
               <img src="${item.product.img__url}" class="checkout-box__product__img"/>
               <p class="checkout-box__product__name">${item.product.name}</p>
-              <p class="checkout-box__product__price">${item.product.price} AKZ</p>
+              <p class="checkout-box__product__price">${formatMoney(item.product.price)} AKZ</p>
               <input class="checkout-box__product__quantity" type="number" step="1" value="1" />
-              <p class="checkout-box__product__total" data-price="${item.product.price}">${item.product.price} AKZ</p>
+              <p class="checkout-box__product__total" data-price="${item.product.price}">${formatMoney(item.product.price)} </p>
             </div>
           `)}
         </div>
@@ -119,7 +119,7 @@ export const displayCheckoutModal: (products: IBookedProduct[]) => void = (produ
           <option value="C"> Entrada C </option> 
         </select>
         <input class="form-element" type="number" placeholder="Apartamento" id="apartment"/>
-        <span class="checkout-box__location__total" id="total-price">Total: AKZ</span>
+        <span class="checkout-box__location__total" id="total-price">Total: AOA</span>
         <input class="form-element" type="submit" value="Encomendar" id="checkout-btn"/>
       </form>
     </div>

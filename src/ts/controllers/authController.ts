@@ -6,7 +6,7 @@ import { alertUser } from '../models/Alert'
 import { afterDOM } from '../views/elements'
 import { loginTemp } from '../views/AuthView'
 
-export const loginHanlder: () => Promise<void> = async () => {
+export const loginHandler: () => Promise<void> = async () => {
   const { loginBtn } = afterDOM.header.normal
   
   loginBtn().addEventListener('click', () => {

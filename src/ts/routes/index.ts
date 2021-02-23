@@ -2,11 +2,11 @@ import App from '../App'
 
 import * as PageCTRL from './PageControllers'
 import { slider, sliderFunction } from '../controllers/homeController'
-import { loginHanlder } from '../controllers/authController'
+import { loginHandler } from '../controllers/authController'
 
 export const goToPage: (page: string) => void = async (page) => {
   if (!App.AppData.loggedUser) {
-    await loginHanlder()
+    await loginHandler()
   } 
 
   if (page !== 'home') {
@@ -24,8 +24,8 @@ export const goToPage: (page: string) => void = async (page) => {
     await PageCTRL.productsPageCtrl()
   } else if (page === 'about') {
     await PageCTRL.aboutPageCtrl()
-  } else if (page === 'carrinho') {
-    await PageCTRL.carrinhoController() 
+  } else if (page === 'cart') {
+    await PageCTRL.cartController() 
   } else if (page === 'dashboard') {
     await PageCTRL.dashboardPageCtrl() 
   } else {

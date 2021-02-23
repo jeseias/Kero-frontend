@@ -7,7 +7,7 @@ export const GEBC = document.getElementsByClassName.bind(document)
 const header = `header.header`
 const dashboard = `.page.dashboard#dashboard`
 const products = `.page.products#products`
-const carrinho = `.page.carrinho#carrinho`
+const cart = `.page.cart#cart`
 const home = `.page.home#home`
 
 export const afterDOM = {
@@ -37,10 +37,10 @@ export const afterDOM = {
       allSubCategoryProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__sub-categories .product-card`)),
       allProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__products .all .product-item`)),
     },
-    carrinho: {
-      deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .product-card__settings`)),
-      allProducts: () => <HTMLDivElement[]>Array.from($$(`${carrinho} .allproducts .product-card`)),
-      selectBtn: () => <HTMLSpanElement[]>Array.from($$(`${carrinho} .allproducts .product-card .product-card__cart`)),
+    cart: {
+      deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${cart} .product-card__settings`)),
+      allProducts: () => <HTMLDivElement[]>Array.from($$(`${cart} .allproducts .product-card`)),
+      selectBtn: () => <HTMLSpanElement[]>Array.from($$(`${cart} .allproducts .product-card .product-card__cart`)),
       checkoutModel: {
         form: () => <HTMLFormElement>$(`.modal .checkout-box #location-form`),
         products: () => <HTMLDivElement[]>Array.from($$(`.modal .checkout-box .checkout-box__product`)),
@@ -128,16 +128,16 @@ export default {
         submitBtn: <HTMLButtonElement>$(`${dashboard} .dashboard__location-information select#location-building`),
       }
     },  
-    carrinho: {
-      self: <HTMLDivElement>$(`${carrinho} `),
+    cart: {
+      self: <HTMLDivElement>$(`${cart} `),
       top: {
-        self: <HTMLDivElement>$(`${carrinho} .top`),
-        items: <HTMLParagraphElement>$(`${carrinho} .top .info__items`),
-        total: <HTMLParagraphElement>$(`${carrinho} .top .info__total`),
-        select: <HTMLSelectElement>$(`${carrinho} .top .action select`),
-        checkoutBtn: <HTMLButtonElement>$(`${carrinho} .top .action button`)
+        self: <HTMLDivElement>$(`${cart} .top`),
+        items: <HTMLParagraphElement>$(`${cart} .top .info__items`),
+        total: <HTMLParagraphElement>$(`${cart} .top .info__total`),
+        select: <HTMLSelectElement>$(`${cart} .top .action select`),
+        checkoutBtn: <HTMLButtonElement>$(`${cart} .top .action button`)
       },
-      all: <HTMLDivElement>$(`${carrinho} .allproducts`)
+      all: <HTMLDivElement>$(`${cart} .allproducts`)
     },
     contact: $('.page.contact#contact') as HTMLDivElement,
     error: $('.page.error#error') as HTMLDivElement

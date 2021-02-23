@@ -10,7 +10,7 @@ export const CheckoutAPI = new APICommunicator('checkouts')
 export const setUpCheckoutInformation: () => ICheckoutProductSend = () => {
   const { 
     products, mainTotalPrice, blockInput, buildingInput, entraceInput, apartmentInput 
-  } = afterDOM.pages.carrinho.checkoutModel
+  } = afterDOM.pages.cart.checkoutModel
 
   const allBookedProducts: IProductToBeBooked[] = products().map<IProductToBeBooked>(item => {
     const price = parseInt(item.querySelector('.checkout-box__product__price')!.textContent!)
@@ -43,7 +43,7 @@ export const setUpCheckoutInformation: () => ICheckoutProductSend = () => {
 }
  
 export const getTotalPrice: () => void = () => {
-  const { totalProductPrice, mainTotalPrice } = afterDOM.pages.carrinho.checkoutModel
+  const { totalProductPrice, mainTotalPrice } = afterDOM.pages.cart.checkoutModel
   let totalPrice = 0
 
   for (let n of totalProductPrice()) {

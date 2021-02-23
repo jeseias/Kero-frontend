@@ -7,7 +7,7 @@ import {
   CheckoutAPI, 
   getTotalPrice } from '../models/Checkout'
 
-import { displayCheckoutModal } from '../views/carrinhoView'
+import { displayCheckoutModal } from '../views/cartView'
 import DOM, { afterDOM } from '../views/elements'
 import { userInputNotification, menuToggler } from '../views/View'
 import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
@@ -15,7 +15,7 @@ import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
 import { IKeroClient, ICheckoutProduct, IBookedProduct } from '../constants/interfaces'
 
 const changeProductQuantity: () => void = () => {
-  const { quantityInputs } = afterDOM.pages.carrinho.checkoutModel
+  const { quantityInputs } = afterDOM.pages.cart.checkoutModel
 
   quantityInputs().forEach(item => {
     item.addEventListener('change', () => {
@@ -36,7 +36,7 @@ const changeProductQuantity: () => void = () => {
 
 const setUserLocationInfoIS: () => void = () => {
   const { location }: IKeroClient = JSON.parse(localStorage.getItem('kero-client')!)
-  const { blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel
+  const { blockInput, buildingInput, entraceInput, apartmentInput } = afterDOM.pages.cart.checkoutModel
 
   if (location) {
     location.apartment && (apartmentInput().value = `${location!.apartment}`);
@@ -47,7 +47,7 @@ const setUserLocationInfoIS: () => void = () => {
 }  
 
 const checkoutBookedProducts: (products: IBookedProduct[]) => void = (products) => {
-  const { form, buildingInput, apartmentInput } = afterDOM.pages.carrinho.checkoutModel 
+  const { form, buildingInput, apartmentInput } = afterDOM.pages.cart.checkoutModel 
 
   displayCheckoutModal(products)
 
@@ -79,7 +79,7 @@ const checkoutAllProducts: () => void = () => {
 }
 
 const checkoutSelectedProducts: () => Promise<void> = async () => {
-  const { allProducts } = afterDOM.pages.carrinho
+  const { allProducts } = afterDOM.pages.cart
 
   const products = allProducts().filter(product => product.classList.contains('product-card--selected'))
 
@@ -96,7 +96,7 @@ const checkoutSelectedProducts: () => Promise<void> = async () => {
 }
 
 export const checkoutProduct: () => void = () => {
-  const { top: { select, checkoutBtn } } = DOM.pages.carrinho
+  const { top: { select, checkoutBtn } } = DOM.pages.cart
 
   checkoutBtn.addEventListener('click', async () => {
     if (select.selectedIndex === 1) return checkoutAllProducts()

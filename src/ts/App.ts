@@ -1,5 +1,5 @@
 import { showUserMenu } from './controllers/headerController'
-import { loginHanlder } from './controllers/authController'
+import { loginHandler } from './controllers/authController'
 import { showAsideFull } from './controllers/pageController'
 import { 
   displayCheckoutMenu, 
@@ -43,7 +43,7 @@ class App {
       }
       
       HeaderView.normalHeader() 
-      await loginHanlder()
+      await loginHandler()
     }
 
     return {
@@ -51,7 +51,7 @@ class App {
     }
   } 
 
-  public toPage (page: 'products' | 'home' | 'about' | 'carrinho') {
+  public toPage (page: 'products' | 'home' | 'about' | 'cart') {
     toPage(page)
   }
 

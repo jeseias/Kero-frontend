@@ -1,7 +1,7 @@
 import { productsPageCtrl } from '../controllers/productsController'
 import { aboutPageCtrl } from '../controllers/aboutController'
 import { homePageCtrl } from '../controllers/homeController'
-import { carrinhoController } from '../controllers/carrinhoController'
+import { cartController } from '../controllers/cartController'
 import { dashboardPageCtrl } from '../controllers/dashboardController'
 
 import DOM, { $, GEBI } from '../views/elements'
@@ -46,7 +46,7 @@ export {
   homePageCtrl,
   aboutPageCtrl,
   productsPageCtrl,
-  carrinhoController,
+  cartController,
   dashboardPageCtrl,
   errorpage,
   toPage

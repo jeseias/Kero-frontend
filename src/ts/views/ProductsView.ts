@@ -5,6 +5,7 @@ import { addChildren, textShorter, setThisActive } from './View'
 
 import { IProduct, IReview } from '../constants/interfaces' 
 import { TProductCategory } from '../constants/types' 
+import { formatMoney } from '../Utils/logic'
 
 // All My templates
 const LOCATION = 'http://127.0.0.1:5000/files/img/users/'
@@ -15,7 +16,7 @@ export const tempTopProductsGenerator: (data: IProduct) => string = data => `
     <p class="product-card__name">${data.name}</p>
     <p class="product-card__summary">${textShorter(60, data.summary)}</p>
     <div class="product-card__footer">
-      <span class="product-card__price">${data.price} AKZ</span>
+      <span class="product-card__price">${formatMoney(data.price)}</span>
       <span class="product-card__cart">Adicionar</span>
     </div>
   </div>  
@@ -25,7 +26,7 @@ const tempProductsGenerator: (data: IProduct) => string = data => `
   <div class="product-item" id="product-${data.id}">
     <img class="product-item__img" src="${data.img__url}" />
     <p class="product-item__name">${data.name}</p>
-    <p class="product-item__price">${data.price}</p>
+    <p class="product-item__price">${formatMoney(data.price)}</p>
     <p class="product-item__cart">Adicionar ao carinho</p>
   </div> 
 ` 
