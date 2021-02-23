@@ -13,14 +13,18 @@ import { userInputNotification, menuToggler } from '../views/View'
 import { displayMyCheckouts, displayOneCheckout } from '../views/checkoutView'
 
 import { IKeroClient, ICheckoutProduct, IBookedProduct } from '../constants/interfaces'
+import { formatMoney } from '../Utils/logic'
 
 const changeProductQuantity: () => void = () => {
   const { quantityInputs } = afterDOM.pages.cart.checkoutModel
+
+  console.log(quantityInputs())
 
   quantityInputs().forEach(item => {
     item.addEventListener('change', () => {
       const value = parseInt(item.value)
       const totalPrice = <HTMLParagraphElement>item.parentElement!.querySelector(`.checkout-box__product__total`)
+      const price = totalPrice.dataset.price!
 
       // Make sure value isNOT < 1      
       if (value < 1) {
@@ -28,7 +32,11 @@ const changeProductQuantity: () => void = () => {
         return alertUser(false, 'A quantidade não pode ser menor que 0')
       }
 
-      totalPrice.textContent = `${parseInt(totalPrice.dataset.price!) * value}`
+      const totalAmount = parseInt(price) * value
+
+      totalPrice.textContent = `${formatMoney(totalAmount)}`
+      totalPrice.dataset.totalPrice = `${totalAmount}`;
+
       getTotalPrice()
     })
   })

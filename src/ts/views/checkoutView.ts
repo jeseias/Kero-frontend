@@ -76,7 +76,7 @@ export const displayOneCheckout: (checkout: ICheckoutProduct) => Promise<void> =
           <div class=" checkoutone-box__product">
             <img src="${product.img__url}" class="checkoutone-box__product__img" />
             <h2 class="class="checkoutone-box__product__title">${product.name}</h2>
-            <p class="class="checkoutone-box__product__price">${formatMoney(product.price)}</p>
+            <p class="class="checkoutone-box__product__price" data-price="${product.price}">${formatMoney(product.price)}</p>
             <p class="class="checkoutone-box__product__quantity">
               ${checkout.products.find(item => item.productID === products[i].id)!.quantity}
             </p>

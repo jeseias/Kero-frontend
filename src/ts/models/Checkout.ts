@@ -4,6 +4,7 @@ import App from '../App'
 import { afterDOM } from '../views/elements'
 
 import { ICheckoutProductSend, IProductToBeBooked, IKeroClient } from '../constants/interfaces'
+import { formatMoney } from '../Utils/logic'
 
 export const CheckoutAPI = new APICommunicator('checkouts')
 
@@ -43,14 +44,22 @@ export const setUpCheckoutInformation: () => ICheckoutProductSend = () => {
 }
  
 export const getTotalPrice: () => void = () => {
-  const { totalProductPrice, mainTotalPrice } = afterDOM.pages.cart.checkoutModel
+  const { totalProductPrice, mainTotalPrice, products } = afterDOM.pages.cart.checkoutModel
   let totalPrice = 0
 
-  for (let n of totalProductPrice()) {
-    totalPrice += parseInt(n.textContent!)
-  }
+  const productsQuantityPrice: number[] = products().map(item => {
+    const quantity = <HTMLParagraphElement>item.querySelector('.checkout-box__product__total')
 
-  mainTotalPrice().textContent = `Total final: ${totalPrice} AKZ`
-  mainTotalPrice().dataset.totalPrice = `${totalPrice}`
+    return Number(quantity.dataset.totalPrice) || Number(quantity.dataset.price)
+  })
+
+  const totalAmount = productsQuantityPrice.reduce((acc, cur) => acc + cur, 0)
+
+  for (let n of totalProductPrice()) {
+    totalPrice += parseInt(n.dataset.price!)
+  } 
+
+  mainTotalPrice().textContent = `Total final: ${formatMoney(totalAmount)}`
+  mainTotalPrice().dataset.totalPrice = `${totalAmount}`
   
 }
