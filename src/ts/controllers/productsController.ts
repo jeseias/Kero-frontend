@@ -37,17 +37,19 @@ const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Prom
   }
 
 const showDetailedProductModal: TShowDetailedProductModal = containers => {
-  const products = containers.map(container => {
+  containers.forEach((container, i, arr) => {
     container.addEventListener('click', async () => {
       const productID = container.id.replace('product-', '');
       const data: IProduct = await ProductAPI.show(productID);
       displayProductModal(data)
-    });
 
-    return container;
+      const modal = afterDOM.pages.products.productModal()
+      console.log(modal)
+
+      bookingProducts([modal], 'solo-product');
+    });
   });
 
-  bookingProducts(products, 'solo-product');
 }
 
 export const productsPageCtrl: () => Promise<void> = 

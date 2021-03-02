@@ -36,6 +36,7 @@ export const afterDOM = {
     products: {
       allSubCategoryProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__sub-categories .product-card`)),
       allProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__products .all .product-item`)),
+      productModal: () => $(`.modal .solo-product`) as HTMLDivElement,
     },
     cart: {
       deleteBtns: () => <HTMLDivElement[]>Array.from($$(`${cart} .product-card__settings`)),
@@ -53,7 +54,7 @@ export const afterDOM = {
         mainTotalPrice: () => <HTMLSpanElement>$(`.modal .checkout-box #location-form span#total-price`),
         submitBtn: () => <HTMLInputElement>$(`.modal .checkout-box #location-form input#checkout-btn`)
       }
-    }
+    },
   },
   checkoutItems: {
     checkoutDeleteBtn: () => <HTMLElement>$(`.checkoutone-box__header__remover`),
