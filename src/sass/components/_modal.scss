@@ -8,8 +8,15 @@
   height: 100vh;
   width: 100vw;
 
-  &.visible {  
-    backdrop-filter: blur(10px); 
+  &.visible {
+    @supports (backdrop-filter: blur(10px)) {
+      backdrop-filter: blur(10px); 
+    }
+
+    @supports not (backdrop-filter: blur(10px)) {
+      background: rgba($color-dark, .5);
+    }
+    
     z-index: 1000000;
     opacity: 1;
   }

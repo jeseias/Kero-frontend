@@ -56,7 +56,7 @@ const tempProductModal: (data: IProduct) => string = data => {
       <p class="solo-product__summary">${data.summary}</p>
       <div>
         <p class="solo-product__price">${formatMoney(data.price)}</p>
-        <p class="solo-product__cart-btn">Adicionar</p>
+        <p class="solo-product__cart">Adicionar</p>
       </div>
     </div>
   `

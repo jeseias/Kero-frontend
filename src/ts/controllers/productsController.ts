@@ -37,13 +37,17 @@ const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Prom
   }
 
 const showDetailedProductModal: TShowDetailedProductModal = containers => {
-  containers.forEach(container => {
+  const products = containers.map(container => {
     container.addEventListener('click', async () => {
       const productID = container.id.replace('product-', '');
       const data: IProduct = await ProductAPI.show(productID);
       displayProductModal(data)
     });
+
+    return container;
   });
+
+  bookingProducts(products, 'solo-product');
 }
 
 export const productsPageCtrl: () => Promise<void> = 
@@ -63,8 +67,13 @@ export const productsPageCtrl: () => Promise<void> =
           setThisActive(item, categoryItems, 'category-item--active') 
           switchProductCategory(products, item.dataset.category!)
 
+          // Book the products
           bookingProducts(allSubCategoryProducts(), 'product-card')
           bookingProducts(allProducts(), 'product-item')
+
+          // Open the product models
+          showDetailedProductModal(allProducts())
+          showDetailedProductModal(allSubCategoryProducts())
         })
       )
     }
