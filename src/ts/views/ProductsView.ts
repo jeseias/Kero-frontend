@@ -1,11 +1,12 @@
 import { filterProducts, getCategoryProducts, getTopProject } from '../models/Products'
 
 import DOM, { GEBI } from './elements'
-import { addChildren, textShorter, setThisActive } from './View'
+import { addChildren, textShorter, setThisActive, svgLocation } from './View'
 
 import { IProduct, IReview } from '../constants/interfaces' 
 import { TProductCategory } from '../constants/types' 
 import { formatMoney } from '../Utils/logic'
+import { displayModal } from './ViewModal'
 
 // All My templates
 const LOCATION = 'http://127.0.0.1:5000/files/img/users/'
@@ -43,6 +44,24 @@ const tempReviewsGenerator: (data: IReview) => string = data => {
   `
 }
 
+const tempProductModal: (data: IProduct) => string = data => {
+  return `
+    <div class="solo-product" id="product-${data.id}">
+      <svg class="close">
+        <use xlink:href="${svgLocation}circle-with-cross"></use>
+      </svg>
+      <img class="solo-product__img" src="${data.img__url}" />
+      <h2 class="solo-product__name">${data.name}</h2> 
+      <p class="solo-product__category">${data.category}</p> 
+      <p class="solo-product__summary">${data.summary}</p>
+      <div>
+        <p class="solo-product__price">${formatMoney(data.price)}</p>
+        <p class="solo-product__cart-btn">Adicionar</p>
+      </div>
+    </div>
+  `
+}
+
 const displayAllProducts: (
   parent: HTMLElement, 
   data: any, 
@@ -54,10 +73,10 @@ const displayAllProducts: (
   } 
 
 // All exported function
-export const swicthProductCategory: (products: IProduct[], catergory: TProductCategory | string) => void = 
-  (products, catergory) => {
+export const switchProductCategory: (products: IProduct[], category: TProductCategory | string) => void = 
+  (products, category) => {
     const { allProducts, topProducts } = DOM.pages.products
-    const filterProducts = getCategoryProducts(products, catergory)
+    const filterProducts = getCategoryProducts(products, category)
 
     displayAllProducts(
       topProducts, 
@@ -74,19 +93,23 @@ export const swicthProductCategory: (products: IProduct[], catergory: TProductCa
     )
   }
 
+export const displayProductModal: (product: IProduct) => void = product => {
+  displayModal(tempProductModal(product));
+}
+
 export const mountProductPage: (
   products: IProduct[],
   reviews: IReview[],
 ) => void = (products, reviews) => {
   const { allProducts, allReviews, topProducts, categoryItems } = DOM.pages.products
-  const filterdDefaultProducts = filterProducts(products, 'eletronicos')
-  const filteredTopProducts = getTopProject(filterdDefaultProducts);
+  const filteredDefaultProducts = filterProducts(products, 'eletronicos')
+  const filteredTopProducts = getTopProject(filteredDefaultProducts);
 
   topProducts.style.gridTemplateColumns = `repeat(${filteredTopProducts.length}, 25rem)`
 
   setThisActive(categoryItems[0], categoryItems, 'category-item--active')
   
-  displayAllProducts(allProducts, filterdDefaultProducts , tempProductsGenerator, 'afterbegin')
+  displayAllProducts(allProducts, filteredDefaultProducts , tempProductsGenerator, 'afterbegin')
   displayAllProducts(topProducts, filteredTopProducts, tempTopProductsGenerator, 'afterbegin')
 
   addChildren(allReviews, reviews, tempReviewsGenerator, 'beforeend')

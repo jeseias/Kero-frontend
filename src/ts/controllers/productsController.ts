@@ -5,11 +5,12 @@ import { alertUser } from '../models/Alert'
 
 import { toPage } from '../routes/PageControllers'
 
-import { mountProductPage, swicthProductCategory } from '../views/ProductsView'
+import { displayProductModal, mountProductPage, switchProductCategory } from '../views/ProductsView'
 import { setThisActive } from '../views/View'
 import DOM, { afterDOM } from '../views/elements'
 
 import { IProduct, IReview } from '../constants/interfaces'
+import { TShowDetailedProductModal } from './@types/product-controller.types'
 
 const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Promise<void> = 
   async (products, targetClass) => {
@@ -35,6 +36,16 @@ const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Prom
     })
   }
 
+const showDetailedProductModal: TShowDetailedProductModal = containers => {
+  containers.forEach(container => {
+    container.addEventListener('click', async () => {
+      const productID = container.id.replace('product-', '');
+      const data: IProduct = await ProductAPI.show(productID);
+      displayProductModal(data)
+    });
+  });
+}
+
 export const productsPageCtrl: () => Promise<void> = 
   async () => {
     toPage('products')
@@ -44,13 +55,13 @@ export const productsPageCtrl: () => Promise<void> =
 
     const { allProducts, allSubCategoryProducts } = afterDOM.pages.products
 
-    const switchProductCategory: () => void = () => {
+    const switchProductCategoryCtrl: () => void = () => {
       const { categoryItems } = DOM.pages.products
     
       categoryItems.forEach(item =>
         item.addEventListener('click', () => {
           setThisActive(item, categoryItems, 'category-item--active') 
-          swicthProductCategory(products, item.dataset.category!)
+          switchProductCategory(products, item.dataset.category!)
 
           bookingProducts(allSubCategoryProducts(), 'product-card')
           bookingProducts(allProducts(), 'product-item')
@@ -59,9 +70,13 @@ export const productsPageCtrl: () => Promise<void> =
     }
 
     mountProductPage(products, reviews)
-    switchProductCategory()
+    switchProductCategoryCtrl()
 
     // Add Item to cart
     bookingProducts(allSubCategoryProducts(), 'product-card')
     bookingProducts(allProducts(), 'product-item')
+
+    // Listener to open product modal
+    showDetailedProductModal(allProducts())
+    showDetailedProductModal(allSubCategoryProducts())
   }
