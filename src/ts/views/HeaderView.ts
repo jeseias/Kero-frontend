@@ -10,6 +10,11 @@ const mountHeader: (header: HTMLDivElement, temp: string) => void = (header, tem
 const HeaderMainTemp = `
   <div class="main">
     <h1>Hipermercado Kero Sequele</h1>
+    <div class="search">
+      <input type="text" class="search__input" placeholder="pesquisar produto..."/>
+      <div class="search__container">
+      </div>
+    </div>
   </div>
 `
 

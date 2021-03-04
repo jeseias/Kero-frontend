@@ -12,6 +12,9 @@ const home = `.page.home#home`
 
 export const afterDOM = {
   header: {
+    searchBox: () => <HTMLDivElement>$(`${header} .search`),
+    searchInput: () => <HTMLInputElement>$(`${header} .search .search__input`),
+    searchContainer: () => <HTMLDivElement>$(`${header} .search .search__container`),
     normal: {
       loginBtn: () => <HTMLButtonElement>GEBI(`loginbtn`),
       signupBtn: () => <HTMLButtonElement>GEBI(`signupbtn`)

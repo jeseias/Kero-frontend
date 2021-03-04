@@ -10,9 +10,9 @@ import { PageSwitcher } from './routes/index'
 import { toPage } from './routes/PageControllers'
 
 import HeaderView from './views/HeaderView'
-import { afterDOM } from './views/elements'
 
 import { ILoggedUser, IApp, IKeroClient } from './constants/interfaces'
+import { searchBarController } from './components/search'
 
 class App {
 
@@ -60,6 +60,7 @@ class App {
 
     PageSwitcher()
     showAsideFull()
+    searchBarController()
 
   }
 }

@@ -23,7 +23,7 @@ export const tempTopProductsGenerator: (data: IProduct) => string = data => `
   </div>  
 `
 
-const tempProductsGenerator: (data: IProduct) => string = data => `
+export const tempProductsGenerator: (data: IProduct) => string = data => `
   <div class="product-item" id="product-${data.id}">
     <img class="product-item__img" src="${data.img__url}" />
     <p class="product-item__name">${data.name}</p>

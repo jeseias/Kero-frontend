@@ -30,8 +30,10 @@
 
   .main {
     @include GridCenter;
+    grid-template-columns: 1fr 1fr;
     
     justify-self: start;
+    align-items: center;
   }
 
   .user, .normal {
