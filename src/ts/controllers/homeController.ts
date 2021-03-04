@@ -2,13 +2,19 @@ import { ProductAPI } from '../models/Products'
 
 import { toPage } from '../routes/PageControllers'
 
-import DOM from '../views/elements'
+import DOM, { afterDOM } from '../views/elements'
 import { mountPopularProducts } from '../views/HomeView'
+import { showDetailedProductModal } from '../shared/products.shared'
 
 import { IProduct } from '../constants/interfaces'
 
 const { bannerItems } = DOM.pages.home 
 let moveLength = 0
+
+const openModalProducts: () => void = () => {
+  const containers = afterDOM.pages.home.getAllProducts()
+  showDetailedProductModal(containers);
+}
 
 const getAllPopularProducts: () => Promise<void> = async () => {
   const products: IProduct[] = await ProductAPI.index()
@@ -41,4 +47,5 @@ export const homePageCtrl: () => Promise<void> = async () => {
   toPage('home')
 
   await getAllPopularProducts()
+  openModalProducts()
 } 

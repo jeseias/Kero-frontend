@@ -2,6 +2,7 @@ import { ProductAPI, addProductToShoppingList } from '../models/Products'
 import { ReviewAPI } from '../models/Reviews'
 import { isUserLogged } from '../models/Auth'
 import { alertUser } from '../models/Alert'
+import { showDetailedProductModal } from '../shared/products.shared'
 
 import { toPage } from '../routes/PageControllers'
 
@@ -34,23 +35,7 @@ const bookingProducts: (products: HTMLDivElement[], targetClass: string) => Prom
         }
       })
     })
-  }
-
-const showDetailedProductModal: TShowDetailedProductModal = containers => {
-  containers.forEach((container, i, arr) => {
-    container.addEventListener('click', async () => {
-      const productID = container.id.replace('product-', '');
-      const data: IProduct = await ProductAPI.show(productID);
-      displayProductModal(data)
-
-      const modal = afterDOM.pages.products.productModal()
-      console.log(modal)
-
-      bookingProducts([modal], 'solo-product');
-    });
-  });
-
-}
+  } 
 
 export const productsPageCtrl: () => Promise<void> = 
   async () => {

@@ -15,6 +15,7 @@ export const afterDOM = {
     searchBox: () => <HTMLDivElement>$(`${header} .search`),
     searchInput: () => <HTMLInputElement>$(`${header} .search .search__input`),
     searchContainer: () => <HTMLDivElement>$(`${header} .search .search__container`),
+    getAllSearchProducts: () => <HTMLDivElement[]>Array.from($$(`${header} .search__container .search__product`)),
     normal: {
       loginBtn: () => <HTMLButtonElement>GEBI(`loginbtn`),
       signupBtn: () => <HTMLButtonElement>GEBI(`signupbtn`)
@@ -36,6 +37,9 @@ export const afterDOM = {
     submitloginBtn: () => $(`.modal #loginform input[type="submit"]`) as HTMLInputElement
   },
   pages: {
+    home: {
+      getAllProducts: () => <HTMLDivElement[]>Array.from($$(`${home} .product-card`)),
+    },
     products: {
       allSubCategoryProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__sub-categories .product-card`)),
       allProducts: () => <HTMLDivElement[]>Array.from($$(`${products} .products__products .all .product-item`)),

@@ -1,9 +1,12 @@
-import { IProduct } from "../constants/interfaces"
-import { ProductAPI } from "../models/Products"
+import { loadProducts, showDetailedProductModal } from "../shared/products.shared";
 import { afterDOM } from "../views/elements"
 import { displayProducts } from "../views/search";
 
-const loadProducts: () => Promise<IProduct[]> = async () => await ProductAPI.index();
+const addModalToSearchProducts: () => void = () => {
+  const containers = afterDOM.header.getAllSearchProducts()
+  console.log(containers)
+  showDetailedProductModal(containers)
+}
  
 export const searchBarController = () => {
   const input = afterDOM.header.searchInput()
@@ -14,16 +17,19 @@ export const searchBarController = () => {
     const products = await loadProducts();
 
     displayProducts(products, container);
+    addModalToSearchProducts()
 
     input.addEventListener('keyup', () => {
       const value = input.value.toLowerCase();  
       const filteredProducts = products.filter(product => product.name.toLowerCase().indexOf(value) > - 1);
 
       displayProducts(filteredProducts, container);
-    })
+    });
+
+    
   });
 
-  input.addEventListener('focusout', () => {
-    container.classList.remove('visible'); 
-  })
+  // input.addEventListener('focusout', () => {
+  //   container.classList.remove('visible'); 
+  // })
 }
