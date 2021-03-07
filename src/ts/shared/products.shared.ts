@@ -37,16 +37,21 @@ export const bookingProducts: (products: HTMLDivElement[], targetClass: string) 
 
 export const showDetailedProductModal: TShowDetailedProductModal = containers => {
   containers.forEach(container => {
-    container.addEventListener('click', async () => {
-      const productID = container.id.replace('product-', '');
-      const data: IProduct = await ProductAPI.show(productID);
-      displayProductModal(data)
-      console.log(container)
+    const img: HTMLDivElement | HTMLImageElement | null = 
+      container.querySelector('.product-card__img') || container.querySelector('.product-item__img')
 
-      const modal = afterDOM.pages.products.productModal();
+    if (img) {
+      img.addEventListener('click', async () => {
+        const productID = container.id.replace('product-', '');
+        const data: IProduct = await ProductAPI.show(productID);
 
-      bookingProducts([modal], 'solo-product');
-    });
+        displayProductModal(data)
+  
+        const modal = afterDOM.pages.products.productModal();
+  
+        bookingProducts([modal], 'solo-product');
+      });
+    }
   });
 }
 

@@ -16,6 +16,13 @@
     width: 100%;
     background-size: cover;
     background-position: center;
+
+    @include Transition;
+
+    &:hover {
+      opacity: .9;
+      cursor: pointer;
+    }
   }
 
   &__name {

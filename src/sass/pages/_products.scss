@@ -127,12 +127,19 @@
         width: 7rem;
         margin-right: 1rem;
 
+        @include Transition;
+
         @include respond($bp-small) {
           width: 100%;
           height: auto;
 
           grid-column: 1/2;
           grid-row: 1/-1;
+        }
+
+        &:hover {
+          opacity: .9;
+          cursor: pointer;
         }
       }
 

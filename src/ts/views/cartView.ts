@@ -22,11 +22,10 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
   const { all } = DOM.pages.cart 
   const svgLocation = 'src/assets/SVGs/sprite.svg#icon-'
 
-
   const temp: (data: { product: IProduct, _id: string }) => string = data => {
     if (!data.product) {
       return  `
-        <div class="product-card" id="product-${data._id}">
+        <div class="product-card">
         <div class="product-card__img" style="background-image: url()"></div>
         <p class="product-card__name">Produto não disponivel</p>
         <p class="product-card__summary"></p>
@@ -42,7 +41,7 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
     }
     
     return `
-      <div class="product-card" id="product-${data._id}">
+      <div class="product-card" id="product-${data.product.id}">
         <div class="product-card__img" style="background-image: url(${data.product.img__url})"></div>
         <p class="product-card__name">${data.product.name}</p>
         <p class="product-card__summary">${textShorter(60, data.product.summary)}</p>

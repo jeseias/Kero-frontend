@@ -3,6 +3,7 @@ import { BookingAPI } from '../models/Booking'
 import { isUserLogged } from '../models/Auth'
 import { alertUser } from '../models/Alert'
 import App from '../App'
+import { afterDOM } from '../views/elements'
 
 import { toPage } from '../routes/PageControllers'
 import { checkoutProduct } from './checkoutController'
@@ -12,9 +13,9 @@ import {
   shoppingListEmpty, 
   setUpShoppingHeader,
 } from '../views/cartView'
-import { afterDOM } from '../views/elements'
 
 import { IBookedProduct } from '../constants/interfaces'
+import { showDetailedProductModal } from '../shared/products.shared'
 
 const cartPageDetails: () => void = () => {
   const { AllUserBookedProducts } = App.AppData
@@ -72,9 +73,15 @@ const selectProduct: () => void = () => {
   })
 }
 
+const openProductModal: () => void = () => {
+  const containers = afterDOM.pages.cart.allProducts();
+  showDetailedProductModal(containers);
+}
+
 export const cartController: () => Promise<void> = async () => {
   toPage('cart')
 
   await showMyShoppingList()
   selectProduct()
+  openProductModal()
 }
