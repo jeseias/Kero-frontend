@@ -3,7 +3,7 @@ import App from '../App'
 
 import { afterDOM } from '../views/elements'
 
-import { ICheckoutProductSend, IProductToBeBooked, IKeroClient } from '../constants/interfaces'
+import { ICheckoutProductSend, IProductToBeBooked } from '../constants/interfaces'
 import { formatMoney } from '../Utils/logic'
 
 export const CheckoutAPI = new APICommunicator('checkouts')
@@ -17,12 +17,13 @@ export const setUpCheckoutInformation: () => ICheckoutProductSend = () => {
     const price = parseInt(item.querySelector('.checkout-box__product__price')!.textContent!)
     const quantity = parseInt(item.querySelector<HTMLInputElement>('.checkout-box__product__quantity')!.value)
 
-    return {
+    return {  
       productID: item.id,
       price,
       quantity 
     }
-  })
+  });
+
   const total = parseInt(mainTotalPrice().dataset.totalPrice!)
   const block = parseInt(blockInput().value)
   const building = parseInt(buildingInput().value)

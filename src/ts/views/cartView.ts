@@ -41,7 +41,7 @@ export const displayShoppingItem: (products: { product: IProduct, _id: string }[
     }
     
     return `
-      <div class="product-card" id="product-${data.product.id}">
+      <div class="product-card" id="product-${data.product.id}" data-bookingid="${data._id}" >
         <div class="product-card__img" style="background-image: url(${data.product.img__url})"></div>
         <p class="product-card__name">${data.product.name}</p>
         <p class="product-card__summary">${textShorter(60, data.product.summary)}</p>

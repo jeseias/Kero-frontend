@@ -18,8 +18,6 @@ import { formatMoney } from '../Utils/logic'
 const changeProductQuantity: () => void = () => {
   const { quantityInputs } = afterDOM.pages.cart.checkoutModel
 
-  console.log(quantityInputs())
-
   quantityInputs().forEach(item => {
     item.addEventListener('change', () => {
       const value = parseInt(item.value)
@@ -92,7 +90,7 @@ const checkoutSelectedProducts: () => Promise<void> = async () => {
   const products = allProducts().filter(product => product.classList.contains('product-card--selected'))
 
   const selectedProducts = await Promise.all(products.map(async item => {
-    return await BookingAPI.show<IBookedProduct>(item.id.replace('product-', ''), App.AppData.loggedUser!.token)
+    return await BookingAPI.show<IBookedProduct>(item.dataset.bookingid!, App.AppData.loggedUser!.token)
   }))
 
   if (!selectedProducts[0]) {

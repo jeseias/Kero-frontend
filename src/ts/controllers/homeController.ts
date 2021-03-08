@@ -4,7 +4,7 @@ import { toPage } from '../routes/PageControllers'
 
 import DOM, { afterDOM } from '../views/elements'
 import { mountPopularProducts } from '../views/HomeView'
-import { showDetailedProductModal } from '../shared/products.shared'
+import { showDetailedProductModal, bookingProducts } from '../shared/products.shared'
 
 import { IProduct } from '../constants/interfaces'
 
@@ -21,6 +21,11 @@ const getAllPopularProducts: () => Promise<void> = async () => {
   const popularProducts = products.filter(item => item.top === true)
 
   mountPopularProducts(popularProducts)
+}
+
+const bookProducts: () => void = () => {
+  const containers = afterDOM.pages.home.getAllProducts()
+  bookingProducts(containers, 'product-card')
 }
 
 export const sliderFunction = () => () => {
@@ -48,4 +53,5 @@ export const homePageCtrl: () => Promise<void> = async () => {
 
   await getAllPopularProducts()
   openModalProducts()
+  bookProducts()
 } 
